@@ -8,7 +8,7 @@
 body{
   min-height: 10vh;
   width: 100%;
-  background: #D9D7F1;
+  background: #C6EBC5;
   display: inline-block;
   align-items: center;
   text-decoration: none;
@@ -17,6 +17,7 @@ body{
 .container{
   left: 30px;
   margin: 5%;
+  margin-top: 40px;
   width: 85%;
   background: #fff;
   border-radius: 6px;
@@ -124,153 +125,138 @@ header{
     background: #729D39;
     
   }
+  .logo{
+      float: left;
+      padding: 10px 0;
+      color: #fff;
+      font-size: 30px;
+    }
+    
+    .logo img{
+      height: 50px;
+    }
   
-  .inner-width{
-    max-width: 1300px;
-    padding: 0 10px;
-    margin: auto;
+    img{
+      height: 50px;
+    }
+
+
+/* Style the links inside the navigation bar */
+.navigation-menu a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+/* Hide the link that should open and close the topnav on small screens */
+.navigation-menu .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+a.aj_btn {
+  background: #36622B;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+a.aj_btn:hover{
+  background: #fff;
+  color: #36622B;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+.inner-width{
+  max-width: 1600px;
+  padding: 0 10px;
+  margin: auto;
+}
+.navigation-menu{
+  overflow: hidden;
+  float: right;
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+}
+
+.navigation-menu a{
+  margin-left: 10px;
+  color: #ddd;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: .3s linear;
+}
+
+.navigation-menu a:hover{
+  background: #36622B;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.navigation-menu i{
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.home{
+  color: #fff;
+}
+
+.menu-toggle-btn{
+  float: right;
+  height: 90px;
+  line-height: 50px !important;
+  color: #fff;
+  font-size: 26px;
+  display: none !important;
+  cursor: pointer;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 1200px) {
+  header{
+  width: 100%;
+    background: #729D39;
+    
   }
-  
   .logo{
     float: left;
     padding: 10px 0;
     color: #fff;
-    font-size: 30px;
+    font-size: 20px;
   }
-  
-  .logo img{
-    height: 50px;
-  }
-
   img{
-    height: 50px;
+    height: 30px;
   }
-  
-  .navigation-menu{
-    float: right;
-    display: flex;
-    align-items: center;
-    min-height: 90px;
-  }
-  
   .navigation-menu a{
-    margin-left: 10px;
-    color: #ddd;
-    text-transform: uppercase;
-    font-size: 14px;
-    padding: 12px 20px;
-    border-radius: 4px;
-    transition: .3s linear;
+    display: none;
   }
   
-  .navigation-menu a:hover{
-    background: #36622B;
-    color: #fff;
-    transform: scale(1.1);
+  .navigation-menu a.icon {
+      background-color: #729D39;
+    display: block;
+    right: 0;
+    top: 0;
+    position: absolute;
   }
-  
-  .navigation-menu i{
-    margin-right: 8px;
-    font-size: 16px;
-  }
-  
-  .home{
-    color: #fff;
-  }
-  
-  a.aj_btn {
-    background: #36622B;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 2px;
-  }
-  
-  a.aj_btn:hover{
-    background: #fff;
-    color: #36622B;
-    font-weight: 500;
-    letter-spacing: 2px;
-  }
-  
-  .menu-toggle-btn{
-    float: right;
-    height: 90px;
-    line-height: 50px !important;
-    color: #fff;
-    font-size: 26px;
-    display: none !important;
-    cursor: pointer;
-  }
-  
-  
-  @media screen and (max-width:1000px) {
-    .menu-toggle-btn{
-      display: block !important;
-    }
-    .logo{
-      float: left;
-      padding: 10px 0;
-      color: #fff;
-      font-size: 20px;
-    }
-    .navigation-menu{
-      position: absolute;
-      width: 100%;
-      max-width: 300px;
-      background: #36622B;
-      top: 50px;
-      right: 0;
-      display: none;
-      padding: 10px 10px;
-      box-sizing: border-box;
-    }
-  
-    .navigation-menu::before{
-      content: "";
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 10px solid #172b4d;
-      position: absolute;
-      top: -10px;
-      right: 10px;
-    }
-  
-    .navigation-menu a{
-      display: block;
-      margin: 10px 0;
-    }
-  
-    .navigation-menu.active{
-      display: block;
-    }
-  }
-@media (max-width: 901px) {
-
-  header{
-    width: 100%;
-      height: 90px;
-      background: #729D39;
-      
-    }
-
-  .container .content .right-content{
-   width: 15%;
-   margin-left: 30px; 
-   align-items: center;
-}
-}
-@media (max-width: 1000px) {
-  header{
-    width: 100%;
-      height: 90px;
-      background: #729D39;
-      
-    }
   .container{
-    left: 50px;
-    width: 50%;
+    display: block;
+    left: 20px;
+    width: 60%;
     margin: 18%;
+    margin-top: 50px;
     height: 100%;
+  }
+  .container.active{
+    margin-top: 330px;
   }
   .container .content{
     flex-direction: column-reverse;
@@ -288,5 +274,39 @@ header{
    width: 95%;
    margin-left: 0;
  }
+}
+
+@media screen and (max-width: 1200px) {
+  .navigation-menu.responsive .icon {
+    position: absolute;
+    float: right;
+    background-color: #729D39;
+    right: 0;
+    top: 0;
+  }
+  .navigation-menu.responsive
+  {
+      display: block;
+    width: 70%;
+    max-width:300px;
+    height: 50%;
+    background: #729D39;
+    right: 0;
+    top: 0;
+    padding: 10px 10px;
+    box-sizing:border-box;
+  }
+    a.aj_btn:hover{
+      background: #fff;
+      color: #36622B;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+  .navigation-menu.responsive a {
+    position: relative;
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
 

@@ -1,0 +1,408 @@
+* {
+  font-family: "Poppins";
+}
+
+body {
+  width: 100%;
+  top: 100px;
+  overflow: auto;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  background: #C6EBC5;
+  text-decoration: none;
+  min-height: 10px;
+  max-height: 800px;
+}
+img{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+}
+.screen-1 {
+  margin: 34%;
+  margin-top: 120px;
+  background: #A1C298;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  box-shadow: 0 0 20px #A1C298;
+  gap: 40px;
+}
+.screen-1 .logo {
+  margin-top: 30px;
+}
+.screen-1 .email {
+  margin-left: 10%;
+  width: 80%;
+  background: #EEEEEE;
+  box-shadow: 0 0 10px #EEEEEE;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-top: 10px;
+}
+.screen-1 .email input {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+.screen-1 .email input::-moz-placeholder {
+  color: black;
+  font-size: 10px;
+}
+.screen-1 .email input:-ms-input-placeholder {
+  color: black;
+  font-size: 10px;
+}
+.screen-1 .email input::placeholder {
+  color: black;
+  font-size: 15px;
+}
+.screen-1 .email ion-icon {
+  color: #4d4d4d;
+}
+.screen-1 .password {
+  background: #EEEEEE;
+  margin-left: 10%;
+  width: 80%;
+  box-shadow: 0 0 10px #EEEEEE;
+  padding: 10px;
+  gap: 5px;
+  border-radius: 20px;
+  color: #4d4d4d;
+}
+.screen-1 .password input {
+  width: 87%;
+  outline: none;
+  border: none;
+}
+.screen-1 .password input::-moz-placeholder {
+  color: black;
+  font-size: 10px;
+}
+.screen-1 .password input:-ms-input-placeholder {
+  color: black;
+  font-size: 10px;
+}
+.screen-1 .password input::placeholder {
+  color: black;
+  font-size: 15px;
+}
+.screen-1 .password ion-icon {
+  color: #4d4d4d;
+  margin-bottom: 2px;
+}
+.screen-1 .password .bi bi-eye-slash {
+  margin-right: 5px;
+  margin: 10%;
+}
+.screen-1 .login {
+  padding: 10px;
+  background: #658864;
+  margin-left: 17%;
+  width: 70%;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.screen-1 .footer {
+  display: flex;
+  font-size: 15px;
+  color: #5e5e5e;
+  gap: 60%;
+  padding-bottom: 100px;
+}
+.screen-1 .footer span {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.screen-1 .login:hover{
+  background: #E9EDC9;
+  color: #272727;
+}
+
+.signup:hover{
+  color: #E9EDC9;
+}
+.forgot:hover{
+  color: #E9EDC9;
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navMenu {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.navMenu a {
+  color: #A4BC92;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  width: 80px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenu a:hover {
+  color: #fddb3a;
+}
+.navMenu .dot {
+  width: 6px;
+  height: 6px;
+  background: #fddb3a;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transform: translateX(25px);
+  transform: translateX(25px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenu a:nth-child(1):hover ~ .dot {
+  -webkit-transform: translateX(25px);
+  transform: translateX(25px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(2):hover ~ .dot {
+  -webkit-transform: translateX(114px);
+  transform: translateX(114px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(3):hover ~ .dot {
+  -webkit-transform: translateX(215px);
+  transform: translateX(215px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(4):hover ~ .dot {
+  -webkit-transform: translateX(285px);
+  transform: translateX(285px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .screen-1 {
+    margin: 20%;
+    margin-top: 100px;
+  padding: 50px;
+  border-radius: 25px;
+  gap: 40px;
+  }
+  
+  
+  .screen-1 .footer {
+    font-size: 12px;
+    gap: 60%;
+    padding-bottom: 50px;
+  }
+
+  
+}
+
+/* Large screens */
+@media screen and (max-width: 800px) {
+  body {
+    width: 100%;
+    top: 100px;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 10px;
+    max-height: 800px;
+  }
+  
+  .screen-1 {
+    margin: 15%;
+  padding: 50px;
+  border-radius: 25px;
+  gap: 40px;
+  }
+  
+  .screen-1 .email,
+  .screen-1 .password {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    margin-left: -15px;
+    left: 500px;
+    border-radius: 10px;
+  }
+  
+  .screen-1 .login {
+    padding: 10px;
+    border-radius: 30px;
+  }
+  
+  .screen-1 .footer {
+    font-size: 12px;
+    gap: 60%;
+    padding-bottom: 50px;
+  }
+  .navMenu a {
+    font-size: 1em;
+    width: 70px;
+  }
+  .navMenu .dot {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .navMenu a:nth-child(1):hover ~ .dot {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .navMenu a:nth-child(2):hover ~ .dot {
+    -webkit-transform: translateX(95px);
+    transform: translateX(95px);
+  }
+  
+  .navMenu a:nth-child(3):hover ~ .dot {
+    -webkit-transform: translateX(185px);
+    transform: translateX(185px);
+  }
+
+}
+
+@media screen and (max-width: 430px) {
+  body {
+    width: 100%;
+    top: 100px;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 10px;
+    max-height: 800px;
+  }
+  
+  .screen-1 {
+    margin: 5%;
+  margin-top: 80px;
+  padding: 50px;
+  border-radius: 25px;
+  gap: 40px;
+  }
+  
+  .screen-1 .email,
+  .screen-1 .password {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    margin-left: -15px;
+    left: 500px;
+    border-radius: 10px;
+  }
+  
+  .screen-1 .login {
+    padding: 10px;
+    border-radius: 30px;
+  }
+  
+  .screen-1 .footer {
+    font-size: 12px;
+    gap: 60%;
+    padding-bottom: 50px;
+  }
+  .navMenu {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    -webkit-transform: translate(-15%, -15%);
+    transform: translate(-15%, -15%);
+  }
+  .navMenu a {
+    font-size: 1em;
+    width: 60px;
+  }
+  .navMenu .dot {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .navMenu a:nth-child(1):hover ~ .dot {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .navMenu a:nth-child(2):hover ~ .dot {
+    -webkit-transform: translateX(85px);
+    transform: translateX(85px);
+  }
+  
+  .navMenu a:nth-child(3):hover ~ .dot {
+    -webkit-transform: translateX(165px);
+    transform: translateX(165px);
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .navMenu {
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    -webkit-transform: translate(-5%, -5%);
+    transform: translate(-5%, -5%);
+  }
+
+  .navMenu a {
+    font-size: 0.8em;
+    width: 50px;
+  }
+  .navMenu .dot {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .navMenu a:nth-child(1):hover ~ .dot {
+    -webkit-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  .navMenu a:nth-child(2):hover ~ .dot {
+    -webkit-transform: translateX(75px);
+    transform: translateX(75px);
+  }
+  
+  .navMenu a:nth-child(3):hover ~ .dot {
+    -webkit-transform: translateX(137px);
+    transform: translateX(137px);
+  }
+  
+}
+
