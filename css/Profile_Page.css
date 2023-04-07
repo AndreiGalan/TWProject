@@ -1,0 +1,261 @@
+
+body{
+    background: var( --color-bck-profile) no-repeat fixed ;
+    padding: 0;
+    margin: 0;
+}
+.container-information {
+    display : flex;
+    flex-direction : row;
+    background-color: var(--color-user-information);
+
+    margin-inline-start: 5%;
+    margin-inline-end:5%;
+    margin-block-start: 5%;
+    margin-block-end: 5%;
+
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+
+    padding: 2%;
+
+}
+
+.ct-left-infos {
+    display : flex;
+    flex-direction: column;
+    border-radius: 1em;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+
+
+    margin-inline-start: 10%;
+    margin-inline-end:10%;
+    margin-block-start: 10%;
+    margin-block-end: 10%;
+
+}
+
+.ct-left-name, .ct-left-avatar {
+    text-align: center;
+    font-size: 80%;
+}
+
+.level {
+    color : gray;
+}
+
+.ct-right-infos {
+
+    display : flex;
+    flex-direction: column;
+    flex : 1;
+
+    border-start-start-radius: 1em;
+    border-end-end-radius: 1em;
+    box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.2);
+
+    background-color: var(--color-bck-personal-information);
+
+    margin-inline-start: 2%;
+    margin-inline-end:2%;
+    margin-block-start: 2%;
+    margin-block-end: 2%;
+
+}
+
+.ct-right-personal-info{
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 1em;
+
+    text-align: center;
+
+}
+
+.ct-right-username {
+    flex : 1;
+
+    background-color: var(--color-editable-personal-information);
+    margin-inline-start: 1em;
+    margin-block-start: 2em;
+
+    border-radius: 1em;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ct-right-email {
+    flex : 1;
+
+    background-color: var(--color-editable-personal-information);
+    margin-block-start: 2em;
+
+    border-radius: 1em;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.ct-right-points {
+    flex : 1;
+
+    background-color: var(--color-editable-personal-information);
+    margin-inline-end: 1em;
+    margin-block-start: 2em;
+
+    border-radius: 1em;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.ct-right-username:hover {
+
+    background-color: var(--color-user-information);
+    transform: translateY(-1em);
+
+    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ct-right-email:hover {
+
+    background-color: var(--color-user-information);
+    transform: translateY(-1em);
+
+    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ct-right-points:hover {
+
+
+    background-color: var(--color-user-information);
+    transform: translateY(-1em);
+
+    box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ct-right-ranking {
+
+    width: 30%;
+    height: 40%;
+
+    background-color: var(--color-ranking-information);
+
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    margin-block-start: auto;
+    margin-block-end: auto;
+
+    text-align: center;
+
+    border-radius: 1em;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.edit-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+
+.change-password-button, .edit-button {
+    background-color: #eee;
+    border: none;
+    padding: 0.5em;
+    font-size: 0.75em;
+    width: 5em;
+    border-radius: 1em;
+
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+   }
+
+   .change-password-button{
+    color: lightcoral;
+   }
+
+   .edit-button{
+    color: #265c29;
+   }
+   
+.change-password-button:active, .edit-button:active {
+    color: white;
+    box-shadow: 0 0.2rem black;
+    transform: translateY(0.2rem);
+   }
+   
+.change-password-button:hover{
+    background: lightcoral;
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+   }
+
+.edit-button:hover{
+    background: var(--color-bck-personal-information);
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.ranking-text {
+
+    font-size: 2em;
+    color: white;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+}
+
+.actual-rank {
+    transform:translateY(100%);
+    font-size: 1.5em;
+    opacity: 0;
+    color: var(--color-text);
+    transition: all 0.5s ease;
+}
+
+.ct-right-ranking:hover .ranking-text {
+    filter: blur(0.1em);
+}
+
+.ct-right-ranking:hover .actual-rank {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+
+@media screen and (max-width: 800px) {
+    .ct-right-personal-info{
+        flex-direction: column;
+    }
+
+    .ct-right-username {
+        margin-inline-start: 1em;
+        margin-inline-end: 1em;
+    }
+
+    .ct-right-email {
+        margin-inline-start: 1em;
+        margin-inline-end: 1em;
+    }
+
+    .ct-right-points {
+        margin-inline-start: 1em;
+        margin-inline-end: 1em;
+    
+    }
+
+    .ct-right-ranking {
+        width: auto;
+        height: auto;
+        margin-inline-start: 1em;
+        margin-inline-end: 1em;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+    }
+
+    
+}
+
+   
