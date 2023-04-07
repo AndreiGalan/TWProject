@@ -1,0 +1,15 @@
+:root {
+
+    /*Colors used in profile page */
+    --color-bck-personal-information: #C6EBC5;
+    --color-user-information: #f9f9f9;
+    --color-editable-personal-information : #FBF2CF;
+    --color-text: #333;
+    --color-bck-profile : linear-gradient(to bottom, #265c29, #d3f0ad);
+    --color-ranking-information: #A1C298;
+
+    /*Colors used in header */
+    --color-bck-logo : #fff;
+    --color-bck-header : #729D39;
+
+}

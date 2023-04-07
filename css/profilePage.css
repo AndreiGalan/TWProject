@@ -1,0 +1,216 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+
+    background: var(--color-bck-profile) no-repeat fixed;
+    color: var(--color-text);
+}
+
+.information-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: var(--color-user-information);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    padding: 2%;
+    margin-inline-start: 5%;
+    margin-inline-end:5%;
+    margin-block-start: 5%;
+    margin-block-end: 5%;
+
+}
+
+.avatar {
+    width: 25%;
+    height: 25%;
+    border-radius: 1em;
+    margin-block-start: 5%;
+    margin-block-end: 5%;
+    margin-inline-start: 5%;
+    margin-inline-end: 5%;
+}
+
+.general-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-user-information);
+    height: 100%;
+    width: 30%;
+    border-radius: 1em;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    margin-right: 1em;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name-information {
+    text-align: center;
+}
+
+.name-information h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.name-information h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.personal-information{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-inline-start: 2%;
+    margin-inline-end: 2%;
+    border-start-start-radius: 1em;
+    border-end-end-radius: 1em;
+    background-color: var(--color-bck-personal-information);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.editable-personal-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 3%;
+    margin-inline-start: 2%;
+    margin-inline-end: 2%;
+}
+
+.editable-personal-information h2 {
+    font-size: 1em;
+    color: var(--color-text);
+}
+
+.editable-personal-information p {
+    font-size: 1em;
+    margin: 0;
+    color: var(--color-text);
+}
+
+.editable-personal-information .info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+    background-color: var(--color-editable-personal-information);
+    margin: 1%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.editable-personal-information .info-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.editable-personal-information .info-box h2 {
+    font-size: 1em;
+}
+
+.editable-personal-information .info-box p {
+    font-size: 1em;
+}
+
+
+.ranking-information {
+    background-color: var(--color-ranking-information) ;
+    margin-inline-start: 25%;
+    margin-inline-end: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1em;
+}
+
+.ranking-text {
+    transform: translate(-50%, -50%);
+    font-size: 1em;
+    text-align: center;
+    margin: 0;
+    justify-content: center;
+}
+
+.actual-rank {
+    transform: translate(-50%, -50%);
+    font-size: 1em;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.ranking-information:hover .ranking-text {
+    filter: blur(0.1em);
+}
+
+.ranking-information:hover .actual-rank {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-100%);
+}
+
+.ranking-information {
+    background-color: var(--color-ranking-information) ;
+
+    margin-inline-start: 25%;
+    margin-inline-end: 25%;
+    margin-block-start: 2%;
+    margin-block-end: 2%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 1em;
+}
+
+.ranking-text {
+    margin-inline-start: 25%;
+    margin-block-start: 10%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.actual-rank {
+    margin-inline-start: 25%;
+    margin-inline-end: 10%;
+    transform: translate(-50%, -50%) translateY(100%);
+    font-size: 1.5em;
+    text-align: center;
+    opacity: 0;
+    color: var(--color-text);
+    transition: all 0.5s ease;
+}
+
+
+
+
+
+
+
+
+
+
