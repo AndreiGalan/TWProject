@@ -13,9 +13,14 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     background-color: var(--color-user-information);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     border-radius: 1em;
-    padding: 2%;
+    
+    padding-inline-start: 3%;
+    padding-inline-end: 3%;
+    padding-block-start: 3%;
+    padding-block-end: 3%;
+
     margin-inline-start: 5%;
     margin-inline-end:5%;
     margin-block-start: 5%;
@@ -35,6 +40,7 @@ body {
 
 .general-information {
     display: flex;
+    flex-wrap  : wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -102,6 +108,10 @@ body {
     color: var(--color-text);
 }
 
+.info-box {
+    flex : 1;
+}
+
 .editable-personal-information .info-box {
     display: flex;
     flex-direction: column;
@@ -126,19 +136,6 @@ body {
 
 .editable-personal-information .info-box p {
     font-size: 1em;
-}
-
-
-.ranking-information {
-    background-color: var(--color-ranking-information) ;
-    margin-inline-start: 25%;
-    margin-inline-end: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 1em;
 }
 
 .ranking-text {
