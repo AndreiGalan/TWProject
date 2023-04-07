@@ -1,0 +1,89 @@
+/* rounded image */
+.round-img {
+    border-radius: 50%;
+    /*  size responsive*/
+    width: 60%;
+    height: auto;
+    /* center the image */
+    display: block;
+    margin: 1em auto;
+    /*futuristic margin color, border, shadow*/
+    border: 10px solid RGBA(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(168, 160, 160, 0.53);
+}
+
+/* h1 is the first child of container */
+.about-title {
+    position: relative;
+    color: #A1C298;
+    font-size: 4em;
+    font-weight: 600;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    /* shadow text */
+    text-shadow: #5e5e5e 1px 1px 1px;
+}
+
+.about-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 5px;
+    background-color: #676679;
+}
+
+/* responsive linkedIn, github icons */
+.social-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: 1em;
+}
+
+.fab {
+    font-size: 2em;
+    color: #3e2093;
+}
+
+/* member-name centered */
+.member-name {
+    text-align: center;
+    font-size: 1em;
+    font-weight: 600;
+    color: #3e2093;
+    text-shadow: #5e5e5e 1px 1px 1px;
+}
+
+/* hover effect on container */
+.about-us .container:hover {
+    background-color: #FBF2CF;
+    transform: translateY(-5px);
+}
+
+.about-us .team-member:hover {
+    background-color: #A8E6CF;
+}
+
+/* modify the container size for this page */
+.container {
+    width: 80%;
+    margin: 2em auto;
+}
+
+/* for the team member set a space between them */
+.team-member {
+    margin: 3em;
+}
+
+/* h2 title left aligned, bottom margin, color, shadow */
+.left-title {
+    text-align: left;
+    margin-bottom: 1em;
+    color: #3e2093;
+    text-shadow: #5e5e5e 1px 1px 1px;
+}
+
