@@ -1,0 +1,397 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+* {
+  font-family: "Poppins";
+}
+
+body {
+  width: 100%;
+  top: 100px;
+  overflow: auto;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  background: #a8d9dd;
+  text-decoration: none;
+  min-height: 10px;
+  max-height: 800px;
+}
+.navMenu a:focus{
+  outline: solid #a8d9dd;
+}
+.navMenu a {
+  color: #3a3d34;
+}
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+.container{
+    left: 30px;
+    margin: 10%;
+    margin-top: 100px;
+    width: 85%;
+    border-radius: 6px;
+    padding: 30px 30px 30px 30px;
+  }
+  .container .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .container .content .screen-2{
+    width: 60%;
+    height: 100%;
+  }
+  .container .content .screen-2 .img{
+    width: 100%;
+    height: 100%;
+  }
+
+img{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+}
+.btn-switch {
+    font-size: 1.5em;
+      position: relative;
+      display: inline-block;		
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+  .btn-switch__radio {
+      display: none;
+  }
+  .btn-switch__label {
+      display: inline-block;	
+      padding: .75em .5em .75em .75em;
+      vertical-align: top;
+      font-size: 1em;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #666;
+    cursor: pointer;
+      transition: color .2s ease-in-out;
+  }
+  .btn-switch__label + .btn-switch__label {
+    padding-right: .75em;
+      padding-left: 0;
+  }
+  .btn-switch__txt {
+      position: relative;
+      z-index: 2;
+    display: inline-block;
+     min-width: 1.5em;
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity .2s ease-in-out;
+  }
+  .btn-switch__radio_no:checked ~ .btn-switch__label_yes .btn-switch__txt,
+  .btn-switch__radio_yes:checked ~ .btn-switch__label_no .btn-switch__txt {
+      opacity: 0;
+  }
+  .btn-switch__label:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #cb98df;
+      border-radius: 1.5em;
+      box-shadow: inset 0 .0715em .3572em rgba(43,43,43,.05);
+      transition: background .2s ease-in-out;
+  }
+  .btn-switch__radio_yes:checked ~ .btn-switch__label:before {
+      background: #2196F3;
+  }
+  .btn-switch__label_no:after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: .5em;
+      bottom: .5em;
+      left: .5em;
+      width: 2em;
+      background: #f8f8f8;
+      border-radius: 1em;	
+      pointer-events: none;
+      box-shadow: 0 .1429em .2143em rgba(43,43,43,.2), 0 .3572em .3572em rgba(43,43,43,.1);
+      transition: left .2s ease-in-out, background .2s ease-in-out;
+  }
+  .btn-switch__radio_yes:checked ~ .btn-switch__label_no:after {
+      left: calc(100% - 2.5em);
+      background: #ececec;
+  }
+  .btn-switch__radio_no:checked ~ .btn-switch__label_yes:before,
+  .btn-switch__radio_yes:checked ~ .btn-switch__label_no:before {
+      z-index: 1;
+  }
+  .btn-switch__radio_yes:checked ~ .btn-switch__label_yes {
+      color: #fff;
+  }
+
+
+.container .content .screen-1 {
+    height: 100%;
+    width: 40%;
+    margin-left: 0;
+  background: #8ecbcf;
+  padding: 50px;
+  display: flex;
+  flex-direction:column;
+  border-radius: 25px;
+  box-shadow: 0 0 20px #8ecbcf;
+  position: relative;
+  gap: 40px;
+}
+.container .content .screen-1 .logo {
+  margin-top: 30px;
+}
+.container .content .screen-1 .content{
+    width: 100%;
+}
+
+.container .content .screen-1 .first-half .labels{
+  width: 100%;
+  background: #EEEEEE;
+  box-shadow: 0 0 10px #EEEEEE;
+  padding: 10px;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-top: 15px;
+}
+.container .content .screen-1 .first-half .labels input {
+  width: 80%;
+  outline: none;
+  border: none;
+}
+.container .content .screen-1 .first-half .labels input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .first-half .labels input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .first-half .labels input{
+  color: black;
+  font-size: 15px;
+}
+.container .content .screen-1 .first-half .labels ion-icon {
+  color: #4d4d4d;
+}
+.container .content .screen-1 .first-half .password {
+  width: 100%;
+  background: #EEEEEE;
+  box-shadow: 0 0 10px #EEEEEE;
+  padding: 10px;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-top: 15px;
+}
+.container .content .screen-1 .first-half .password input {
+  width: 77%;
+  outline: none;
+  border: none;
+}
+.container .content .screen-1 .first-half .password input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .first-half .password input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .first-half .password input{
+  color: black;
+  font-size: 15px;
+}
+.container .content .screen-1 .first-half .password ion-icon {
+  color: #4d4d4d;
+  margin-bottom: 1px;
+}
+.container .content .screen-1 .first-half .password .bi bi-eye-slash {
+  margin-right: 0px;
+  margin: 0%;
+}
+.container .content .screen-1 .second-half .labels{
+  width: 100%;
+  background: #EEEEEE;
+  box-shadow: 0 0 10px #EEEEEE;
+  padding: 10px;
+  gap: 5px;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-top: 15px;
+}
+.container .content .screen-1 .second-half .labels input {
+  width: 80%;
+  outline: none;
+  border: none;
+}
+.container .content .screen-1 .second-half .labels input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .second-half .labels input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .second-half .labels input{
+  color: black;
+  font-size: 15px;
+}
+.container .content .screen-1 .second-half .labels ion-icon {
+  color: #4d4d4d;
+}
+.container .content .screen-1 .second-half .password {
+  width: 100%;
+  background: #EEEEEE;
+  box-shadow: 0 0 10px #EEEEEE;
+  padding: 10px;
+  gap: 5px;
+  border-radius: 20px;
+  color: #4d4d4d;
+  margin-top: 15px;
+}
+.container .content .screen-1 .second-half .password input {
+  width: 87%;
+  outline: none;
+  border: none;
+}
+.container .content .screen-1 .second-half .password input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .second-half .password input{
+  color: black;
+  font-size: 10px;
+}
+.container .content .screen-1 .second-half .password input{
+  color: black;
+  font-size: 15px;
+}
+
+.container .content .screen-1 .login {
+  padding: 10px;
+  background: #539196;
+  margin-left: 17%;
+  width: 70%;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  
+  transition: all 0.2s ease-in-out;
+}
+.container .content .screen-1 .footer {
+  display: flex;
+  font-size: 15px;
+  color: #5e5e5e;
+  gap: 60%;
+}
+.container .content .screen-1 .footer span {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container .content .screen-1 .login:hover{
+  background: #e2e5e9;
+  color: #272727;
+}
+
+.container .content .signup:hover{
+  color: #E9EDC9;
+}
+.forgot:hover{
+  color: #E9EDC9;
+}
+
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+
+
+@media screen and (max-width: 1600px) {
+
+.container .content .screen-1 {
+    width: 50%;
+  }
+  .container .content .screen-2 {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 1320px) {
+    .container .content .screen-1 {
+        width: 60%;
+      }
+      .container .content .screen-2 {
+        width: 40%;
+      }
+    }
+
+@media screen and (max-width: 1100px) {
+    .container .content
+    {
+      margin-left: -10%;
+    }
+    .container .content .screen-2{
+        display: none;
+    }
+    .container .content .screen-1 .content{
+        margin-left:-1%;
+        display: inline;
+    }
+    .container .content {
+        justify-content: center;
+    }
+  
+  .screen-1 .login {
+    padding: 10px;
+    border-radius: 30px;
+  }
+
+}
+
+@media screen and (max-width: 530px) {
+  
+  .container .content
+    {
+      margin-left: -10%;
+    }
+    .container .content .screen-1 .content{
+        margin-left:2%;
+    }
+  .screen-1 .login {
+    padding: 10px;
+    border-radius: 30px;
+  }
+  
+  .screen-1 .footer {
+    font-size: 12px;
+    gap: 60%;
+    padding-bottom: 50px;
+  }
+  .btn-switch {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .container .content
+    {
+      margin-left: -30%;
+    }
+  
+}
+

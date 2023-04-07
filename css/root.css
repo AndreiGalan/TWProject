@@ -13,3 +13,8 @@
     --color-bck-header : #729D39;
 
 }
+
+body{
+    margin: 0;
+    padding: 0;
+}

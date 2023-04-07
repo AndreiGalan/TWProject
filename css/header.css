@@ -6,7 +6,7 @@ header{
 
       width: 100%;
       height: 90px;
-      background: var(--color-bck-header);
+      background: #729D39;
 
     }
     
@@ -49,6 +49,11 @@ header{
     color: #fff;
     font-weight: 500;
     letter-spacing: 2px;
+
+  }
+
+  a.aj_btn:focus{
+    outline: 1px solid #729D39;
   }
 
   a.aj_btn:hover{
@@ -194,4 +199,3 @@ header{
     text-align: left;
   }
 }
-
