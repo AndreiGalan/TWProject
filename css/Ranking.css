@@ -44,7 +44,7 @@ table {
 thead {
     /* solid header shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border-bottom: 0.3em solid #000;
+    border-bottom: 0.3em solid rgba(24, 24, 24, 0.66);
     background: #FFD966;
 }
 
