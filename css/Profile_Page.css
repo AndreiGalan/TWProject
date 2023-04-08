@@ -65,7 +65,7 @@ body{
     border-end-end-radius: 1em;
     box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.2);
 
-    background-color: var(--color-bck-personal-information);
+    background: var(--color-bck-personal-information);
 
     margin-inline-start: 2%;
     margin-inline-end:2%;
@@ -82,11 +82,13 @@ body{
     gap: 1em;
 
     text-align: center;
+    align-items: center;
 
 }
 
 .ct-right-username {
     flex : 1;
+
 
     background-color: var(--color-editable-personal-information);
     margin-inline-start: 1em;
@@ -98,6 +100,7 @@ body{
 
 .ct-right-email {
     flex : 1;
+    
 
     background-color: var(--color-editable-personal-information);
     margin-block-start: 2em;
@@ -147,6 +150,7 @@ body{
 .ct-right-ranking {
 
     width: 30%;
+    max-width: 350px;
     height: 40%;
 
     background-color: var(--color-ranking-information);

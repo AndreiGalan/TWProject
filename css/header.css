@@ -109,7 +109,7 @@ header{
     cursor: pointer;
   }
 
-  /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+  /* When the screen is less than 1200 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
   @media screen and (max-width: 1200px) {
    header{
    width: 100%;
@@ -183,4 +183,5 @@ header{
     z-index: 1;
     box-sizing: border-box;
   }
+
 }

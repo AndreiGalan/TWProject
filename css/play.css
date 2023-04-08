@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+body{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Poppins" , sans-serif;
+  background-color: var(--color-bck-profile);
+}
+
+.levels-options {
+    display: flex;
+    flex-wrap: wrap;
+    
+    margin-inline-start: 5%;
+    margin-inline-end: 5%;
+    margin-block-start: 10%;
+    margin-block-end: 5%;
+    
+    font-size: 1.5em;
+    justify-content: center;
+    text-align: center;
+    
+    gap: 4em;
+  }
+
+  .option-easy {
+
+    padding: 3em;
+      
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    width: 25%;
+    max-width: 400px;
+
+    opacity: 90%;
+    
+    border-radius: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    background: var(--color-bck-easy);
+
+    cursor:pointer;
+  }
+
+  .option-medium {
+    padding: 3em;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    width: 25%;
+    max-width: 400px;
+    
+    opacity: 90%;
+    
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    border-radius: 3rem;
+    background: var(--color-bck-medium);
+
+    cursor:pointer;
+
+  }
+    
+  .option-hard {
+
+    padding: 3em;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    width: 25%;
+    max-width: 400px;
+    
+    opacity: 90%;
+    
+    border-radius: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    background: var(--color-bck-hard);
+
+    cursor:pointer;
+
+    }
+
+
+  .option-hard:hover, .option-medium:hover, .option-easy:hover {
+
+    border-bottom-right-radius: 5rem;
+    border-top-left-radius: 5rem;
+    /*transform: scale(1.05);*/
+    transform: translateY(-1rem);
+    transition: all 0.3s ease-in-out;
+    background :hsl(210, 37%, 85%)
+
+  }
+
+  .option-easy:hover{
+    background: #00C897;
+  }
+
+    .option-medium:hover{
+        background: linear-gradient(to right, #00C897, #fde88a 50%,  #FF4D4D);;
+    }
+
+  .option-hard:hover{
+    background: #FF4D4D;
+  }
+
+  .choose-text{
+
+    color: var(--color-text);
+
+  }
+
+  .choose-text h1{
+    font-size: 2.5em;
+    margin: 5%;
+    text-align: center;
+  }
+
+  .choose-text h1:hover{
+    transform : scale(1.1);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .icon img{
+    transform: scale(2);
+  }
+
+
+
+
+
+
+
