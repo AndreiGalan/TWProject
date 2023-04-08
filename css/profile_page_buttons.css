@@ -1,0 +1,174 @@
+.edit-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+}
+
+
+.change-password-button, .edit-button {
+    background-color: #eee;
+    border: none;
+    padding: 0.6em;
+    font-size: 0.75em;
+    width: 6em;
+    border-radius: 1em;
+
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+   }
+
+   .change-password-button{
+    color: lightcoral;
+   }
+
+   .edit-button{
+    color: #265c29;
+   }
+   
+.change-password-button:active, .edit-button:active {
+    color: white;
+    box-shadow: 0 0.2rem black;
+    transform: translateY(0.2rem);
+   }
+   
+.change-password-button:hover{
+    background: lightcoral;
+    color: white;
+    text-shadow: 0 0.1rem #bcb4b4;
+   }
+
+.edit-button:hover{
+    background: var(--color-ranking-information);
+    color: white;
+    text-shadow: 0 0.1rem #434040;
+}
+
+#change-password-section:not(:target){
+    display: none;
+}
+
+.cannot-touch-anything{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.password-change {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #F3F8FF;
+  border-radius: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  z-index: 100;
+}
+
+@media screen and (max-width: 600px) {
+    .password-change {
+        width: 80%;
+        height: 60%;
+    }
+}
+
+.password-change h2, .edit-info h2 {
+  margin-top: 0;
+}
+
+.password-change label, .edit-info label{
+  display: block;
+  margin-bottom: 5px;
+}
+
+.password-change input , .edit-info input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.save-password-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 0.5em;
+  text-align: center;
+  
+  font-size: 1em;
+  border-radius: 0.4em;
+  cursor: pointer;
+
+}
+
+.save-password-button:hover {
+  background-color: #3e8e41;
+}
+
+.cancel-button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 0.5em;
+    text-align: center;
+    
+    font-size: 1em;
+    border-radius: 0.4em;
+    cursor: pointer;
+  
+  }
+  
+  .cancel-button:hover {
+    background-color: #c0392b;
+  }
+
+
+
+
+  #edit-info-section:not(:target){
+    display: none;
+}
+
+.edit-info {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 50%;
+  height: 70%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #EEEEEE;
+  border-radius: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  z-index: 100;
+}
+
+@media screen and (max-width: 600px) {
+    .edit-info {
+        width: 80%;
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .edit-info {
+        width: 85%;
+        height: 80%;
+    }
+}
+    

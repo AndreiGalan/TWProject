@@ -167,52 +167,6 @@ body{
 
 }
 
-.edit-buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1em;
-}
-
-
-.change-password-button, .edit-button {
-    background-color: #eee;
-    border: none;
-    padding: 0.6em;
-    font-size: 0.75em;
-    width: 6em;
-    border-radius: 1em;
-
-    box-shadow: 0 0.4rem #dfd9d9;
-    cursor: pointer;
-   }
-
-   .change-password-button{
-    color: lightcoral;
-   }
-
-   .edit-button{
-    color: #265c29;
-   }
-   
-.change-password-button:active, .edit-button:active {
-    color: white;
-    box-shadow: 0 0.2rem black;
-    transform: translateY(0.2rem);
-   }
-   
-.change-password-button:hover{
-    background: lightcoral;
-    color: white;
-    text-shadow: 0 0.1rem #bcb4b4;
-   }
-
-.edit-button:hover{
-    background: var(--color-ranking-information);
-    color: white;
-    text-shadow: 0 0.1rem #434040;
-}
-
 .ranking-text {
 
     font-size: 2em;

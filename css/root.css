@@ -1,7 +1,7 @@
 :root {
 
     /*Colors used in profile page */
-    --color-bck-personal-information:radial-gradient( circle at center, #d3f0ad 95%, #265c29) ;
+    --color-bck-personal-information: #d3f0ad ;
     --color-user-information: #f9f9f9;
     --color-editable-personal-information : #FBF2CF;
     --color-text: #333;

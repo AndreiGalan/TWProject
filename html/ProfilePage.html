@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "icon" href = "../images/logo.png" type = "image/x-icon">
+    
     <link rel="stylesheet" href="../css/root.css">
     <link rel="stylesheet" href="../css/profile_page.css">
+    <link rel="stylesheet" href="../css/profile_page_buttons.css">
     <link rel="stylesheet" href="../css/header.css">
 
     <title>My Profile</title>
@@ -19,7 +21,7 @@
                 <div class="navigation-menu" id="myTopnav">
                         <a href="#"><i class="fas fa-home home"></i> Home</a>
                         <a href="Play.html"> Play</a>
-                        <a href="#"> Ranking</a>
+                        <a href="Ranking.html"> Ranking</a>
                         <a href="Contact.html"> Contact</a>
                         <a href="About.html"> About</a>
                         <a href="ProfilePage.html"> Your profile</a>
@@ -32,7 +34,7 @@
     <script src="../js/script.js"></script>
 
 <main>
-    <div class="container">
+    <section class="container">
         <div class="ct-left">
 
             <div class="ct-left-infos">
@@ -49,8 +51,8 @@
             </div>
 
             <div class="edit-buttons">
-                <button class="edit-button"> Edit Profile </button>
-                <button class="change-password-button"> Change Password </button>
+                <a href="#edit-info-section"><button class="edit-button"> Edit Profile </button></a>
+                <a href="#change-password-section"><button class="change-password-button"> Change Password </button></a>
             </div>
 
         </div>
@@ -78,12 +80,70 @@
 
             <div class="ct-right-ranking">
                 <p class="ranking-text"> Ranking </p>
-                <p class="actual-rank"> #8342 </p>
+                <p class="actual-rank"> #43 </p>
             </div>
 
         </div> 
+    </section>
+    <section id="change-password-section">
+        <div class="cannot-touch-anything">
 
-    </div>
+            <div class="password-change">
+          
+              <h2>Change Password</h2>
+          
+              <form>
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" name="current-password" required>
+          
+                <label for="new-password" id="new-password" name="new-password" required>New Password</label>
+                <input type="password" >
+          
+                <label for="confirm-password" id="confirm-password" name="confirm-password" required>Confirm Password</label>
+                <input type="password">
+
+                <a href="#"><button class="save-password-button" type="button">Save Password</button></a>
+                <a href="#"><button class="cancel-button" type="button">Cancel</button></a>
+                
+            </form>
+              
+            </div>
+            
+            </div>
+    </section>
+
+    <section id="edit-info-section">
+        <div class="cannot-touch-anything">
+
+            <div class="edit-info">
+          
+              <h2>Edit Your Profile Info</h2>
+          
+                <form>
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" value="First_Name" >
+
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last-name" value="Last_Name" >
+
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" value="random_user_unique1">
+
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" value="mail@example.com">
+
+                    <a href="#"><button class="save-password-button" type="button">Save New Info</button></a>
+                    <a href="#"><button class="cancel-button" type="button">Cancel</button></a>
+                
+                </form>
+              
+            </div>
+            
+        </div>
+    </section>
+
+  
+
 </main>
     
 </body>
