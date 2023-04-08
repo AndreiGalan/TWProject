@@ -62,14 +62,6 @@ img{
 }
 .screen-1 .email input{
   color: black;
-  font-size: 10px;
-}
-.screen-1 .email input{
-  color: black;
-  font-size: 10px;
-}
-.screen-1 .email input{
-  color: black;
   font-size: 15px;
 }
 .screen-1 .email ion-icon {
@@ -151,7 +143,7 @@ button {
 
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300px) {
   .screen-1 {
     margin: 20%;
     margin-top: 100px;
@@ -181,7 +173,20 @@ button {
     min-height: 10px;
     max-height: 800px;
   }
-  
+  ::placeholder
+  {
+    font-size: 14px;
+  }
+  .screen-1 .email input{
+    width: 77%;
+    color: black;
+    font-size: 10px;
+  }
+  .screen-1 .password input{
+    width: 80%;
+    color: black;
+    font-size: 10px;
+  }
   .screen-1 {
     margin: 15%;
   padding: 50px;
@@ -215,16 +220,31 @@ button {
 @media screen and (max-width: 430px) {
   body {
     width: 100%;
-    top: 100px;
     overflow: auto;
     justify-content: center;
     align-items: center;
     min-height: 10px;
     max-height: 800px;
+    margin: 5em auto;
+    margin-top: 10px;
+    font-size: 13px;
   }
   
+  ::placeholder
+  {
+    font-size: 10px;
+  }
+  .screen-1 .email input{
+    width: 77%;
+    color: black;
+    font-size: 10px;
+  }
+  .screen-1 .password input{
+    width: 77%;
+    color: black;
+    font-size: 10px;
+  }
   .screen-1 {
-    margin: 5%;
   margin-top: 80px;
   padding: 50px;
   border-radius: 25px;
@@ -248,7 +268,7 @@ button {
   
   .screen-1 .footer {
     font-size: 12px;
-    gap: 60%;
+    gap: 50%;
     padding-bottom: 50px;
   }
 }
