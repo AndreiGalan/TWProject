@@ -15,14 +15,12 @@ body{
   justify-content: center;
 }
 .container{
-  left: 30px;
-  margin: 5%;
-  margin-top: 40px;
-  width: 85%;
+  width: 80%;
   background: #fff;
   border-radius: 6px;
   padding: 30px 30px 30px 30px;
   box-shadow: 0 30px 10px rgba(0, 0, 0, 0.2);
+  margin: 2em auto;
 }
 .container{
   left: 20px;
@@ -128,7 +126,6 @@ body{
 
 
 @media screen and (max-width: 1200px){
-
   .container .content{
     flex-direction: column-reverse;
   }
@@ -145,4 +142,8 @@ body{
    width: 95%;
    margin-left: 0;
  }
+}
+.container {
+  width: 80%;
+  margin: 2em auto;
 }

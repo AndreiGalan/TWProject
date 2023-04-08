@@ -68,12 +68,6 @@
     background-color: #A8E6CF;
 }
 
-/* modify the container size for this page */
-.container {
-    width: 80%;
-    margin: 2em auto;
-}
-
 /* for the team member set a space between them */
 .team-member {
     margin: 3em;
