@@ -1,0 +1,95 @@
+.body {
+    text-shadow: #5e5e5e 1px 1px 1px;
+}
+
+.rank-title {
+    position: relative;
+    color: #3e2093;
+    font-size: clamp(1.5rem,4vw,3rem);
+    font-weight: 600;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    /* shadow text */
+    text-shadow: #5e5e5e 2px 2px 2px;
+    margin: 1em;
+}
+
+.rank-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 5px;
+    background-color: #676679;
+}
+
+.ranking {
+    font-size: clamp(0.75rem, 2vw, 3rem);
+}
+
+table {
+    width: 100%;
+    /* make the table responsive */
+    border-collapse: collapse;
+    /* make it look more rounded */
+    border-radius: 0.25em;
+    overflow: hidden;
+    /* shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* put a strong line after the table header */
+
+thead {
+    /* solid header shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 0.3em solid #000;
+
+    background: #FFD3B6;
+}
+
+
+td {
+    text-align: center;
+}
+
+tbody tr:hover {
+    background-color: #cbe0ec;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* for bigger screens */
+@media (min-width: 1200px) {
+    .container {
+        padding : 6em;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding : 3em;
+    }
+}
+
+@media (max-width: 768px){
+    .container {
+        margin: 1em auto;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #FFF2CC;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+}
