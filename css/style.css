@@ -24,6 +24,13 @@ body{
   padding: 30px 30px 30px 30px;
   box-shadow: 0 30px 10px rgba(0, 0, 0, 0.2);
 }
+.container{
+  left: 20px;
+  width: 60%;
+  margin: 18%;
+  margin-top: 50px;
+  height: 100%;
+}
 .container .content{
   display: flex;
   align-items: center;
@@ -120,3 +127,22 @@ body{
 }
 
 
+@media screen and (max-width: 1200px){
+
+  .container .content{
+    flex-direction: column-reverse;
+  }
+ .container .content .left-content{
+   width: 100%;
+   flex-direction: row;
+   margin-top: 40px;
+   flex-wrap: wrap;
+ }
+ .container .content .left-content::before{
+   display: none;
+ }
+ .container .content .right-content{
+   width: 95%;
+   margin-left: 0;
+ }
+}

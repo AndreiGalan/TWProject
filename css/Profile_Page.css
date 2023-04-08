@@ -11,6 +11,7 @@ body{
     padding: 0;
     margin: 0;
 }
+
 .container {
     display : flex;
     flex-direction : row;
@@ -25,6 +26,8 @@ body{
     border-radius: 1em;
 
     padding: 2%;
+
+    box-sizing: border-box;
 
 }
 
@@ -164,7 +167,6 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     gap: 1em;
 }
 
@@ -172,9 +174,9 @@ body{
 .change-password-button, .edit-button {
     background-color: #eee;
     border: none;
-    padding: 0.5em;
+    padding: 0.6em;
     font-size: 0.75em;
-    width: 5em;
+    width: 6em;
     border-radius: 1em;
 
     box-shadow: 0 0.4rem #dfd9d9;
@@ -202,9 +204,9 @@ body{
    }
 
 .edit-button:hover{
-    background: var(--color-bck-personal-information);
+    background: var(--color-ranking-information);
     color: white;
-    text-shadow: 0 0.1rem #bcb4b4;
+    text-shadow: 0 0.1rem #434040;
 }
 
 .ranking-text {

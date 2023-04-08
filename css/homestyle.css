@@ -20,15 +20,17 @@ html, body {
   min-height: 100%;
   display: block;
 }
-p{
+
+.welcome-text{
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   animation-duration: 5s;
   animation-name: slidein;
   animation-iteration-count: 1;
   font-size: 1.5em;
+  margin-inline-start: 5%;
+  margin-inline-end: 50%;
   color: #A1C298;
-  margin-top: 1%;
-  margin-left: 5%;
-  margin-right: 50%;
   text-shadow: 1px 1px 1px #000000;
 }
 @keyframes slidein {
@@ -459,6 +461,10 @@ button.learn-more .circle .icon.arrow::before {
           margin-left: 5%;
           width: 25%;
         }
+      }
+      .welcome-text{
+        margin-inline-end: 20%;
+        border-radius: 1em;
       }
     }
     
