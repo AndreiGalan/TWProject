@@ -40,19 +40,19 @@
             <div class="ct-left-infos">
 
                 <div class="ct-left-avatar">
-                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="avatar" />
+                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="avatar">
                 </div>
 
                 <div class="ct-left-name">
-                    <h1 class="name"> Last_Name First_Name </h1>
-                    <h2 class= "level"> Beginner </h2>
+                    <h2> Last_Name First_Name </h2>
+                    <h3 class= "level"> Beginner </h3>
                 </div>
 
             </div>
 
             <div class="edit-buttons">
-                <a href="#edit-info-section"><button class="edit-button"> Edit Profile </button></a>
-                <a href="#change-password-section"><button class="change-password-button"> Change Password </button></a>
+                <button class="edit-button" onclick="location.href='#edit-info-section';"> Edit Profile </button>
+                <button class="change-password-button" onclick="location.href='#change-password-section'"> Change Password </button>
             </div>
 
         </div>
@@ -94,17 +94,16 @@
           
               <form>
                 <label for="current-password">Current Password</label>
-                <input type="password" id="current-password" name="current-password" required>
+                <input type="password" id="current-password" name="current-password" >
           
-                <label for="new-password" id="new-password" name="new-password" required>New Password</label>
-                <input type="password" >
+                <label for="new-password"  >New Password</label>
+                <input type="password" id="new-password" name="new-password" >
           
-                <label for="confirm-password" id="confirm-password" name="confirm-password" required>Confirm Password</label>
-                <input type="password">
+                <label for="confirm-password"  >Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password">
 
-                <a href="#"><button class="save-password-button" type="button">Save Password</button></a>
-                <a href="#"><button class="cancel-button" type="button">Cancel</button></a>
-                
+                <button class="save-password-button" type="button">Save Password</button>
+                <button class="cancel-button" type="button">Cancel</button>              
             </form>
               
             </div>
@@ -132,8 +131,8 @@
                     <label for="email">Email Address:</label>
                     <input type="email" id="email" name="email" value="mail@example.com">
 
-                    <a href="#"><button class="save-password-button" type="button">Save New Info</button></a>
-                    <a href="#"><button class="cancel-button" type="button">Cancel</button></a>
+                    <button class="save-password-button" type="button" onclick="location.href='#'">Save New Info</button>
+                    <button class="cancel-button" type="button" onclick="location.href='#'">Cancel</button>
                 
                 </form>
               
