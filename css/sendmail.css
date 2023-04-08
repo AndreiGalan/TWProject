@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+* {
+  font-family: "Poppins";
+}
+
+body {
+  width: 100%;
+  top: 100px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #C6EBC5;
+  text-decoration: none;
+  min-height: 10px;
+  max-height: 800px;
+  background-image: url("../images/fruits.png");
+    background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+}
+.navMenu a:focus{
+  outline: solid #C6EBC5;
+}
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+img{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+}
+
+.content{
+    width:444px;
+    height:50px;
+    background-color:white;
+    border: 4px solid white;
+    box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.11);
+    border-radius:100px;
+    margin:auto;
+    margin-top: 25px;
+  }
+  .email{
+    height:50px;
+    background-color:black;
+    padding:0px 5px 0px 10px;
+    width:300px;
+    caret-color:#A1C298;
+    background-color:white;
+    font-size:20px;
+    color:#383838;
+    outline-style:none;
+    border:none;
+    border-radius:100px;
+  }
+  .btn{
+    height:50px;
+    width: 124px;
+    background-color:#A1C298;
+    border:none;
+    font-size:18px;
+    border-radius:100px;
+    float:right;
+    color:white;
+  }
+
+  .btn:hover{
+    background-color:#576d51;
+  }
+  .email:hover{
+    background-color:#f2f2f2;
+  }
+  .email:focus{
+    background-color:#f2f2f2;
+  }
+
+  .container{
+    margin-top: 25%;
+    font-family:"Open Sans", serif;
+    text-align:center;
+    width:500px;
+    color:white;
+    height:auto;
+    background: #A1C298;
+    background: -webkit-linear-gradient(45deg, #83a583, #6b8863);
+    background: linear-gradient(45deg, #99c799, #587052);
+    border-radius:0.3rem;
+    box-shadow: 2px 2px 12px 6px rgba(0,0,0,0.11);
+    padding:50px 50px 50px 50px;
+  }
+  .spam{
+    color:#f2f2f2;
+    font-size:16px;
+    padding:3px;
+  }
+  h1{
+    font-size:30px
+  }
+  @media (max-width:500px){
+    body{
+      margin-top:50px;
+    }
+    .container{
+      width:99vw;
+      height:auto;
+      padding: 0px 10px 0px 10px;
+    }
+    .content{
+      display:inline-flex;
+      width: 95vw;
+      height:auto;
+      margin:0;
+      flex-wrap:wrap;
+      border-radius:0.2rem;
+    }
+    .btn{
+      width:100%;
+      border-radius:0.2rem;
+    }
+    .email{
+      width:90vw;
+      border-radius:0.2rem;
+    }
+    h1{
+      font-size:24px;
+      width:100%;
+    }
+    .spam{
+      font-size:14px;
+      width:100%;
+    }
+  }
