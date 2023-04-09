@@ -55,7 +55,7 @@ body {
     height: 50%;
     padding: 1%;
     
-    background-color: rgba(240, 248, 255, 0.24);
+    background-color: rgba(240, 248, 255, 0.582);
     border-radius: 1em;
 
     justify-content: center;
@@ -70,6 +70,13 @@ body {
     
     width: 49%;
     height: 50%;
+
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+
+    
+    color: #eeeeee;
     
 }
 
@@ -102,7 +109,7 @@ body {
     gap: 1rem;
     margin: 1rem;
 
-    background-color: rgba(240, 248, 255, 0.24);
+    background-color: rgba(240, 248, 255, 0.582);
     border-radius: 1em;
 
     margin: 2%;
@@ -135,7 +142,7 @@ label:hover .alphabet {
 .form-answers label {
 
     font-size: 1.3em;
-    font-weight: bold;
+    font-weight: 900;
 
     padding: 1em;
     border: 1px solid #000;
@@ -153,10 +160,6 @@ label:hover .alphabet {
     color: #fff;
 }
 
-
-#quizz-container-equation{
-    display: none;
-}
 
 
 .next-btn {
@@ -236,6 +239,9 @@ label:hover .alphabet {
     .form-answers label {
         font-size: 1em;
         padding: 1.3em;
+    }
+    .image-equation{
+        font-size: 1.4em;
     }
 
 }
