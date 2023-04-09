@@ -218,7 +218,7 @@ strong {
     }
 
     .gameover p {
-        font-size: clamp(2rem,20vw,15rem);
+        font-size: clamp(2rem,25vw,18rem);
     }
 
     .again p {
@@ -254,6 +254,6 @@ strong {
     }
 
     .points {
-        font-size: 3vw;
+        font-size: 4vw;
     }
 }
