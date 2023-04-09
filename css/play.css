@@ -78,8 +78,8 @@ body{
     
     opacity: 90%;
     
-    border-radius: 3rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    border-radius: 3rem;
     background: var(--color-bck-hard);
 
     cursor:pointer;
@@ -130,6 +130,22 @@ body{
   .icon img{
     transform: scale(2);
   }
+
+  @media screen and (max-width: 768px) {
+
+    .option-easy, .option-medium, .option-hard {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 2em;
+    }
+    .choose-text h1{
+      font-size: 1.5em;
+    }
+
+
+  }
+  
 
 
 
