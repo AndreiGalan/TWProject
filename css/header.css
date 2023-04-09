@@ -179,3 +179,28 @@ header{
   }
 
 }
+footer{
+  position: relative;
+  margin-left:5%;
+  bottom: 0;
+  width: 90%;
+  height: 50px; /* Set the height of your footer here */
+  padding: 15px;
+  text-align: center;
+  font-size: 15px;
+}
+@media screen and (max-width: 749px) {
+  footer{
+    margin-left: 3%;
+  }
+}
+@media screen and (max-width: 490px) {
+  footer{
+    margin-left: 2%;
+  }
+}
+@media screen and (max-width: 360px) {
+  footer{
+    margin-left: 0%;
+  }
+}
