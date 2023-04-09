@@ -137,12 +137,6 @@ header{
      position: absolute;
    }
 
-   .container.active{
-    display: absolute;
-
-    
-   }
-
   .navigation-menu.responsive .icon {
     position: absolute;
     float: right;
