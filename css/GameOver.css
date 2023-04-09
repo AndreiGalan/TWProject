@@ -1,3 +1,8 @@
+body {
+    background: url(../images/game/alpaca-1.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
 .container {
     background-image:  linear-gradient(190deg, #b00000, transparent), linear-gradient(55deg, #328c32, transparent); /* Choose the gradient colors and angles for your texture */
     width: 50%;
@@ -256,4 +261,20 @@ strong {
     .points {
         font-size: 4vw;
     }
+}
+
+
+@media only screen and (max-width: 800px) {
+    body {
+        background: url(../images/game/alpaca-2.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background: url(../images/game/alpaca-3.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+
 }
