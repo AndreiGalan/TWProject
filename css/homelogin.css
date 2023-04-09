@@ -21,6 +21,10 @@ html, body {
   display: block;
 }
 
+.default-paragraph{
+    margin-top: 2%;
+}
+
 .welcome-text{
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
@@ -44,12 +48,9 @@ html, body {
     width: 50%;
   }
 }
-.short-paragraph{
-  display: none;
-}
 .interior
 {
-  margin-top: 10%;
+  margin-top: 15%;
 }
 .title {
   margin-left: 7%;
@@ -227,15 +228,15 @@ button.learn-more .circle .icon.arrow::before {
     /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
     @media screen and (max-width: 1200px) {
 
-      .default-paragraph{
-        display: none;
-      }
-
       .navigation-menu a{
         display: none;
       }
       .bgimg-1.interior{
         margin-top: -10%;
+      }
+
+      .default-paragraph{
+        font-size: 0.8em;
       }
       .navigation-menu a.icon {
           background-color: #729D39;
@@ -266,12 +267,6 @@ button.learn-more .circle .icon.arrow::before {
         top: 10%;
         font-size: 1.5em;
       }
-      .short-paragraph{
-        display: block;
-        top: 15%;
-        margin-right: 1%;
-        font-size: 0.8em;
-      }
       .button-text
       {
         padding: 9px 0;
@@ -300,8 +295,8 @@ button.learn-more .circle .icon.arrow::before {
         }
       
         to {
-          margin-left: 5%;
-          width: 80%;
+          margin-left: 7%;
+          width: 50%;
         }
       }
       @keyframes slideinButton {
@@ -318,6 +313,7 @@ button.learn-more .circle .icon.arrow::before {
       .welcome-text{
         margin-inline-end: 10%;
         border-radius: 1em;
+        margin-right: 40%;
       }
     }
     
@@ -356,15 +352,15 @@ button.learn-more .circle .icon.arrow::before {
     }
 
     @media screen and (max-width: 950px) {
-      .interior{
-          margin-top: 25%;
-      }
-  }
-  @media screen and (max-width: 620px) {
-      .interior{
-          margin-top: 30%;
-      }
-  }
+        .interior{
+            margin-top: 25%;
+        }
+    }
+    @media screen and (max-width: 620px) {
+        .interior{
+            margin-top: 30%;
+        }
+    }
     
     
     
