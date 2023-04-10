@@ -58,6 +58,12 @@ html, body {
   color: #ffffff;
   text-shadow: 2px 2px 4px #000000;
 }
+.title #title-fruits{
+  color: #C6E377;
+}
+.title #title-ontheweb{
+  color: #36622B;
+}
   .grayscale-min{
     filter:grayscale(35%);
   }
