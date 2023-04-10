@@ -29,10 +29,6 @@
         <dd>
           Ignat Gabriel Andrei
         </dd>
-        <dt>License</dt>
-        <dd>
-          <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY</a>
-        </dd>
       </dl>
     </div>
     <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
@@ -49,18 +45,19 @@
 
       <section id="purpose">
         <h3>Purpose</h3>
-      </section>
-
-      <section id="document-conventions">
-        <h3>Document Conventions</h3>
+        <p>
+          The motivation behind selecting this subject is to provide an engaging educational experience for primary
+          school students by introducing them to new fruits and integrating math into the gameplay.
+        </p>
       </section>
 
       <section id="intended-audience">
         <h3>Intended Audience and Reading Suggestions</h3>
-      </section>
-
-      <section id="product-scope">
-        <h3>Product Scope</h3>
+        <p>
+          The game is designed to be accessible to children of different backgrounds and abilities, and efforts will
+          be made to ensure that the game is inclusive and easy to use. Additionally, teachers and parents who are interested
+          in supplementing their children's education with a game-based learning tool may also find the FrOW project useful.
+        </p>
       </section>
     </section>
 
@@ -68,33 +65,35 @@
     <section id="overall-description">
       <h2>Overall Description</h2>
 
-      <section id="product-perspective">
-        <h3>Product Perspective</h3>
-      </section>
-
         <section id="product-functions">
             <h3>Product Functions</h3>
+            <ul>
+              <li>An user can register to the application.</li>
+              <li>An user can log in to the application.</li>
+              <li>An user can log out.</li>
+              <li>An user can view and edit his profile.</li>
+              <li>An user can view the leaderboard, the top 10 best players.</li>
+              <li>An user can play a game.</li>
+              <li>An user can contact the team in case they encounter some difficulties using the app.</li>
+              <li>An user can view the "About Us" section, where he can reach out to the team contributors.</li>
+            </ul>
         </section>
 
-      <section id="user-classes-and-characteristics">
-        <h3>User Classes and Characteristics</h3>
-      </section>
+<!--        <section id="operating-environment">-->
+<!--            <h3>Operating Environment</h3>-->
+<!--        </section>-->
 
-        <section id="operating-environment">
-            <h3>Operating Environment</h3>
-        </section>
+<!--        <section id="design-and-implementation-constraints">-->
+<!--            <h3>Design and Implementation Constraints</h3>-->
+<!--        </section>-->
 
-        <section id="design-and-implementation-constraints">
-            <h3>Design and Implementation Constraints</h3>
-        </section>
+<!--        <section id="user-documentation">-->
+<!--            <h3>User Documentation</h3>-->
+<!--        </section>-->
 
-        <section id="user-documentation">
-            <h3>User Documentation</h3>
-        </section>
-
-        <section id="assumptions-and-dependencies">
-            <h3>Assumptions and Dependencies</h3>
-        </section>
+<!--        <section id="assumptions-and-dependencies">-->
+<!--            <h3>Assumptions and Dependencies</h3>-->
+<!--        </section>-->
 
     </section>
 
@@ -102,57 +101,345 @@
       <h2>External Interface Requirements</h2>
 
         <section id="user-interfaces">
-            <h3>User Interfaces</h3>
+          <h3>User Interfaces</h3>
+
+          <section id="home">
+            <h3>Home Page</h3>
+            <p>
+              The home page is the first page that the user will see when he opens the application. It contains a
+              navigation bar.
+            </p>
+            <ol>
+              <li>
+                If the user is not logged in, the navigation bar will contain the following options:
+              <ul>
+                <li>Home</li>
+                <li>Contact</li>
+                <li>About</li>
+                <li>Login</li>
+              </ul>
+              Also, in the bottom of the home page, there will be a button that will redirect the user to the login page.
+              </li>
+
+              <li>
+                If the user is logged in, the navigation bar will contain the following options:
+              <ul>
+                <li>Home</li>
+                <li>Play</li>
+                <li>Ranking</li>
+                <li>Contact</li>
+                <li>About</li>
+                <li>Your Profile</li>
+                <li>Logout</li>
+              </ul>
+              Also, in the middle of the home page, there will be a welcoming message with the user first and last name and a button that will redirect the user to the play page.
+              </li>
+            </ol>
+            <p>There is also a footer containing copyrights reserved, in all the pages excepting Play Page.</p>
+          </section>
+
+            <section id="login">
+                <h3>Login Page</h3>
+                <p>
+                The login page is the page where the user can log in to the application. It contains a navigation bar.
+                </p>
+                <ol>
+                  <li>
+                      The navigation bar will contain the following options:
+                  <ul>
+                      <li>Home</li>
+                      <li>Contact</li>
+                      <li>About</li>
+                  </ul>
+                  </li>
+                  <li>
+                      The login page will contain a form with the following fields:
+                  <ul>
+                      <li>Email Address</li>
+                      <li>Password</li>
+                  </ul>
+                  </li>
+                  <li>
+                      If the user is not registered, he can click on the "Sign Up" button, which will redirect him to the signup page.
+                  </li>
+                  <li>
+                        If the user forgot his password, he can click on the "Forgot Password?" button, which will redirect him to the forgot password page.
+                  </li>
+                </ol>
+
+                <img src="Screenshots/LoginScreenshot.png" alt="Login Screenshot" width="100%" height="100%">
+            </section>
+
+          <section id="signup">
+            <h3>Sign Up Page</h3>
+            <p>
+              The sign up page is the page where the user can register to the application. It contains a navigation bar, with the same as fields as the Login Page.
+            </p>
+            <ol>
+                <li>
+                    The sign up page will contain a form with the following fields:
+                    <ul>
+                      <li>First Name</li>
+                      <li>Last Name</li>
+                      <li>Email Address</li>
+                      <li>Username</li>
+                      <li>Password</li>
+                      <li>Repeat Password</li>
+                      <li>Genre</li>
+                    </ul>
+                    After he fills the form, the user can click on the "Register" button, which will redirect him to the Login Page.
+                </li>
+            </ol>
+          </section>
+
+          <section id="forgot-password">
+            <h3>Forgot Password Page</h3>
+            <p>
+              The forgot password page is the page where the user can reset his password. It contains a navigation bar, with the same as fields as the Login Page.
+            </p>
+            <ol>
+                <li>
+                    The forgot password page will contain a form with the following fields:
+                    <ul>
+                      <li>Email Address</li>
+                    </ul>
+                    After he fills the form, the user can click on the "Send Code" button, which will redirect him to the "Verify Page" where he will enter the code that he received on the email.
+                </li>
+            </ol>
         </section>
 
-        <section id="hardware-interfaces">
-            <h3>Hardware Interfaces</h3>
-        </section>
+             <section id="verify">
+                  <h3>Verify Page</h3>
+                  <p>
+                    The verify page is the page where the user can enter the code that he received on the email. It contains a navigation bar, with the same as fields as the Login Page.
+                  </p>
+                  <ol>
+                    <li>
+                         The verify page will contain a form with the following fields:
+                         <ul>
+                              <li>Code: 4 digits</li>
+                         </ul>
+                         After he fills the form, the user can click on the "Submit" button, which will redirect him to the "Reset Password Page" where he will enter the new password.
+                          Or he can click on the "Resend Code" button.
+                    </li>
+                  </ol>
+             </section>
 
-        <section id="software-interfaces">
-            <h3>Software Interfaces</h3>
-        </section>
+             <section id="reset-password">
+                  <h3>Reset Password Page</h3>
+                  <p>
+                    The reset password page is the page where the user can enter the new password. It contains a navigation bar, with the same as fields as the Login Page.
+                  </p>
+                  <ol>
+                    <li>
+                         The reset password page will contain a form with the following fields:
+                         <ul>
+                              <li>Password</li>
+                              <li>Repeat Password</li>
+                         </ul>
+                         After he fills the form, the user can click on the "Reset Password" button, which will redirect him to the Login Page.
+                    </li>
+                  </ol>
+             </section>
 
-        <section id="communications-interfaces">
-            <h3>Communications Interfaces</h3>
-        </section>
+            <section id="about">
+              <h3>About Page</h3>
+              <p>
+                The about page contains information about the developers team, their social accounts,how they chose the project and finally how to play the game.
+                Like in the Home Page, the header will have different buttons depending on the log in status.
+              </p>
+            </section>
+
+            <section id="contact">
+              <h3>Contact Page</h3>
+              <p>
+                The contact page contains a form with the following fields:
+                <ul>
+                  <li>Enter your name</li>
+                  <li>Enter your email</li>
+                  <li>Enter the description of the encountered problems or questions, curiosities.</li>
+                </ul>
+                Then he will likely click the "Send Now" button which will send us the message.
+              </p>
+              <p>
+                Also there are some other information about the emails/phone-number where the members can be contacted.
+              </p>
+            </section>
+
+             <section id="play">
+                <h3>Play Page</h3>
+                <p>
+                  The play page is the page where the user can play the game. It contains a navigation bar, with the same as fields as the Home Page.
+                </p>
+                <p>
+                    At this page you can select the level:
+                    <ul>
+                        <li>Easy</li>
+                        <li>Medium</li>
+                        <li>Hard</li>
+                    </ul>
+                </p>
+                 <img src="Screenshots/PlayScreenshot.png" alt="Play Page" width="100%" height="100%">
+                 <p>
+                     After the player chose the level, he will be redirected to the actual questions.
+                 </p>
+                 <img src="Screenshots/Question.png" alt="Question" width="100%" height="100%">
+             </section>
+
+            <section id="question">
+                <h3>Question Page</h3>
+                <p>
+                    The question page is the page where the user can answer the question.
+                    It contains an image/mathematical equation, a question and 4 possible answers, with only one correct answer.
+                    There is a next button, which will redirect the player to the next question.
+                  </p>
+                <p>
+                    Depending on the answer, the player will receive a certain amount of points or he will lose a life.
+                    When reaching the last question(the 10th), there will be a button called "Finish" redirecting him to the Congratulation Page.
+                    If the player loses all his lives, he will be redirected to the Game Over Page.
+                </p>
+            </section>
+
+            <section id="ranking">
+                <h3>Ranking Page</h3>
+                <p>
+                    This page will display the top 10 players with the highest score.
+                    The leaderboard will be updated in real-time.
+                </p>
+                There will be displayed the following:
+                <ul>
+                    <li>Position</li>
+                    <li>Username</li>
+                    <li>Score</li>
+                    <li>Playing Since</li>
+                </ul>
+                In the case the player is not in the leaderboard he can view his position in the profile page.
+            </section>
+
+            <section id="profile">
+                <h3>Profile Page</h3>
+                <p>
+                    The profile page will provide information about the user:
+                    <ul>
+                    <li>First Name</li>
+                    <li>Last Name</li>
+                    <li>Username</li>
+                    <li>Email</li>
+                    <li>Points</li>
+                    <li>Ranking</li>
+                    </ul>
+                    There are 2 buttons which will allow you to edit your information in the same page:
+                    <ul>
+                        <li>Edit profile</li>
+                        <li>Change password</li>
+                    </ul>
+                <img src="Screenshots/EditProfile.png" alt="Edit Profile" width="100%" height="100%">
+                </p>
+            </section>
+
+            <section id="logout">
+                <h3>Logout</h3>
+                <p>
+                    The logout button will redirect the user to the home page for logged out users.
+                </p>
+            </section>
+
+            </section>
+
+<!--        <section id="hardware-interfaces">-->
+<!--            <h3>Hardware Interfaces</h3>-->
+<!--        </section>-->
+
+<!--        <section id="software-interfaces">-->
+<!--            <h3>Software Interfaces</h3>-->
+<!--        </section>-->
+
+<!--        <section id="communications-interfaces">-->
+<!--            <h3>Communications Interfaces</h3>-->
+<!--        </section>-->
     </section>
 
-    <section id="system-features">
-      <h2>System Features</h2>
+<!--    <section id="system-features">-->
+<!--      <h2>System Features</h2>-->
 
-      <section id="authentication">
-        <h3>Authentication</h3>
-      </section>
+<!--      <section id="authentication">-->
+<!--        <h3>Authentication</h3>-->
+<!--      </section>-->
 
-    </section>
+<!--    </section>-->
 
-    <section id="other-nonfunctional-requirements">
-      <h2>Other Nonfunctional Requirements</h2>
+<!--    <section id="other-nonfunctional-requirements">-->
+<!--      <h2>Other Nonfunctional Requirements</h2>-->
 
-        <section id="performance">
-            <h3>Performance Requirements</h3>
-        </section>
+<!--        <section id="performance">-->
+<!--            <h3>Performance Requirements</h3>-->
+<!--        </section>-->
 
-        <section id="safety">
-            <h3>Safety Requirements</h3>
-        </section>
+<!--        <section id="safety">-->
+<!--            <h3>Safety Requirements</h3>-->
+<!--        </section>-->
 
-        <section id="security">
-            <h3>Security Requirements</h3>
-        </section>
+<!--        <section id="security">-->
+<!--            <h3>Security Requirements</h3>-->
+<!--        </section>-->
 
-        <section id="software-quality-attributes">
-            <h3>Software Quality Attributes</h3>
-        </section>
-    </section>
+<!--        <section id="software-quality-attributes">-->
+<!--            <h3>Software Quality Attributes</h3>-->
+<!--        </section>-->
+<!--    </section>-->
 
     <section id="other-requirements">
       <h2>Other Requirements</h2>
 
-      <section id="glosary">
-        <h3>Glossary</h3>
+      <section id="responsive">
+        <h3>Responsiveness</h3>
+          <p>
+              <a href="http://www.nytimes.com/2016/03/16/science/asap-bio-biologists-published-to-the-internet.html?_r=1">rogue
+                  scientists</a>
+              All pages within the scope of this project have been developed with a responsive design approach,
+              utilizing specific media queries for optimal display on a range of devices and screen sizes.
+          </p>
+
+          Example: play page for mobile devices
+          <pre>
+              <code>
+
+                  @media screen and (max-width: 768px) {
+
+                    .option-easy, .option-medium, .option-hard {
+                      width: 100%;
+                      max-width: 100%;
+                      margin: 0;
+                      padding: 2em;
+                    }
+                    .choose-text h1{
+                      font-size: 1.5em;
+                    }
+              </code>
+          </pre>
+          How it looks:
+            <img src="Screenshots/PlayResponsive.png" alt="Responsive" width="100%" height="100%">
       </section>
+
+        <section id="UX">
+            <h3>User Experience</h3>
+                <li>Colors:
+                    <ul>
+                        <li>light green theme: was chosen for the project based on its association with freshness, health, and nature, which aligns well with the theme of fruits and vegetables. Additionally, the color green is known to have a calming effect on the mind, which can be beneficial for a learning environment. The shade of light green was specifically selected to create a pleasing and harmonious visual experience for the intended audience of primary school students.</li>
+                        <li>light blue for sign up: sky blue is a versatile color that can work well with a variety of other colors, making it easy to create a visually appealing and engaging design for the web application.</li>
+                    </ul>
+                </li>
+
+        </section>
+    </section>
+    <section id="biblio-references"><h2><span></span>References</h2>
+        Images:
+        <ul>
+            <li><a href="https://icons8.com/" role="doc-biblioref">Icons for play page, question page, etc</a></li>
+            <li><a href="https://www.freepik.com/" role="doc-biblioref">Images of fruits and vegetables, alpacas</a></li>
+            <li><a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/index.html" role="doc-biblioref">TW course</a></li>
+            <li><a href="https://victorvlad19.github.io/web/" role="doc-biblioref">TW laboratory</a></li>
+        </ul>
     </section>
   </body>
 </html>
