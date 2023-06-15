@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule .* index.php
+
+#RewriteBase /
+
+# Exclude real files and directories from rewrite rules
