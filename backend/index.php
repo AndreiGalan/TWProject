@@ -1,7 +1,7 @@
 <?php
 
 
-require_once ($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/TWProject/backend/vendor/autoload.php');
 
 include_once "Controllers/UserController.php";
 include_once "Controllers/AuthController.php";
@@ -23,4 +23,9 @@ include_once "Dispatcher/Dispatcher.php";
 
     $requestMethod = $_SERVER['REQUEST_METHOD'];
 
+    if ($requestMethod === 'OPTIONS') {
+        // Răspunde la cererea OPTIONS cu un cod de stare HTTP 200 OK
+        header('HTTP/1.1 200 OK');
+        exit();
+    }
     Dispatcher::dispatch($requestMethod, $request);

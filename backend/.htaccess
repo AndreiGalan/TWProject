@@ -1,6 +1,8 @@
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
 RewriteEngine on
-RewriteRule .* index.php
-
-#RewriteBase /
-
-# Exclude real files and directories from rewrite rules
+RewriteRule .* index.php [L]
