@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
+<script src="../js/register.js"></script>
+
   <nav class="navMenu">
     <a href="Home.html">Home</a>
     <a href="AboutLogOut.html">About</a>
@@ -78,11 +80,12 @@
                 </div>
             </div>
             <p class="btn-switch">					
-                <input type="radio" id="yes" name="switch" class="btn-switch__radio btn-switch__radio_yes">
-                <input type="radio" checked id="no" name="switch" class="btn-switch__radio btn-switch__radio_no">		
-                <label for="yes" class="btn-switch__label btn-switch__label_yes"><span class="btn-switch__txt">Male</span></label>								  <label for="no" class="btn-switch__label btn-switch__label_no"><span class="btn-switch__txt">Female</span></label>							
+                <input type="radio" id="male" name="switch" class="btn-switch__radio btn-switch__radio_yes">
+                <input type="radio" checked id="female" name="switch" class="btn-switch__radio btn-switch__radio_no">
+                <label for="male" class="btn-switch__label btn-switch__label_yes"><span class="btn-switch__txt">Male</span></label>
+                <label for="female" class="btn-switch__label btn-switch__label_no"><span class="btn-switch__txt">Female</span></label>
               </p>
-                <button class="login" onclick="location.href='Login.html';">Register </button>
+                <button class="login" onclick="register() ">Register </button>
         </div>
     </div>
 </div>
