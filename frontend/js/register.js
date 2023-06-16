@@ -30,15 +30,11 @@ function register() {
         email: email
     };
 
-    let jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODY4NzE1NjMsImlzcyI6Imh0dHBzOi8vMTI3LjAuMC4xIiwibmJmIjoxNjg2ODcxNTYzLCJleHAiOjE2ODY4NzUxNjMsInVzZXJOYW1lIjoicG9wZXNjdS5pb24ifQ.sU1BVQfrMjN5rgW4XdvaoUqkhkj1eGRsVXtenpIM-fkQsl1Hht0m4qDUD256xEZsu_qgK4EL0EUIW0egueXHdw";
-    let bearer = "Bearer " + jwt;
-
-    fetch('http://localhost/TWProject/backend/users', {
+    fetch('http://localhost/TWProject/backend/auth/register', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': bearer
+            'Content-Type': 'application/json'
         }
     })
         .then(response => {
@@ -46,6 +42,8 @@ function register() {
                 // Tratați răspunsul în caz de succes
                 console.log('Datele au fost trimise cu succes.');
                 console.log(data);
+
+                window.location.href = "http://localhost/TWProject/frontend/html/login.html";
             } else {
                 // Tratați răspunsul în caz de eroare
                 console.log('A apărut o eroare la trimiterea datelor.');

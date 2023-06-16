@@ -23,7 +23,7 @@ class UserController {
                 }
                 break;
             case 'POST':
-                $response = $this->createUserFromRequest();
+//                $response = $this->createUserFromRequest();
                 break;
             case 'PUT':
                 $response = $this->updateUserFromRequest($this->request[0]);
@@ -60,24 +60,6 @@ class UserController {
 
         $result = $this->userDAO->findAll();
         $response['body'] = json_encode($result);
-        return $response;
-    }
-
-    private function createUserFromRequest(): array
-    {
-        $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['content_type_header'] = 'Content-Type: application/json';
-
-        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        if(!$this->validateUser($input)){
-            return $this->unprocessableEntityResponse();
-        }
-
-        $user = new User($input['firstName'], $input['lastName'], $input['username'],
-                        $input['password'], $input['gender'], $input['email'], null, null);
-
-        $this->userDAO->create($user);
-        $response['body'] = json_encode(array("Result"=>"User Created"));
         return $response;
     }
 
@@ -127,15 +109,6 @@ class UserController {
         return $response;
     }
 
-    private function validateUser(array $input): bool
-    {
-        if(!isset($input['firstName']) || !isset($input['lastName']) ||  !isset($input['username']) ||
-            !isset($input['password']) || !isset($input['gender']) || !isset($input['email']))
-        {
-            return false;
-        }
-        return true;
-    }
     private function updatePassword(array $input): bool
     {
         if (!isset($input['password'])) {

@@ -1,9 +1,7 @@
 <?php
 class Dispatcher{
     public static function dispatch($requestMethod, $request) : void{
-        $authController = new AuthController($requestMethod);
-
-//        echo $request[0];
+        $authController = new AuthController($requestMethod, $request);
 
         switch($request[0]){
             case 'users':
@@ -18,11 +16,11 @@ class Dispatcher{
                 break;
 
             case 'auth':
-                $controller = new AuthController($requestMethod);
-                $controller->processRequest();
+
+                $authController->processRequest();
                 break;
 
-                default:
+            default:
                 header("HTTP/1.1 404 Not Found");
                 exit();
         }

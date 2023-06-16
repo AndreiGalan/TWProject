@@ -7,24 +7,32 @@ class AuthController
 {
 
     private $requestMethod;
+
+    private $request;
     private $secret_Key  = '%aaSWvtJ98os_b<IQ_c$j<_A%bo_[xgct+j$d6LJ}^<pYhf+53k^-R;Xs<l%5dF';
     private $domainName = "https://127.0.0.1";
-
     private $userDAO;
 
     /**
      * @param $requestMethod
+     * @param $request
      */
-    public function __construct($requestMethod)
+    public function __construct($requestMethod, $request)
     {
         $this->requestMethod = $requestMethod;
+        $this->request = $request;
         $this->userDAO = new UserDAO();
     }
     
     public function processRequest() {
         switch ($this->requestMethod) {
             case 'POST':
-                $response = $this->login();
+                if(isset($this->request[1]) && $this->request[1] == 'register')
+                    $response = $this->register();
+                else if(isset($this->request[1]) && $this->request[1] == 'login')
+                    $response = $this->login();
+                else
+                    $response = $this->notFoundResponse();
                 break;
             default:
                 $response = $this->notFoundResponse();
@@ -55,6 +63,34 @@ class AuthController
         }
 
         return $this->createJWT($user['username']);
+    }
+
+    private function register(): array
+    {
+        $response['status_code_header'] = 'HTTP/1.1 201 Created';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if(!$this->validateUser($input)){
+            return $this->unprocessableEntityResponse();
+        }
+
+        $user = new User($input['firstName'], $input['lastName'], $input['username'],
+            $input['password'], $input['gender'], $input['email'], null, null);
+
+        $this->userDAO->create($user);
+        $response['body'] = json_encode(array("Result"=>"User Created"));
+        return $response;
+    }
+
+    private function validateUser(array $input): bool
+    {
+        if(!isset($input['firstName']) || !isset($input['lastName']) ||  !isset($input['username']) ||
+            !isset($input['password']) || !isset($input['gender']) || !isset($input['email']))
+        {
+            return false;
+        }
+        return true;
     }
 
     private function createJWT($username) {
@@ -138,4 +174,12 @@ class AuthController
         return $response;
     }
 
+    private function unprocessableEntityResponse(): array
+    {
+        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+        $response['body'] = json_encode([
+            'error' => 'Invalid input'
+        ]);
+        return $response;
+    }
 }
