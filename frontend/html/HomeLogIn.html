@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 </head>
 <body>
+<script type="module" src="../js/homeLogin.js"></script>
+
+<script type="module" src="../js/logout.js"></script>
+
 <div class="bgimg-1" id="home">
     <header>
         <div class="inner-width">
@@ -21,7 +25,7 @@
                         <a href="Contact.html"> Contact</a>
                         <a href="About.html"> About</a>
                         <a href="ProfilePage.html"> Your profile</a>
-                        <a href="Home.html" class="aj_btn"> <i class="fas fa-lock" aria-hidden="true"></i>
+                        <a href="#" class="aj_btn" id = "logout"> <i class="fas fa-lock" aria-hidden="true"></i>
                             LOGOUT</a>
                         <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
                 </div>
@@ -31,7 +35,10 @@
       <div class="interior">
         <span class="title"><span id="title-fruits">Fruits</span> <span id="title-ontheweb">OnTheWeb</span></span><br>
         <div class="welcome-text">
-          <p class="default-paragraph">Hello FIRST_NAME LAST_NAME!</p>  
+          <p class="default-paragraph">Hello,
+              <span id="first_name"></span>
+              <span id="last_name"></span> !
+          </p>
           <p class="default-paragraph">Are you ready to test your knowledge about fruits and vegetables? Or to practice your math, with the help of fruit equations?</p>
         
         <button class="learn-more">
