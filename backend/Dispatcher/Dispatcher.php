@@ -13,17 +13,16 @@ class Dispatcher{
                 // delete the first element of the array
                 array_shift($request);
 
-//                if(isset($request[0]))
-//                    echo $request[0];
-
                 $controller = new UserController($requestMethod, $request);
                 $controller->processRequest();
                 break;
+
             case 'auth':
                 $controller = new AuthController($requestMethod);
                 $controller->processRequest();
                 break;
-            default:
+
+                default:
                 header("HTTP/1.1 404 Not Found");
                 exit();
         }
