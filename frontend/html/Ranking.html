@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <title>Ranking</title>
-    <link rel = "icon" href = "../images/logo.png" type = "image/x-icon">
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/Ranking.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
+
 <body>
 <header>
     <div class="inner-width">
-        <h1 class="logo"> <img src ="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1>
+        <h1 class="logo"> <img src="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1>
         <div class="navigation-menu" id="myTopnav">
             <a href="HomeLogIn.html"><i class="fas fa-home home"></i> Home</a>
             <a href="Play.html"> Play</a>
@@ -29,73 +30,26 @@
         </div>
     </div>
 </header>
-<script src="../js/script.js"></script>
 <div class="container">
-
     <h1 class="rank-title">TOP 10 RANKED PLAYERS</h1>
     <div class="ranking">
         <table>
             <thead id="table-head">
-                <tr>
-                    <td>Position</td>
-                    <td>Username</td>
-                    <td>Score</td>
-                    <td>Playing since</td>
-                </tr>
+            <tr>
+                <td>Position</td>
+                <td>Username</td>
+                <td>Score</td>
+                <td>Playing since</td>
+            </tr>
             </thead>
-            <tbody id="table-body">
-            <tr>
-                <td>
-                    <i class='fas fa-crown'></i>
-                </td>
-                <td>John</td>
-                <td>150</td>
-                <td>25 Jan, 2022</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Augustus Vicentius Normalus</td>
-                <td>100</td>
-                <td>15 Feb, 2023</td>
-            </tr>
-<!--            8 more players-->
-            <tr>
-                <td>3</td>
-                <td>Elon Musk</td>
-                <td>99</td>
-                <td>2 Jan, 2024</td>
-            </tr>
-            <tr>
-                <td>4</td><td>Mariah</td><td>80</td>
-                <td>8 Aug, 2021</td>
-            </tr>
-            <tr>
-                <td>5</td><td>Veronica</td><td>80</td>
-                <td>30 Dec, 2019</td>
-            </tr>
-            <tr>
-                <td>6</td><td>Ramsey</td><td>80</td>
-                <td>1 Mar, 2023</td>
-            </tr>
-            <tr>
-                <td>7</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td>8</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td>9</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td>10</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            </tbody>
+            <tbody id="table-body"></tbody>
         </table>
     </div>
 </div>
 <footer>
-    <span>Copyright &copy; 2023 <span style="color: #36622B; font-weight: bold;">FruitsOnTheWeb</span>. All rights reserved.</span>
+    <span>&copy; 2023 <span style="color: #36622B; font-weight: bold;">FruitsOnTheWeb</span>. All rights reserved.</span>
 </footer>
+<script src="../js/ranking.js"></script>
 </body>
 
 </html>

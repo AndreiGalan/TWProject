@@ -31,6 +31,8 @@ function login() {
 
                         // Set the cookie
                         document.cookie = "token=" + json.token + ";expires=" + expirationDate.toUTCString() + "; path=/";
+
+
                         window.location.href = "http://localhost/TWProject/frontend/html/HomeLogin.html";
                     }).catch(error => {
                         console.log('Eroare la parsarea răspunsului JSON:', error);
