@@ -23,8 +23,9 @@ class AuthController
         $this->request = $request;
         $this->userDAO = new UserDAO();
     }
-    
+
     public function processRequest() {
+
         switch ($this->requestMethod) {
             case 'POST':
                 if(isset($this->request[1]) && $this->request[1] == 'register')
@@ -32,18 +33,20 @@ class AuthController
                 else if(isset($this->request[1]) && $this->request[1] == 'login')
                     $response = $this->login();
                 else
-                    $response = $this->notFoundResponse();
+                    $response = ErrorHandler::notFoundResponse();
                 break;
             default:
-                $response = $this->notFoundResponse();
+                $response = ErrorHandler::notFoundResponse();
                 break;
         }
 
         header($response['status_code_header']);
         header($response['content_type_header']);
+
         if ($response['body']) {
             echo $response['body'];
         }
+
     }
 
     private function login() {
@@ -51,32 +54,52 @@ class AuthController
         $response['content_type_header'] = 'Content-Type: application/json';
 
         // verify if the user exists in the database
-        $user = $this->userDAO->findByUsername($_POST['username']);
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if(!isset($input['email']) || !isset($input['password'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $user = $this->userDAO->findByEmail($input['email']);
         if (!$user) {
-            return $this->notFoundResponse();
+            return ErrorHandler::notFoundResponse();
         }
         // verify if the password is correct
-        if (!$this->userDAO->verifyPassword($_POST['username'], $_POST['password'])) {
-            $response['header'] = 'HTTP/1.1 401 Unauthorized';
+        if (!$this->userDAO->verifyPassword($input['email'], $input['password'])) {
+            $response['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
+            $response['content_type_header'] = 'Content-Type: application/json';
             $response['body'] = json_encode(array("message" => "Wrong password"));
             return $response;
         }
 
-        return $this->createJWT($user['username']);
+        return $this->createJWT($input['email']);
     }
 
-    private function register(): array
-    {
+    private function register(): array{
+
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
         $response['content_type_header'] = 'Content-Type: application/json';
 
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         if(!$this->validateUser($input)){
-            return $this->unprocessableEntityResponse();
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+
+        //check if username already exists
+        $userExists = $this->userDAO->findByUsername($input['username']);
+        if ($userExists) {
+            return ErrorHandler::entityAlreadyExists('user', 'username');
+        }
+
+        //check if mail already exists
+        $userExists = $this->userDAO->findByEmail($input['email']);
+        if ($userExists){
+            return ErrorHandler::entityAlreadyExists('user', 'email');
         }
 
         $user = new User($input['firstName'], $input['lastName'], $input['username'],
             $input['password'], $input['gender'], $input['email'], null, null);
+
 
         $this->userDAO->create($user);
         $response['body'] = json_encode(array("Result"=>"User Created"));
@@ -93,7 +116,7 @@ class AuthController
         return true;
     }
 
-    private function createJWT($username) {
+    private function createJWT($email) {
         $secret_Key = $this -> secret_Key;
         $date   = new DateTimeImmutable();
         $expire_at     = $date->modify('+60 minutes')->getTimestamp();
@@ -104,16 +127,17 @@ class AuthController
             'iss'  => $domainName,                   // ! Issuer
             'nbf'  => $date->getTimestamp(),         // ! Not before
             'exp'  => $expire_at,                    // ! Expire
-            'userName' => $username,                 // User.php name
+            'userName' => $email,                 // User.php name
         ];
 
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
-        $response['body'] = JWT::encode(
+        $response['body'] = json_encode(array("token" =>  JWT::encode(
             $request_data,
             $secret_Key,
             'HS512'
-        );
+        )));
+
 
         return $response;
     }
@@ -166,20 +190,5 @@ class AuthController
         }
     }
 
-    private function notFoundResponse(): array
-    {
-        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
-        $response['content_type_header'] = 'Content-Type: application/json';
-        $response['body'] = json_encode(array("Result"=>"Not Found"));
-        return $response;
-    }
 
-    private function unprocessableEntityResponse(): array
-    {
-        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-        $response['body'] = json_encode([
-            'error' => 'Invalid input'
-        ]);
-        return $response;
-    }
 }

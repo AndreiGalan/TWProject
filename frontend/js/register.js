@@ -44,7 +44,22 @@ function register() {
                 console.log(data);
 
                 window.location.href = "http://localhost/TWProject/frontend/html/login.html";
-            } else {
+
+            } else if ( response.status === 409){
+
+                response.json().then(data => {
+                    if (data.message === 'username') {
+                        alert('Username already exists.');
+                    } else if (data.message === 'email') {
+                        alert('Email already exists.');
+                    } else {
+                        alert('An error occurred while sending the data.');
+                    }
+                    console.log(data);
+                });
+
+            }
+            else {
                 // Tratați răspunsul în caz de eroare
                 console.log('A apărut o eroare la trimiterea datelor.');
                 console.log(data);

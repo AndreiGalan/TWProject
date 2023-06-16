@@ -80,10 +80,22 @@ class UserDAO {
         }
     }
 
-    public function verifyPassword($username, $password){
+    public function findByEmail($email){
+        try{
+            $statement = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->execute();
+
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
+    public function verifyPassword($email, $password){
         try {
-            $statement = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
-            $statement->bindParam(':username', $username, PDO::PARAM_STR);
+            $statement = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
             $statement->execute();
 
             $user = $statement->fetch(PDO::FETCH_ASSOC);
@@ -91,6 +103,7 @@ class UserDAO {
             $hashedPassword = $user['password'];
 
             return password_verify($password, $hashedPassword);
+
         } catch (PDOException $e){
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }

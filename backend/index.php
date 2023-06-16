@@ -5,6 +5,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/TWProject/backend/vendor/autoload.ph
 
 include_once "Controllers/UserController.php";
 include_once "Controllers/AuthController.php";
+include_once "Controllers/ErrorHandler.php";
 
 include_once "Database/UserDAO.php";
 

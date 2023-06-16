@@ -32,7 +32,7 @@ class UserController {
                 $response = $this->deleteUser($this->request[0]);
                 break;
             default:
-                $response = $this->notFoundResponse();
+                $response = ErrorHandler::notFoundResponse();
                 break;
         }
         header($response['status_code_header']);
@@ -46,7 +46,7 @@ class UserController {
     {
         $result = $this->userDAO->find($id);
         if (!$result) {
-            return $this->notFoundResponse();
+            return ErrorHandler::notFoundResponse();
         }
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
@@ -70,7 +70,7 @@ class UserController {
 
         $result = $this->userDAO->find($id);
         if (!$result) {
-            return $this->notFoundResponse();
+            return ErrorHandler::notFoundResponse();
         }
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         if($this->updatePassword($input)){
@@ -100,7 +100,7 @@ class UserController {
     {
         $result = $this->userDAO->find($id);
         if (!$result) {
-            return $this->notFoundResponse();
+            return ErrorHandler::notFoundResponse();
         }
         $this->userDAO->delete($id);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
@@ -125,19 +125,4 @@ class UserController {
         return true;
     }
 
-    private function notFoundResponse(): array
-    {
-        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
-        $response['content_type_header'] = 'Content-Type: application/json';
-        $response['body'] = json_encode(array("Result"=>"Not Found"));
-        return $response;
-    }
-    private function unprocessableEntityResponse(): array
-    {
-        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-        $response['body'] = json_encode([
-            'error' => 'Invalid input'
-        ]);
-        return $response;
-    }
 }
