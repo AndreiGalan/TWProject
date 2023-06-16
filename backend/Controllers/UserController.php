@@ -16,9 +16,13 @@ class UserController {
     {
         switch ($this->requestMethod) {
             case 'GET':
-                if (isset($this->request[0])) {
+                if (isset($this->request[0]) && $this->request[0] != 'ranking') {
                     $response = $this->getUser($this->request[0]);
-                } else {
+                }
+                else if(isset($this->request[0]) && $this->request[0] == 'ranking') {
+                    $response = $this->getRanking();
+                }
+                else {
                     $response = $this->getAllUsers();
                 }
                 break;
@@ -59,6 +63,16 @@ class UserController {
         $response['content_type_header'] = 'Content-Type: application/json';
 
         $result = $this->userDAO->findAll();
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+
+    private function getRanking(): array
+    {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        $result = $this->userDAO->findFirstTenByRanking();
         $response['body'] = json_encode($result);
         return $response;
     }

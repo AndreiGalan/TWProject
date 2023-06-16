@@ -98,7 +98,7 @@ class AuthController
         }
 
         $user = new User($input['firstName'], $input['lastName'], $input['username'],
-            $input['password'], $input['gender'], $input['email'], null, null);
+            $input['password'], $input['gender'], $input['email'], null, null, null);
 
 
         $this->userDAO->create($user);

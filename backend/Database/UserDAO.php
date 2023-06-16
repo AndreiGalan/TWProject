@@ -18,17 +18,21 @@ class UserDAO {
             $password = $user->getPassword();
             $email = $user->getEmail();
             $gender = $user->getGender();
+            $created_at = $user->getCreatedAt();
 
             $cryptPassword = password_hash($password, PASSWORD_DEFAULT);
 
             // number of users in the database
             $ranking = $this->conn->query("SELECT COUNT(*) FROM users")->fetchColumn() + 1;
 
+            //put the today date
+            $created_at = date("Y-m-d H:i:s");
+
 
 //            $decryptedPassword = password_verify($password, $cryptPassword);
 
-            $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking)
-                        VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking)");
+            $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking, created_at)
+                        VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking, :created_at)");
             $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':username', $username, PDO::PARAM_STR);
@@ -36,6 +40,7 @@ class UserDAO {
             $statement->bindParam(':email', $email, PDO::PARAM_STR);
             $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
             $statement->bindParam(':ranking', $ranking, PDO::PARAM_INT);
+            $statement->bindParam(':created_at', $created_at, PDO::PARAM_STR);
 
             $statement->execute();
         } catch (PDOException $e) {
@@ -46,6 +51,19 @@ class UserDAO {
     public function findAll(){
         try {
             $stmt = $this->conn->prepare("SELECT * FROM users");
+            $stmt->execute();
+
+            // set the resulting array to associative
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
+    public function findFirstTenByRanking(){
+        try {
+            //select rank, points, username from users order by rank asc limit 10;
+            $stmt = $this->conn->prepare("SELECT TOP 10 ranking, username, points, created_at FROM users ORDER BY ranking ASC ");
             $stmt->execute();
 
             // set the resulting array to associative
