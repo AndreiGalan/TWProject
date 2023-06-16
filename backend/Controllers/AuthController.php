@@ -71,7 +71,7 @@ class AuthController
             return $response;
         }
 
-        return $this->createJWT($input['email']);
+        return $this->createJWT($input['email'], $user['id']);
     }
 
     private function register(): array{
@@ -116,7 +116,7 @@ class AuthController
         return true;
     }
 
-    private function createJWT($email) {
+    private function createJWT($email, $id) {
         $secret_Key = $this -> secret_Key;
         $date   = new DateTimeImmutable();
         $expire_at     = $date->modify('+60 minutes')->getTimestamp();
@@ -136,7 +136,9 @@ class AuthController
             $request_data,
             $secret_Key,
             'HS512'
-        )));
+            ),
+            "id" => $id)
+        );
 
 
         return $response;
