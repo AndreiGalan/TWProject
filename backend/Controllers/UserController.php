@@ -102,7 +102,7 @@ class UserController {
             $response['body'] = json_encode(array("Result"=>"User points Updated"));
         } else {
             $user = new User($input['firstName'], $input['lastName'], $input['username']
-                , null, $input['gender'], $input['email'], null, null, $id);
+                , null,  null, $input['email'], null,null, null, null, $id);
 
             $this->userDAO->update($user);
 
