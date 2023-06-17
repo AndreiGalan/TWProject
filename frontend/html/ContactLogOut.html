@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
    </head>
 <body>
+<script src="../js/contact.js"></script>
   <header>
     <div class="inner-width">
         <h1 class="logo"> <img src ="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1> 
@@ -26,6 +27,7 @@
     </div>  
 </header>
   <script src="../js/script.js"></script>
+
     <div class="container">
         <div class="content">
         <div class="left-content">
@@ -51,20 +53,20 @@
         <div class="right-content">
             <div class="topic-text">Send us a message</div>
             <p>If you have encountered any problem related to the site or encounter difficulties, you are free to contact us and we will answer you as soon as possible.</p>
-        <form action="#">
+        <div>
             <div class="input-box">
-            <input type="text" placeholder="Enter your name">
+            <input type="text" placeholder="Enter your name" id="name">
             </div>
             <div class="input-box">
-            <input type="text" placeholder="Enter your email">
+            <input type="text" placeholder="Enter your email" id="email">
             </div>
-            <div class="input-box message-box">
-            <textarea> </textarea>
+            <div class="input-box message-box" >
+            <textarea id="message"> </textarea>
             </div>
-            <div class="button">
-            <input type="button" value="Send Now" >
+            <div class="button" onclick="contact()" id="send">
+            <input type="button" value="Send Now">
             </div>
-        </form>
+        </div>
         </div>
         </div>
     </div>

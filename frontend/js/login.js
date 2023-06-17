@@ -52,3 +52,7 @@ function login() {
             console.log('A apărut o eroare de rețea:', error);
         });
 }
+
+function forgotPassword() {
+    window.location.href = "http://localhost/TWProject/frontend/html/SendMail.html";
+}

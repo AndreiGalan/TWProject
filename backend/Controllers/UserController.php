@@ -27,7 +27,10 @@ class UserController {
                 }
                 break;
             case 'POST':
-//                $response = $this->createUserFromRequest();
+                if(isset($this->request[0]) && $this->request[0] == 'send-email'){
+                    $response = $this->sendEmailFromContact();
+                    break;
+                }
                 break;
             case 'PUT':
                 $response = $this->updateUserFromRequest($this->request[0]);
@@ -99,7 +102,7 @@ class UserController {
             $response['body'] = json_encode(array("Result"=>"User points Updated"));
         } else {
             $user = new User($input['firstName'], $input['lastName'], $input['username']
-                , null, null, $input['email'], null, null, null, $id);
+                , null, $input['gender'], $input['email'], null, null, $id);
 
             $this->userDAO->update($user);
 
@@ -138,5 +141,46 @@ class UserController {
         }
         return true;
     }
+    private function sendEmailFromContact() {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if (!isset($input['email']) || !isset($input['message']) || !isset($input['name'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $name = $input['name'];
+        $email = $input['email'];
+        $message = $input['message'];
+
+        $transport = new Swift_SmtpTransport('smtp.gmail.com', 587);
+        $transport->setUsername('andreigalan03@gmail.com');
+        $transport->setPassword('kwormpozdnmscsgb');
+        $transport->setEncryption('tls');
+
+        $mailer = new Swift_Mailer($transport);
+
+        // Creați mesajul
+        $messageObject = new Swift_Message();
+        $messageObject->setSubject('Mesaj nou de la ' . $name);
+        $messageObject->setTo('andreigalan03@gmail.com', 'Andrei Galan');
+        $messageObject->setFrom([$email => $name]);
+        $messageObject->setReplyTo([$email => $name]);
+        $messageObject->setBody($message);
+
+        $result = $mailer->send($messageObject);
+
+        if ($result) {
+            echo 'Mesajul a fost trimis cu succes.';
+            $response['body'] = json_encode(array("message" => "Mesajul a fost trimis cu succes."));
+        } else {
+            echo 'A apărut o eroare la trimiterea mesajului.';
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        return $response;
+    }
+
 
 }

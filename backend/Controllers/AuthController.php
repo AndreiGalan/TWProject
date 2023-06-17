@@ -32,12 +32,18 @@ class AuthController
                     $response = $this->register();
                 else if(isset($this->request[1]) && $this->request[1] == 'login')
                     $response = $this->login();
+                else if(isset($this->request[1]) && $this->request[1] == 'reset-password')
+                    $response = $this->resetPassword();
+                else if(isset($this->request[1]) && $this->request[1] == 'enter-code')
+                    $response = $this->validateResetCode();
+                else if(isset($this->request[1]) && $this->request[1] == 'change-password')
+                    $response = $this->changeNewPassword();
+                else if(isset($this->request[1]) && $this->request[1] == 'send-email')
+                    $response = $this->sendEmailFromContact();
                 else
                     $response = ErrorHandler::notFoundResponse();
                 break;
-            default:
-                $response = ErrorHandler::notFoundResponse();
-                break;
+
         }
 
         header($response['status_code_header']);
@@ -98,13 +104,149 @@ class AuthController
         }
 
         $user = new User($input['firstName'], $input['lastName'], $input['username'],
-            $input['password'], $input['gender'], $input['email'], null, null, null);
+            $input['password'], $input['gender'], $input['email'], null, null, null, null);
 
 
         $this->userDAO->create($user);
         $response['body'] = json_encode(array("Result"=>"User Created"));
         return $response;
     }
+
+    private function resetPassword() {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        // Verify if the user exists in the database
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if (!isset($input['email'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $user = $this->userDAO->findByEmail($input['email']);
+
+        if (!$user) {
+            return ErrorHandler::notFoundResponse();
+        }
+
+        // Generate a unique reset code and save it in the database
+        $resetCode = $this->generateResetCode(); // Funcție pentru generarea unui cod unic
+        $this->userDAO->addResetCode($user['email'], $resetCode);
+
+        // Trimite codul de resetare pe adresa de e-mail a utilizatorului
+        $this->sendResetCodeByEmail($input['email'], $resetCode); // Funcție pentru trimiterea e-mail-ului
+
+        $response['body'] = json_encode(array("message" => "Reset code sent",
+            "email" => $input['email'])
+        );
+
+        return $response;
+    }
+
+    private function generateResetCode() {
+        $reset_code = rand(1000, 9999);
+
+        return $reset_code;
+    }
+
+    private function sendResetCodeByEmail($email, $resetCode) {
+        $subject = "Reset Password";
+        $message = "Your reset code is: " . $resetCode;
+        $headers = "From: noreply@example.com" . "\r\n" .
+            "Reply-To: noreply@example.com" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion();
+
+        mail($email, $subject, $message, $headers);
+    }
+
+
+    private function validateResetCode() {
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if (!isset($input['email']) || !isset($input['resetCode'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $user = $this->userDAO->findByEmail($input['email']);
+        if (!$user) {
+            return ErrorHandler::notFoundResponse();
+        }
+
+        $resetCode = $this->userDAO->getResetCode($input['email']);
+        if ($resetCode != $input['resetCode']) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $this->userDAO->addResetCode($user['email'], null);
+
+        return $user;
+    }
+
+    private function changeNewPassword() {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        $user = $this->validateResetCode();
+        if (!$user) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if (!isset($input['password'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        if($this->userDAO->changePassword($input['email'], $input['password']) == false) {
+
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $response['body'] = json_encode(array("message" => "Password changed"));
+
+        return $response;
+    }
+
+    private function sendEmailFromContact() {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        if (!isset($input['email']) || !isset($input['message']) || !isset($input['name'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $name = $input['name'];
+        $email = $input['email'];
+        $message = $input['message'];
+
+        $transport = new Swift_SmtpTransport('smtp.gmail.com', 587);
+        $transport->setUsername('andreigalan03@gmail.com');
+        $transport->setPassword('kwormpozdnmscsgb');
+        $transport->setEncryption('tls');
+
+        $mailer = new Swift_Mailer($transport);
+
+        // Creați mesajul
+        $messageObject = new Swift_Message();
+        $messageObject->setSubject('Mesaj nou de la ' . $name);
+        $messageObject->setTo('andreigalan03@gmail.com', 'Andrei Galan');
+        $messageObject->setFrom([$email => $name]);
+        $messageObject->setReplyTo([$email => $name]);
+        $messageObject->setBody($message);
+
+        $result = $mailer->send($messageObject);
+
+        if ($result) {
+            echo 'Mesajul a fost trimis cu succes.';
+            $response['body'] = json_encode(array("message" => "Mesajul a fost trimis cu succes."));
+        } else {
+            echo 'A apărut o eroare la trimiterea mesajului.';
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        return $response;
+    }
+
+
+
 
     private function validateUser(array $input): bool
     {

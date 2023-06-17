@@ -5,8 +5,10 @@ function getUserInfo() {
     let id = getCookie('id');
     let token = getCookie('token');
 
+    console.log('id and token');
     console.log(id);
     console.log(token);
+
 
     fetch('http://localhost/TWProject/backend/users/' + id, {
         method: 'GET',
