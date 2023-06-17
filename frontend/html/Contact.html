@@ -13,6 +13,7 @@
    </head>
 <body>
 <script type="module" src="../js/logout.js"></script>
+<script src="../js/contactLogIn.js"></script>
 
   <header>
     <div class="inner-width">
@@ -58,16 +59,16 @@
             <p>If you have encountered any problem related to the site or encounter difficulties, you are free to contact us and we will answer you as soon as possible.</p>
         <form action="#">
             <div class="input-box">
-            <input type="text" placeholder="Enter your name">
+            <input type="text" placeholder="Enter your name" id="name">
             </div>
             <div class="input-box">
-            <input type="text" placeholder="Enter your email">
+            <input type="text" placeholder="Enter your email" id="email">
             </div>
             <div class="input-box message-box">
-            <textarea> </textarea>
+            <textarea id="message"> </textarea>
             </div>
-            <div class="button">
-            <input type="button" value="Send Now" >
+            <div class="button" onclick="contactLogIn()" id="send">
+                <input type="button" value="Send Now">
             </div>
         </form>
         </div>

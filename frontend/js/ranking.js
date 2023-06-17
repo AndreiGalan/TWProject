@@ -1,17 +1,17 @@
 // Definirea funcției getCookie
-function getCookie(name) {
-    var cookies = document.cookie.split("; ");
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].split("=");
-        if (cookie[0] === name) {
-            return cookie[1];
+    function getCookie(name) {
+        var cookies = document.cookie.split("; ");
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].split("=");
+            if (cookie[0] === name) {
+                return cookie[1];
+            }
         }
+        return "";
     }
-    return "";
-}
 
 // Utilizarea funcției getCookie în cadrul evenimentului "DOMContentLoaded"
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     let token = getCookie("token");
     if (token === "") {
         window.location.href = "http://localhost/TWProject/frontend/html/Login.html";

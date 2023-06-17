@@ -19,6 +19,7 @@ class UserDAO {
             $email = $user->getEmail();
             $gender = $user->getGender();
             $created_at = $user->getCreatedAt();
+            $reset_code = $user->getResetCode();
 
             $cryptPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -32,7 +33,7 @@ class UserDAO {
 //            $decryptedPassword = password_verify($password, $cryptPassword);
 
             $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking, created_at)
-                        VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking, :created_at)");
+                        VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking, :created_at, :reset_code)");
             $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':username', $username, PDO::PARAM_STR);
@@ -41,6 +42,7 @@ class UserDAO {
             $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
             $statement->bindParam(':ranking', $ranking, PDO::PARAM_INT);
             $statement->bindParam(':created_at', $created_at, PDO::PARAM_STR);
+            $statement->bindParam(':reset_code', $reset_code, PDO::PARAM_STR);
 
             $statement->execute();
         } catch (PDOException $e) {
@@ -136,21 +138,17 @@ class UserDAO {
             $lastName = $user->getLastName();
             $username = $user->getUsername();
             $email = $user->getEmail();
-
-            echo "id: $id <br>";
-            echo "first name: $firstName <br>";
-            echo "last name: $lastName <br>";
-            echo "username: $username <br>";
-            echo "email: $email <br>";
+            $gender = $user->getGender();
 
             $statement = $this->conn->prepare("UPDATE users SET first_name = :firstName, last_name = :lastName,
-                 username = :username, email = :email WHERE id = :id");
+                 username = :username, email = :email, gender = :gender WHERE id = :id");
 
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':username', $username, PDO::PARAM_STR);
             $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
 
             $statement->execute();
         } catch (PDOException $e) {
@@ -233,5 +231,65 @@ class UserDAO {
         }
 
         $this->updateRanking();
+    }
+
+    public function addResetCode($email, $code): void
+    {
+        try
+        {
+            $statement = $this->conn->prepare("UPDATE users SET reset_code = :code WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->bindParam(':code', $code, PDO::PARAM_STR);
+
+            $statement->execute();
+        } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
+    public function getResetCode($email): string
+    {
+        try
+        {
+            $statement = $this->conn->prepare("SELECT reset_code FROM users WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+            $statement->execute();
+
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+            return $result['reset_code'];
+        } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
+    public function changePassword($email, $password): bool
+    {
+        try
+        {
+            $statement = $this->conn->prepare("SELECT password FROM users WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+            $statement->execute();
+
+            if(password_verify($password, $statement->fetch(PDO::FETCH_ASSOC)['password'])){
+                echo "Parola nouă nu poate fi aceeași cu cea veche!";
+                return false;
+            }
+
+            $cryptPassword = password_hash($password, PASSWORD_DEFAULT);
+
+
+            $statement = $this->conn->prepare("UPDATE users SET password = :password WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->bindParam(':password', $cryptPassword, PDO::PARAM_STR);
+
+            $statement->execute();
+
+        } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+        return true;
     }
 }
