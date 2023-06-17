@@ -15,7 +15,7 @@
 </head>
 <body>
 <script type="module" src="../js/logout.js"></script>
-
+<script type="module" src="../js/profile.js"></script>
     <header>
         <div class="inner-width">
             <h1 class="logo"> <img src ="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1> 
@@ -45,15 +45,17 @@
                 </div>
 
                 <div class="ct-left-name">
-                    <h2> Last_Name First_Name </h2>
-                    <h3 class= "level"> Beginner </h3>
+                    <h2> <span id="profile_last_name"> </span>
+                         <span id="profile_first_name"></span>
+                    </h2>
+                    <h3 class= "level" id="profile_level"> </h3>
                 </div>
 
             </div>
 
             <div class="edit-buttons">
-                <button class="edit-button" onclick="location.href='#edit-info-section';"> Edit Profile </button>
-                <button class="change-password-button" onclick="location.href='#change-password-section';"> Change Password </button>
+                <button class="edit-button" id="edit-info-button" onclick="location.href='#edit-info-section';"> Edit Profile </button>
+                <button class="change-password-button" id="change-password-button" onclick="location.href='#change-password-section';"> Change Password </button>
             </div>
 
         </div>
@@ -64,24 +66,24 @@
     
                 <div class="ct-right-username">
                     <h3> Username </h3>
-                    <p> random_user_unique1 </p>
+                    <p id="profile_username"> </p>
                 </div>
                     
                 <div class="ct-right-email">
                     <h3> Email </h3>
-                    <p> mail@example.com </p>
+                    <p id="profile_email"> </p>
                 </div> 
 
                 <div class="ct-right-points">
                     <h3> Points </h3>
-                    <p> 73 </p>
+                    <p id="profile_points"> </p>
                 </div>
 
             </div>
 
             <div class="ct-right-ranking">
                 <p class="ranking-text"> Ranking </p>
-                <p class="actual-rank"> #43 </p>
+                <p class="actual-rank">#<span  id="profile_ranking"></span></p>
             </div>
 
         </div> 
@@ -103,7 +105,7 @@
                 <label for="confirm-password"  >Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password">
 
-                <button class="save-password-button" type="button" onclick="location.href='#';">Save Password</button>
+                <button class="save-password-button" id="save-password-button" type="button" onclick="">Save Password</button>
                 <button class="cancel-button" type="button" onclick="location.href='#';">Cancel</button>              
             </form>
               
@@ -121,7 +123,7 @@
           
                 <form>
                     <label for="first-name">First Name:</label>
-                    <input type="text" id="first-name" name="first-name" value="First_Name" >
+                    <input type="text" id="first-name" name="first-name">
 
                     <label for="last-name">Last Name:</label>
                     <input type="text" id="last-name" name="last-name" value="Last_Name" >
@@ -132,7 +134,7 @@
                     <label for="email">Email Address:</label>
                     <input type="email" id="email" name="email" value="mail@example.com">
 
-                    <button class="save-password-button" type="button" onclick="location.href='#';">Save New Info</button>
+                    <button class="save-password-button" id="save-info-button" type="button">Save New Info</button>
                     <button class="cancel-button" type="button" onclick="location.href='#';">Cancel</button>
                 
                 </form>

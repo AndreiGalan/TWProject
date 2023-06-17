@@ -136,17 +136,21 @@ class UserDAO {
             $lastName = $user->getLastName();
             $username = $user->getUsername();
             $email = $user->getEmail();
-            $gender = $user->getGender();
+
+            echo "id: $id <br>";
+            echo "first name: $firstName <br>";
+            echo "last name: $lastName <br>";
+            echo "username: $username <br>";
+            echo "email: $email <br>";
 
             $statement = $this->conn->prepare("UPDATE users SET first_name = :firstName, last_name = :lastName,
-                 username = :username, email = :email, gender = :gender WHERE id = :id");
+                 username = :username, email = :email WHERE id = :id");
 
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':username', $username, PDO::PARAM_STR);
             $statement->bindParam(':email', $email, PDO::PARAM_STR);
-            $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
 
             $statement->execute();
         } catch (PDOException $e) {
