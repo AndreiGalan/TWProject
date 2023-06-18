@@ -32,7 +32,7 @@ class UserDAO {
 
 //            $decryptedPassword = password_verify($password, $cryptPassword);
 
-            $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking, created_at)
+            $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking, created_at, reset_code)
                         VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking, :created_at, :reset_code)");
             $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
