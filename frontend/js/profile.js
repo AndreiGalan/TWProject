@@ -6,6 +6,7 @@ let p2 = 500;
 
 document.addEventListener('DOMContentLoaded', function() {
     display_info();
+    complete_info();
 });
 function display_info(){
     let id = getCookie('id');
@@ -122,6 +123,66 @@ function save_info(){
         return;
     }
 
+    // check if the username or email already exist - if they do, the user cannot change their username or email
+    let id = getCookie('id');
+    let token = getCookie('token');
+
+    fetch('http://localhost/TWProject/backend/users?username=' + username, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+    }).then(response => {
+        if(response.ok){
+            response.json().then(data => {
+                if(data.username === username && data.id !== id){
+                    alert('This username is already taken');
+                    return;
+                } else {
+                    // check if the email already exists
+                    verify_email_already_exists(first_name, last_name, username, email);
+                }
+            });
+        } else if(response.status === 404){ // user with this username does not exist
+            // check if the email already exists
+            verify_email_already_exists(first_name, last_name, username, email);
+        } else {
+            console.log('Error getting users');
+        }
+    }).catch(error => {
+        console.log('Error getting users: ' + error);
+    });
+}
+
+// verify if the username already exists and if not, update the information
+function verify_email_already_exists(first_name, last_name, username, email){
+    let id = getCookie('id');
+    let token = getCookie('token');
+
+    fetch('http://localhost/TWProject/backend/users?email=' + email, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+    }).then(response => {
+        if(response.ok){
+            response.json().then(data => {
+                if(data.email === email && data.id !== id){
+                    alert('This email is already taken');
+                    return;
+                } else {
+                    // if the username and email are valid, update the information
+                    update_info(first_name, last_name, username, email);
+                }
+            });
+        } else if(response.status === 404) { // user with this email does not exist
+            // if the username and email are valid, update the information
+            update_info(first_name, last_name, username, email);
+        } else {
+            console.log('Error getting users');
+        }
+    }).catch(error => {
+        console.log('Error getting users: ' + error);
+    });
+}
+
+function update_info(first_name, last_name, username, email){
     let id = getCookie('id');
     let token = getCookie('token');
 
@@ -140,26 +201,27 @@ function save_info(){
         }
         // send the new information to the backend
         , body: JSON.stringify(data)
-    })
-        .then(response => {
-            if(response.ok){
-                display_info();
+    }).then(response => {
+        if(response.ok){
+            display_info();
 
-                alert('Information updated successfully');
-                window.location.href = "#";
-            } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
-                window.location.href = "http://localhost/TWProject/frontend/html/Home.html";
-            } else {
-                console.log('Error updating user info');
+            alert('Information updated successfully');
+            window.location.href = "#";
+        } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
+            window.location.href = "http://localhost/TWProject/frontend/html/Home.html";
+        } else {
+            console.log('Error updating user info');
 
-                alert('Error updating user info');
-            }
-        }).catch(error => {
+            alert('Error updating user info');
+        }
+    }).catch(error => {
         console.log('Error updating user info: '+ error);
 
         alert('Error updating user info');
     });
 }
+
+//  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // add an event listener to the change password button
 document.getElementById('change-password-button').addEventListener('click', function() {

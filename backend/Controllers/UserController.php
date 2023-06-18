@@ -23,7 +23,16 @@ class UserController {
                     $response = $this->getRanking();
                 }
                 else {
-                    $response = $this->getAllUsers();
+                    if(!isset($_GET['email']) && !isset($_GET['username'])){
+                        $response = $this->getAllUsers();
+                        break;
+                    } else if(isset($_GET['email'])){
+                        $response = $this->getUserByEmail($_GET['email']);
+                        break;
+                    } else if(isset($_GET['username'])){
+                        $response = $this->getUserByUsername($_GET['username']);
+                        break;
+                    }
                 }
                 break;
             case 'POST':
@@ -52,6 +61,28 @@ class UserController {
     private function getUser($id): array
     {
         $result = $this->userDAO->find($id);
+        if (!$result) {
+            return ErrorHandler::notFoundResponse();
+        }
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+
+    private function getUserByEmail($email):array{
+        $result = $this->userDAO->findByEmail($email);
+        if (!$result) {
+            return ErrorHandler::notFoundResponse();
+        }
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode($result);
+        return $response;
+    }
+
+    private function getUserByUsername($username):array{
+        $result = $this->userDAO->findByUsername($username);
         if (!$result) {
             return ErrorHandler::notFoundResponse();
         }
@@ -95,8 +126,6 @@ class UserController {
             $response['body'] = json_encode(array("Result"=>"User password Updated"));
         }
         else if($this->updatePoints($input)){
-            echo "update points: ".$input['points'];
-
             $this->userDAO->updatePoints($input['points'], $id);
 
             $response['body'] = json_encode(array("Result"=>"User points Updated"));
