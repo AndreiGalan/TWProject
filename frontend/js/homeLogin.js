@@ -4,8 +4,6 @@ import { getCookie } from './cookie.js';
 function getUserInfo() {
     let token = getCookie('token');
 
-
-
     fetch('http://localhost/TWProject/backend/users/id' , {
         method: 'GET',
         headers: {
@@ -34,4 +32,4 @@ function getUserInfo() {
 }
 
 // call the function when the page loads
-getUserInfo();
+document.addEventListener('DOMContentLoaded', getUserInfo);

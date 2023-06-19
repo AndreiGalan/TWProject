@@ -121,7 +121,6 @@ function save_info(){
     }
 
     // check if the username or email already exist - if they do, the user cannot change their username or email
-    let id = getCookie('id');
     let token = getCookie('token');
 
     fetch('http://localhost/TWProject/backend/users?username=' + username, {
@@ -130,7 +129,9 @@ function save_info(){
     }).then(response => {
         if(response.ok){
             response.json().then(data => {
-                if(data.username === username && data.id !== id){
+                // if the username already exists and it is not the user's username, the user cannot change their username
+                let old_username = document.getElementById('profile_username').innerHTML;
+                if(data.username === username && username !== old_username){
                     alert('This username is already taken');
                     return;
                 } else {
@@ -151,7 +152,6 @@ function save_info(){
 
 // verify if the username already exists and if not, update the information
 function verify_email_already_exists(first_name, last_name, username, email){
-    let id = getCookie('id');
     let token = getCookie('token');
 
     fetch('http://localhost/TWProject/backend/users?email=' + email, {
@@ -160,7 +160,9 @@ function verify_email_already_exists(first_name, last_name, username, email){
     }).then(response => {
         if(response.ok){
             response.json().then(data => {
-                if(data.email === email && data.id !== id){
+                // if the email already exists and it is not the user's email, the user cannot change their email
+                let old_email = document.getElementById('profile_email').innerHTML;
+                if(data.email === email && email !== old_email){
                     alert('This email is already taken');
                     return;
                 } else {
@@ -180,7 +182,6 @@ function verify_email_already_exists(first_name, last_name, username, email){
 }
 
 function update_info(first_name, last_name, username, email){
-    let id = getCookie('id');
     let token = getCookie('token');
 
     let data = {
@@ -190,7 +191,7 @@ function update_info(first_name, last_name, username, email){
         email: email
     }
 
-    fetch('http://localhost/TWProject/backend/users/' + id, {
+    fetch('http://localhost/TWProject/backend/users/id', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -284,14 +285,13 @@ function save_password(){
 }
 
 function update_password(new_password){
-    let id = getCookie('id');
     let token = getCookie('token');
 
     let data = {
         password: new_password
     }
 
-    fetch('http://localhost/TWProject/backend/users/' + id, {
+    fetch('http://localhost/TWProject/backend/users/id', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -328,11 +328,10 @@ async function getEmail() {
 }
 
 async function getUserEmail() {
-    let id = getCookie('id');
     let token = getCookie('token');
 
     try {
-        let response = await fetch('http://localhost/TWProject/backend/users/' + id, {
+        let response = await fetch('http://localhost/TWProject/backend/users/id', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -357,9 +356,6 @@ async function getUserEmail() {
 
 // function that verifies if the old password is correct
 async function verifyPassword(email, old_password) {
-    console.log('Email:' + email);
-    console.log('Password:' + old_password);
-
     let data = {
         email: email,
         password: old_password
