@@ -4,22 +4,26 @@ class UserController {
     private $requestMethod;
     private $request;
     private $userDAO;
+    private $idFromToken;
 
-    public function __construct($requestMethod, $request)
+    public function __construct($requestMethod, $request, $idFromToken)
     {
         $this->requestMethod = $requestMethod;
         $this->request = $request;
         $this->userDAO = new UserDAO();
+        $this->idFromToken = $idFromToken;
     }
 
     public function processRequest(): void
     {
         switch ($this->requestMethod) {
             case 'GET':
-                if (isset($this->request[0]) && $this->request[0] != 'ranking') {
-                    $response = $this->getUser($this->request[0]);
+                //users/id
+                if(isset($this->request[0]) && $this->request[0] == 'id'){
+                    $response = $this->getUser($this->idFromToken);
                 }
-                else if(isset($this->request[0]) && $this->request[0] == 'ranking') {
+                //users/ranking
+                else if(isset($this->request[0]) && $this->request[0] == 'ranking'){
                     $response = $this->getRanking();
                 }
                 else {
@@ -36,16 +40,19 @@ class UserController {
                 }
                 break;
             case 'POST':
+                //users/send-email
                 if(isset($this->request[0]) && $this->request[0] == 'send-email'){
                     $response = $this->sendEmailFromContact();
                     break;
                 }
                 break;
             case 'PUT':
-                $response = $this->updateUserFromRequest($this->request[0]);
+                //users
+                $response = $this->updateUserFromRequest($this->idFromToken);
                 break;
             case 'DELETE':
-                $response = $this->deleteUser($this->request[0]);
+                //users
+                $response = $this->deleteUser($this->idFromToken);
                 break;
             default:
                 $response = ErrorHandler::notFoundResponse();
@@ -106,7 +113,9 @@ class UserController {
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
 
+
         $result = $this->userDAO->findFirstTenByRanking();
+
         $response['body'] = json_encode($result);
         return $response;
     }
@@ -181,6 +190,7 @@ class UserController {
         }
 
         $name = $input['name'];
+        $email = $input['email'];
         $email = $input['email'];
         $message = $input['message'];
 

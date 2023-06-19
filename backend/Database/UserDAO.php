@@ -230,12 +230,11 @@ class UserDAO {
 
             $statement->execute();
 
-            
+            $this->updateRanking();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
 
-        $this->updateRanking();
 
     }
 
@@ -296,6 +295,24 @@ class UserDAO {
         } catch (PDOException $e){
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
+        return true;
+    }
+
+    public function findByResetCode($code): bool{
+        try{
+            $statement = $this->conn->prepare("SELECT * FROM users WHERE reset_code = :code");
+            $statement->bindParam(':code', $code, PDO::PARAM_STR);
+
+            $statement->execute();
+
+            if($statement->rowCount() == 0){
+                return false;
+            }
+        }
+        catch(PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+
         return true;
     }
 }

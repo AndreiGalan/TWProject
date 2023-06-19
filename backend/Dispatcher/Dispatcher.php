@@ -6,12 +6,12 @@ class Dispatcher{
         switch($request[0]){
             case 'users':
                 $jwt = $authController-> checkJWTExistance();
-                $authController -> validateJWT($jwt);
+                $id = $authController -> validateJWT($jwt);
 
                 // delete the first element of the array
                 array_shift($request);
 
-                $controller = new UserController($requestMethod, $request);
+                $controller = new UserController($requestMethod, $request, $id);
                 $controller->processRequest();
                 break;
 

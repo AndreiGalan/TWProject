@@ -2,15 +2,11 @@
 import { getCookie } from './cookie.js';
 // call endpoint to get user info
 function getUserInfo() {
-    let id = getCookie('id');
     let token = getCookie('token');
 
-    console.log('id and token');
-    console.log(id);
-    console.log(token);
 
 
-    fetch('http://localhost/TWProject/backend/users/' + id, {
+    fetch('http://localhost/TWProject/backend/users/id' , {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -33,6 +33,7 @@
         })
         .then(function(data) {
             for (let i = 0; i < data.length; i++) {
+                console.log(data[i].ranking);
                 let position = data[i].ranking;
                 let username = data[i].username;
                 let score = data[i].points;

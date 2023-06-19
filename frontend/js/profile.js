@@ -9,10 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     complete_info();
 });
 function display_info(){
-    let id = getCookie('id');
     let token = getCookie('token');
 
-    fetch('http://localhost/TWProject/backend/users/' + id, {
+    fetch('http://localhost/TWProject/backend/users/id', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,13 +60,11 @@ document.getElementById('edit-info-button').addEventListener('click', function()
 
 // when the user clicks on the edit button, the values of the input fields are filled in with the user's information
 function complete_info(){
-    let id = getCookie('id');
     let token = getCookie('token');
 
-    console.log(id);
     console.log(token);
 
-    fetch('http://localhost/TWProject/backend/users/' + id, {
+    fetch('http://localhost/TWProject/backend/users/id', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

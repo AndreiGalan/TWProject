@@ -9,7 +9,6 @@ function logOut(){
     console.log("logout");
 
     deleteCookie('token');
-    deleteCookie('id');
 
     // redirect to home page
     window.location.href = "http://localhost/TWProject/frontend/html/Home.html";

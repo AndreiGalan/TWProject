@@ -6,7 +6,6 @@ function resetPasswordSecondStep() {
 
     let code = inputCode1 + inputCode2 + inputCode3 + inputCode4;
 
-    console.log(code);
     let email = getCookie('email');
 
 
@@ -15,7 +14,6 @@ function resetPasswordSecondStep() {
         resetCode: code
     };
 
-    console.log(data);
 
     fetch('http://localhost/TWProject/backend/auth/enter-code', {
         method: 'POST',
@@ -26,7 +24,18 @@ function resetPasswordSecondStep() {
     })
         .then(response => {
             if (response.ok) {
+                response.json().then(json => {
+                    let expirationDate = new Date();
+                    expirationDate.setTime(expirationDate.getTime() + (24 * 60 * 60 * 1000)); // 24 hours in milliseconds
+
+                    console.log(json.code);
+                    document.cookie = "code=" + json.code + ";expires=" + expirationDate.toUTCString() + "; path=/";
+
                     window.location.href = "http://localhost/TWProject/frontend/html/NewPassword.html";
+
+                }).catch(error => {
+                    console.log('Eroare la parsarea răspunsului JSON:', error);
+                });
             } else {
                 alert('Code is invalid!');
                 // Tratați răspunsul în caz de eroare

@@ -37,6 +37,7 @@ function ResetPasswordThirdStep(){
 
     let data = {
         email: email,
+        code: getCookie('code'),
         password: password
     };
 
@@ -53,11 +54,14 @@ function ResetPasswordThirdStep(){
             if (response.ok) {
                 alert('Password changed successfully!');
                 deleteCookie('email');
+                deleteCookie('code');
                 window.location.href = "http://localhost/TWProject/frontend/html/Login.html";
-            } else {
+            } else if(response.status === 409){
                 alert('Password cannot be the same as the old one!');
-                console.log('Invalid credentials.');
-                console.log(response);
+            }
+            else {
+                alert('An error occurred while sending the data.');
+                window.location.href = "http://localhost/TWProject/frontend/html/Login.html";
             }
         })
         .catch(error => {

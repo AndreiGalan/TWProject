@@ -145,6 +145,11 @@ class AuthController
     private function generateResetCode() {
         $reset_code = rand(1000, 9999);
 
+        //check if reset code already exists in DB
+        while($this->userDAO->findByResetCode($reset_code)){
+            $reset_code = rand(1000, 9999);
+        }
+
         return $reset_code;
     }
 
@@ -160,6 +165,9 @@ class AuthController
 
 
     private function validateResetCode() {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         if (!isset($input['email']) || !isset($input['resetCode'])) {
             return ErrorHandler::unprocessableEntityResponse();
@@ -175,31 +183,46 @@ class AuthController
             return ErrorHandler::unprocessableEntityResponse();
         }
 
-        $this->userDAO->addResetCode($user['email'], null);
+        $response['body'] = json_encode(array(
+                "code" => $resetCode,
+        ));
 
-        return $user;
+
+        return $response;
     }
 
     private function changeNewPassword() {
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
 
-        $user = $this->validateResetCode();
-        if (!$user) {
-            return ErrorHandler::unprocessableEntityResponse();
-        }
+//        $user = $this->validateResetCode();
+//        if (!$user) {
+//            return ErrorHandler::unprocessableEntityResponse();
+//        }
 
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         if (!isset($input['password'])) {
             return ErrorHandler::unprocessableEntityResponse();
         }
 
-        if($this->userDAO->changePassword($input['email'], $input['password']) == false) {
+        $restCodeFromDB = $this->userDAO->getResetCode($input['email']);
 
+        if($restCodeFromDB == null){
             return ErrorHandler::unprocessableEntityResponse();
         }
 
+        if($restCodeFromDB != $input['code']){
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        if($this->userDAO->changePassword($input['email'], $input['password']) == false) {
+
+            return ErrorHandler::entityAlreadyExists("user", "password");
+        }
+
         $response['body'] = json_encode(array("message" => "Password changed"));
+
+        $this->userDAO->addResetCode($input['email'], null);
 
         return $response;
     }
@@ -268,8 +291,8 @@ class AuthController
             'iat'  => $date->getTimestamp(),         // ! Issued at: time when the token was generated
             'iss'  => $domainName,                   // ! Issuer
             'nbf'  => $date->getTimestamp(),         // ! Not before
-            'exp'  => $expire_at,                    // ! Expire
-            'userName' => $email,                 // User.php name
+            'exp'  => $expire_at,
+            'id' => $id
         ];
 
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
@@ -278,8 +301,7 @@ class AuthController
             $request_data,
             $secret_Key,
             'HS512'
-            ),
-            "id" => $id)
+            ))
         );
 
 
@@ -332,6 +354,8 @@ class AuthController
             header('HTTP/1.1 401 Unauthorized');
             exit;
         }
+
+        return $token->id;
     }
 
 

@@ -31,7 +31,6 @@ function login() {
 
                         // Set the cookie
                         document.cookie = "token=" + json.token + ";expires=" + expirationDate.toUTCString() + "; path=/";
-                        document.cookie = "id=" + json.id + ";expires=" + expirationDate.toUTCString() + "; path=/";
 
 
                         window.location.href = "http://localhost/TWProject/frontend/html/HomeLogin.html";
