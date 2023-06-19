@@ -229,11 +229,14 @@ class UserDAO {
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
             $statement->execute();
+
+            
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
 
         $this->updateRanking();
+
     }
 
     public function addResetCode($email, $code): void

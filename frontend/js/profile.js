@@ -206,6 +206,8 @@ function update_info(first_name, last_name, username, email){
             display_info();
 
             alert('Information updated successfully');
+
+            console.log('Information updated successfully');
             window.location.href = "#";
         } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
             window.location.href = "http://localhost/TWProject/frontend/html/Home.html";

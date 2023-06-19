@@ -150,7 +150,7 @@ class AuthController
 
     private function sendResetCodeByEmail($email, $resetCode) {
         $subject = "Reset Password";
-        $message = "Your reset code is: " . $resetCode;
+        $message = "Hello from FruitsOnTheWeb! \nYour reset code is:" . $resetCode;
         $headers = "From: noreply@example.com" . "\r\n" .
             "Reply-To: noreply@example.com" . "\r\n" .
             "X-Mailer: PHP/" . phpversion();
@@ -218,16 +218,16 @@ class AuthController
         $message = $input['message'];
 
         $transport = new Swift_SmtpTransport('smtp.gmail.com', 587);
-        $transport->setUsername('andreigalan03@gmail.com');
-        $transport->setPassword('kwormpozdnmscsgb');
+        $transport->setUsername('fruitsonthewebcontact@gmail.com');
+        $transport->setPassword('fmwyukyvhwjurvea');
         $transport->setEncryption('tls');
 
         $mailer = new Swift_Mailer($transport);
 
         // Creați mesajul
         $messageObject = new Swift_Message();
-        $messageObject->setSubject('Mesaj nou de la ' . $name);
-        $messageObject->setTo('andreigalan03@gmail.com', 'Andrei Galan');
+        $messageObject->setSubject('New message from ' . $name);
+        $messageObject->setTo('fruitsonthewebcontact@gmail.com', 'Andrei Galan');
         $messageObject->setFrom([$email => $name]);
         $messageObject->setReplyTo([$email => $name]);
         $messageObject->setBody($message);

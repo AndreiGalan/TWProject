@@ -152,6 +152,7 @@ class UserController {
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
         $response['body'] = json_encode(array("Result"=>"User Deleted"));
+
         return $response;
     }
 
@@ -184,16 +185,16 @@ class UserController {
         $message = $input['message'];
 
         $transport = new Swift_SmtpTransport('smtp.gmail.com', 587);
-        $transport->setUsername('andreigalan03@gmail.com');
-        $transport->setPassword('kwormpozdnmscsgb');
+        $transport->setUsername('fruitsonthewebcontact@gmail.com');
+        $transport->setPassword('fmwyukyvhwjurvea');
         $transport->setEncryption('tls');
 
         $mailer = new Swift_Mailer($transport);
 
         // Creați mesajul
         $messageObject = new Swift_Message();
-        $messageObject->setSubject('Mesaj nou de la ' . $name);
-        $messageObject->setTo('andreigalan03@gmail.com', 'Andrei Galan');
+        $messageObject->setSubject('New message from ' . $name);
+        $messageObject->setTo('fruitsonthewebcontact@gmail.com', 'Andrei Galan');
         $messageObject->setFrom([$email => $name]);
         $messageObject->setReplyTo([$email => $name]);
         $messageObject->setBody($message);
