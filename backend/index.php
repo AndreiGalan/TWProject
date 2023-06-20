@@ -6,10 +6,16 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/TWProject/backend/vendor/autoload.ph
 include_once "Controllers/UserController.php";
 include_once "Controllers/AuthController.php";
 include_once "Controllers/ErrorHandler.php";
+include_once "Controllers/QuestionController.php";
+
+include_once "Controllers/DropboxUploader.php";
 
 include_once "Database/UserDAO.php";
+include_once "Database/PictureDAO.php";
 
 include_once "Models/User.php";
+include_once "Models/Picture.php";
+
 include_once "Dispatcher/Dispatcher.php";
 
 

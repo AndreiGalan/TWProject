@@ -41,4 +41,14 @@ class ErrorHandler
         return $response;
     }
 
+    public static function badRequestResponse($message)
+    {
+        $response['status_code_header'] = 'HTTP/1.1 400 Bad Request';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode([
+            'error' => $message
+        ]);
+        return $response;
+    }
+
 }

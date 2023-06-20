@@ -1,14 +1,9 @@
 
-DROP TABLE IF EXISTS cats;
-CREATE TABLE cats (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(255),
-    breed VARCHAR(255)
-);
-
-
 -- change column name from name to username
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS pictures;
+
+--create tables
 CREATE TABLE users (
     id INT IDENTITY(1,1) PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
@@ -20,6 +15,12 @@ CREATE TABLE users (
     points INT DEFAULT 0,
     ranking INT DEFAULT 2147483647,
     created_at TIMESTAMP DEFAULT GETDATE()
+);
+
+CREATE TABLE pictures (
+  id INT IDENTITY (1,1) PRIMARY KEY,
+  text varchar(255) NOT NULL,
+  download_link varchar(1024) UNIQUE NOT NULL
 );
 
 -- add unique constraint to username
