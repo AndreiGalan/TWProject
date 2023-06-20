@@ -3,14 +3,30 @@
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ */
+
 class AuthController
 {
 
     private $requestMethod;
 
+    /**
+     * @var array
+     */
     private $request;
+    /**
+     * @var string
+     */
     private $secret_Key  = '%aaSWvtJ98os_b<IQ_c$j<_A%bo_[xgct+j$d6LJ}^<pYhf+53k^-R;Xs<l%5dF';
+    /**
+     * @var string
+     */
     private $domainName = "https://127.0.0.1";
+    /**
+     * @var UserDAO
+     */
     private $userDAO;
 
     /**
@@ -24,6 +40,9 @@ class AuthController
         $this->userDAO = new UserDAO();
     }
 
+    /**
+     * @return array
+     */
     public function processRequest() {
 
         switch ($this->requestMethod) {
@@ -79,6 +98,7 @@ class AuthController
 
         return $this->createJWT($input['email'], $user['id']);
     }
+
 
     private function register(): array{
 

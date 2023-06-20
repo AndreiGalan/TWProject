@@ -60,6 +60,8 @@ class QuestionController
 
         $this->pictureDAO->create($picture);
 
+        $response['body'] = json_encode(array("message" => "Picture added successfully"));
+
         return $response;
 
     }

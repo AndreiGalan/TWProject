@@ -2,7 +2,7 @@
 
 class DropboxUploader
 {
-    private const TOKEN_DROPBOX = 'sl.BgqQtIv33YLZr7soN7MZGpJn-rckTITm4_XK86dpjnGiF4ELVmoKxCT9bIcdDszKuaGz2YgWgLrh0NYOVhnS9FyIBDNpcV5Ek7lOLBwhNOpSqsFV-pSgJGqKHBsOMisdU7Apk0fJ_m9q';
+    private const TOKEN_DROPBOX = 'sl.BgufDAoACzw8jtj1wd_QVjLmzU5aMAmEXqnveYFJ0_xgwDECXwZQxtjR6XlXS2R-l2txaYxdzQzfgGDLvqQsBO8Z-Kn87YkiJKdloCTqvmICEzUHCm-vsI8QuoEib_R4fCRF6hDcX4TR';
 
     public function __construct()
     {

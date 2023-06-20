@@ -1,7 +1,10 @@
 {
-    "require": {
-        "firebase/php-jwt": "^6.7",
-        "swiftmailer/swiftmailer": "^6.3",
-        "ext-curl": "*"
-    }
+  "require": {
+    "firebase/php-jwt": "^6.7",
+    "swiftmailer/swiftmailer": "^6.3",
+    "ext-curl": "*",
+    "zircote/swagger-php": "^4.7"
+  }
+
+
 }
