@@ -1,6 +1,7 @@
 {
     "require": {
         "firebase/php-jwt": "^6.7",
-        "swiftmailer/swiftmailer": "^6.3"
+        "swiftmailer/swiftmailer": "^6.3",
+        "ext-curl": "*"
     }
 }

@@ -20,6 +20,14 @@ class Dispatcher{
                 $authController->processRequest();
                 break;
 
+            case 'questions':
+
+                array_shift($request);
+
+                $controller = new QuestionController($requestMethod, $request);
+                $controller->processRequest();
+                break;
+
             default:
                 header("HTTP/1.1 404 Not Found");
                 exit();
