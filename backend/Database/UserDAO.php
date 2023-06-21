@@ -209,8 +209,8 @@ class UserDAO {
                 // Actualizarea ranking-ului pentru fiecare jucător
                 $query = "UPDATE users SET ranking = :ranking WHERE id = :id";
                 $statement = $this->conn->prepare($query);
-                $statement->bindParam(':ranking', $ranking);
-                $statement->bindParam(':id', $playerId);
+                $statement->bindParam(':ranking', $ranking, PDO::PARAM_INT);
+                $statement->bindParam(':id', $playerId, PDO::PARAM_INT);
                 $statement->execute();
 
                 $ranking++;

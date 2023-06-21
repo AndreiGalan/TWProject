@@ -15,6 +15,14 @@ class PictureController
 
     public function processRequest(){
         switch ( $this->requestMethod ){
+            case 'GET' :
+                //pictures
+                if(isset($this->request[0])){
+                    $response = $this->getPictureById($this->request[0]);
+                } else {
+                    $response = $this->getAllPictures();
+                }
+                break;
             case 'POST' :
                 //pictures/create
                 if(isset($this->request[0]) && $this->request[0] == 'create'){
@@ -99,10 +107,10 @@ class PictureController
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
 
         $picture = $this->pictureDAO->find($input['id']);
-
         if(!$picture){
             return ErrorHandler::notFoundResponse();
         }
+
         echo $picture->getPathInDropbox();
         $dropboxUploader = new DropboxCommand();
 
@@ -133,7 +141,6 @@ class PictureController
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
 
         $picture = $this->pictureDAO->find($input['id']);
-
         if(!$picture){
             return ErrorHandler::notFoundResponse();
         }
@@ -148,6 +155,38 @@ class PictureController
 
         return $response;
 
+    }
+
+    private function getAllPictures()
+    {
+        $pictures = $this->pictureDAO->findAll();
+
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        if(!$pictures){
+            return ErrorHandler::notFoundResponse();
+        }
+
+        $response['body'] = json_encode($pictures);
+
+        return $response;
+    }
+
+    private function getPictureById(mixed $int)
+    {
+        $picture = $this->pictureDAO->findById($int);
+        if(!$picture){
+            return ErrorHandler::notFoundResponse();
+        }
+
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+
+        $response['body'] = json_encode($picture);
+
+        return $response;
     }
 
 

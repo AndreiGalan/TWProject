@@ -1,6 +1,6 @@
 <?php
 
-class Picture
+class Picture implements JsonSerializable
 {
     private $id;
     private $text;
@@ -70,7 +70,18 @@ class Picture
     }
 
 
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'text' => $this->text,
+            'downloadLink' => $this->downloadLink,
+            'pathInDropbox' => $this->pathInDropbox,
+        ];
+    }
 
-
-
+    public function __toString(): string
+    {
+        return "Picture: " . $this->id . " , " . $this->text . " , " . $this->downloadLink . " , " . $this->pathInDropbox;
+    }
 }
