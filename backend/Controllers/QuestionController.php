@@ -17,13 +17,25 @@ class QuestionController
     {
         switch ($this->requestMethod) {
             case 'GET':
+                //questions/quiz/{difficulty}/{nrQuestions} -> 1-easy, 2-medium, 3-hard
+                if(isset($this->request[0]) && $this->request[0] == 'quiz'
+                && isset($this->request[1]) &&
+                    ($this->request[1] == '1' || $this->request[1] == '2' || $this->request[1] == '3')
+                && isset($this->request[2]) && is_numeric($this->request[2])){
+
+                    $response = $this->getQuestionsByDifficulty($this->request[1]);
+
+                }
                 //questions/{id}
-                if(isset($this->request[0])){
+                else if(isset($this->request[0]) && !isset($this->request[1]) && is_numeric($this->request[0])){
                     $response = $this->getQuestionById($this->request[0]);
                 }
                 //questions
-                else {
+                else if(!isset($this->request[0])) {
                     $response = $this->getAllQuestions();
+                }
+                else {
+                    $response = ErrorHandler::notFoundResponse();
                 }
                 break;
             case 'POST':
@@ -31,23 +43,27 @@ class QuestionController
                     $response = $this->addQuestion();
                 break;
             case 'PUT':
-                //questions
-                if(isset($this->request[0])) {
+                //questions/{id}
+                if(isset($this->request[0]) && is_numeric($this->request[0])) {
                     $response = $this->updateQuestion($this->request[0]);
                 } else {
                     $response = ErrorHandler::notFoundResponse();
                 }
                 break;
             case 'DELETE':
-                //questions
-                if(isset($this->request[0])){
+                //questions/{id}
+                if(isset($this->request[0]) && is_numeric($this->request[0])) {
                     $response = $this->deleteQuestion($this->request[0]);
+                }
+                else {
+                    $response = ErrorHandler::notFoundResponse();
                 }
                 break;
             default:
                 $response = ErrorHandler::notFoundResponse();
                 break;
         }
+
         header($response['status_code_header']);
         header($response['content_type_header']);
         if ($response['body']) {
@@ -190,6 +206,22 @@ class QuestionController
         }
 
         return true;
+    }
+
+    private function getQuestionsByDifficulty($difficulty)
+    {
+        $listQuestions = $this->questionDAO->getQuestionsByDifficulty($difficulty);
+
+        if(!$listQuestions){
+            return ErrorHandler::entityNotFound('questions');
+        }
+
+        $listQuestions = json_encode($listQuestions, TRUE);
+
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = $listQuestions;
+        return $response;
     }
 
 }

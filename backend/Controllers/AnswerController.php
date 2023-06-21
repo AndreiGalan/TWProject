@@ -184,7 +184,7 @@ class AnswerController
         $result = $this->answerDAO->findAllAnswersByQuestionId($id);
 
         if(!$result){
-            return ErrorHandler::notFoundResponse();
+            return ErrorHandler::entityNotFound('answers');
         }
 
         $response['status_code_header'] = 'HTTP/1.1 200 OK';

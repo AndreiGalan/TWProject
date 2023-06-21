@@ -17,7 +17,7 @@ class EquationController
     {
         switch ($this->requestMethod) {
             case 'GET' :
-                //equations
+                //equations/{id}
                 if(isset($this->request[0])){
                     $response = $this->getEquationById($this->request[0]);
                 } else {
