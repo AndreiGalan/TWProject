@@ -1,8 +1,7 @@
 <?php
 
-class DropboxUploader
+class DropboxCommand
 {
-    private const TOKEN_DROPBOX = 'sl.BgqQtIv33YLZr7soN7MZGpJn-rckTITm4_XK86dpjnGiF4ELVmoKxCT9bIcdDszKuaGz2YgWgLrh0NYOVhnS9FyIBDNpcV5Ek7lOLBwhNOpSqsFV-pSgJGqKHBsOMisdU7Apk0fJ_m9q';
 
     public function __construct()
     {
@@ -14,13 +13,25 @@ class DropboxUploader
      */
     public function uploadFile($filePath) : ?string {
 
+        //if the access token is invalid, we generate a new one
+        if(!TokenManager::IsValid()){
+            TokenManager::generateNewToken();
+        }
+
+        if(!file_exists($filePath)){
+            return null;
+        }
+
         $fp = fopen($filePath, 'rb');
+        if(!$fp) {//file doesn't exist or couldn't be opened
+            return null;
+        }
         $size = filesize($filePath);
 
         $questionDAO = new PictureDAO();
         $fileNameInDropbox = $questionDAO->getNrPictures() . '.jpg';
 
-        $headers = array('Authorization: Bearer ' . self::TOKEN_DROPBOX,
+        $headers = array('Authorization: Bearer ' . TokenManager::$tokenAccessDROPBOX,
             'Content-Type: application/octet-stream',
             'Dropbox-API-Arg: {"path":"/pictures/'. $fileNameInDropbox . '", "mode":"add"}');
 
@@ -37,6 +48,7 @@ class DropboxUploader
 
         curl_close($ch);
         fclose($fp);
+
         if($httpResponse != 200){
             return null;
         }
@@ -44,11 +56,17 @@ class DropboxUploader
         $response = json_decode($response, true);
         return $response['path_display'];
     }
+
+
+    /**
+     * @param $pathFileInDropbox
+     * @return string - the direct download link of the file
+     */
     public function getDownloadLink ($pathFileInDropbox) : string{
 
         $parameters = array('path' => $pathFileInDropbox);
 
-        $headers = array('Authorization: Bearer ' . self::TOKEN_DROPBOX,
+        $headers = array('Authorization: Bearer ' . TokenManager::$tokenAccessDROPBOX,
             'Content-Type: application/json');
 
         $curlOptions = array(
@@ -71,6 +89,36 @@ class DropboxUploader
 
     }
 
+    public function deleteFile($pathFileInDropbox) : bool {
+
+        if(!TokenManager::isValid()){
+            TokenManager::generateNewToken();
+        }
+
+        $parameters = array('path' => $pathFileInDropbox);
+
+        $headers = array('Authorization: Bearer ' . TokenManager::$tokenAccessDROPBOX,
+            'Content-Type: application/json');
+
+        $curlOptions = array(
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => json_encode($parameters),
+            CURLOPT_RETURNTRANSFER => true
+        );
+
+        $ch = curl_init('https://api.dropboxapi.com/2/files/delete_v2');
+
+        curl_setopt_array($ch, $curlOptions);
+
+        curl_exec($ch);
+
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        return $status == 200;
+    }
+
     private function getDirectDownloadLink($dropboxLink) : string {
         // Replace "www.dropbox.com" with "dl.dropboxusercontent.com"
         $modifiedLink = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $dropboxLink);
@@ -80,6 +128,4 @@ class DropboxUploader
 
         return $directDownloadLink;
     }
-
-
 }

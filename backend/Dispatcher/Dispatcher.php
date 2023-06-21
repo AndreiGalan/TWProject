@@ -20,11 +20,11 @@ class Dispatcher{
                 $authController->processRequest();
                 break;
 
-            case 'questions':
+            case 'pictures':
 
                 array_shift($request);
 
-                $controller = new QuestionController($requestMethod, $request);
+                $controller = new PictureController($requestMethod, $request);
                 $controller->processRequest();
                 break;
 
