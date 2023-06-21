@@ -25,6 +25,8 @@
 
 <body>
 
+<script src = "../js/play.js"></script>
+
     <header>
         <div class="inner-width">
             <h1 class="logo"> <img src ="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1> 
@@ -49,8 +51,8 @@
             <h1> Choose Your Difficulty Level </h1>  
         </div>
           
-        <div class="levels-options" onclick="location.href='Game.html';">
-            <div class="option-easy" >
+        <div class="levels-options">
+            <div class="option-easy" onclick="redirectToGame(1);" >
                 <div class="option-text">
                     <p>Easy</p>
                 </div>
@@ -59,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="option-medium" onclick="location.href='Game.html';">
+            <div class="option-medium" onclick="redirectToGame(2);">
                 <div class="option-text">
                     <p>Medium</p>
                 </div>
@@ -68,7 +70,7 @@
                 </div>
             </div>
 
-            <div class="option-hard" onclick="location.href='Game.html';">
+            <div class="option-hard" onclick="redirectToGame(3);">
                 <div class="option-text">
                     <p>Hard</p>
                 </div>

@@ -22,7 +22,7 @@ class ErrorHandler
 
     public static function entityNotFound ($entity) : array
     {
-        $response['status_code_header'] = 'HTTP/1.1 404 Entity Not Found';
+        $response['status_code_header'] = 'HTTP/1.1 444 No Response';
         $response['content_type_header'] = 'Content-Type: application/json';
         $response['body'] = json_encode([
             'error' => 'Entity ' . "$entity " . ' not found'

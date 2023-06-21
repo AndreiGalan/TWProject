@@ -93,4 +93,18 @@ class QuestionDAO {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
     }
+
+    public function getQuestionsByDifficulty($difficulty)
+    {
+        try {
+            $statement = $this->conn->prepare("SELECT TOP 10 * FROM questions WHERE difficulty = :difficulty ORDER BY NEWID();");
+            $statement->bindParam(':difficulty', $difficulty, PDO::PARAM_INT);
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+
+    }
 }
