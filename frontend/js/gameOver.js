@@ -6,7 +6,6 @@ function replayGame() {
 }
 
 function printPoints() {
-    console.log('Ponits set');
     const points = localStorage.getItem("points");
     localStorage.removeItem("points");
 

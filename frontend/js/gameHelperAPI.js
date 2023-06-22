@@ -1,8 +1,14 @@
 import {getCookie} from "./cookie.js";
 export function getAnswers(questionId) {
 
+    const token = getCookie("token");
+
     const requestOptions = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
     }
 
     return fetch("http://localhost/TWProject/backend/answers/question/" + questionId, requestOptions)
@@ -21,8 +27,15 @@ export function getAnswers(questionId) {
 }
 
 export function getEquation(idEquation) {
+
+    const token = getCookie("token");
+
     const requestOptions = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
     }
 
     return fetch("http://localhost/TWProject/backend/equations/" + idEquation, requestOptions)
@@ -40,8 +53,14 @@ export function getEquation(idEquation) {
 }
 
 export function getImage(imageId) {
+
+    const token = getCookie("token");
     const requestOptions = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
     };
 
     return fetch("http://localhost/TWProject/backend/pictures/" + imageId, requestOptions)

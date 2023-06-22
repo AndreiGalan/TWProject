@@ -51,4 +51,16 @@ class ErrorHandler
         return $response;
     }
 
+    public static function unauthorizedResponse()
+    {
+
+        $response['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
+        $response['content_type_header'] = 'Content-Type: application/json';
+        $response['body'] = json_encode([
+            'error' => 'Unauthorized'
+        ]);
+        return $response;
+
+    }
+
 }

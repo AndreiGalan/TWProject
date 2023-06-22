@@ -22,13 +22,19 @@ class Dispatcher{
 
             case 'pictures':
 
+                $jwt = $authController-> checkJWTExistance();
+                $id = $authController -> validateJWT($jwt);
+
                 array_shift($request);
 
-                $controller = new PictureController($requestMethod, $request);
+                $controller = new PictureController($requestMethod, $request,$id);
                 $controller->processRequest();
                 break;
 
             case 'equations':
+
+                $jwt = $authController-> checkJWTExistance();
+                $authController -> validateJWT($jwt);
 
                 array_shift($request);
 
@@ -37,6 +43,8 @@ class Dispatcher{
                 break;
 
             case 'questions':
+                $jwt = $authController-> checkJWTExistance();
+                $authController -> validateJWT($jwt);
 
                 array_shift($request);
 
@@ -45,6 +53,8 @@ class Dispatcher{
                 break;
 
             case 'answers':
+                $jwt = $authController-> checkJWTExistance();
+                $authController -> validateJWT($jwt);
 
                 array_shift($request);
 

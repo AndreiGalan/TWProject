@@ -38,6 +38,7 @@
                 let username = data[i].username;
                 let score = data[i].points;
                 let playingSince = data[i].created_at;
+                playingSince= playingSince.substring(0, 11);
                 let row = "<tr><td>" + position + "</td><td>" + username + "</td><td>" + score + "</td><td>" + playingSince + "</td></tr>";
                 document.getElementById("table-body").innerHTML += row;
             }})

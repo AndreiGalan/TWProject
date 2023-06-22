@@ -23,7 +23,6 @@ function display_info(){
             // get the first name, last name, username, email, points, and ranking of the user
 
             response.json().then(data => {
-                console.log(data);
 
                 document.getElementById('profile_first_name').innerHTML = data.first_name;
                 document.getElementById('profile_last_name').innerHTML = data.last_name;
@@ -45,8 +44,6 @@ function display_info(){
             });
         } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
             window.location.href = "http://localhost/TWProject/frontend/html/Home.html";
-        } else {
-            console.log('Error getting user info');
         }
     }).catch(error => {
         console.log('Error getting user info');
@@ -61,8 +58,6 @@ document.getElementById('edit-info-button').addEventListener('click', function()
 // when the user clicks on the edit button, the values of the input fields are filled in with the user's information
 function complete_info(){
     let token = getCookie('token');
-
-    console.log(token);
 
     fetch('http://localhost/TWProject/backend/users/id', {
             method: 'GET',
@@ -84,8 +79,6 @@ function complete_info(){
             });
         } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
             window.location.href = "http://localhost/TWProject/frontend/html/Home.html";
-        } else {
-            console.log('Error getting user info');
         }
     }).catch(error => {
         console.log('Error getting user info');
@@ -142,8 +135,6 @@ function save_info(){
         } else if(response.status === 404){ // user with this username does not exist
             // check if the email already exists
             verify_email_already_exists(first_name, last_name, username, email);
-        } else {
-            console.log('Error getting users');
         }
     }).catch(error => {
         console.log('Error getting users: ' + error);
@@ -173,8 +164,6 @@ function verify_email_already_exists(first_name, last_name, username, email){
         } else if(response.status === 404) { // user with this email does not exist
             // if the username and email are valid, update the information
             update_info(first_name, last_name, username, email);
-        } else {
-            console.log('Error getting users');
         }
     }).catch(error => {
         console.log('Error getting users: ' + error);
@@ -205,18 +194,14 @@ function update_info(first_name, last_name, username, email){
 
             alert('Information updated successfully');
 
-            console.log('Information updated successfully');
             window.location.href = "#";
         } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
             window.location.href = "http://localhost/TWProject/frontend/html/Home.html";
         } else {
-            console.log('Error updating user info');
-
             alert('Error updating user info');
         }
     }).catch(error => {
         console.log('Error updating user info: '+ error);
-
         alert('Error updating user info');
     });
 }
@@ -266,6 +251,26 @@ function save_password(){
         return;
     }
 
+    if(new_password.length < 8){
+        alert("Password must have at least 8 characters!");
+        return;
+    }
+
+    if(!new_password.match(/[a-z]/g)){
+        alert("Password must contain at least one lowercase letter!");
+        return;
+    }
+
+    if(!new_password.match(/[A-Z]/g)){
+        alert("Password must contain at least one uppercase letter!");
+        return;
+    }
+
+    if(!new_password.match(/[0-9]/g)){
+        alert("Password must contain at least one digit!");
+        return;
+    }
+
     // get the user's email
     getEmail().then(email => {
         // check if the old password is correct
@@ -308,11 +313,9 @@ function update_password(new_password){
         } else if(response.status === 401) { // if the user is not logged in, redirect to the login page
             window.location.href = "http://localhost/TWProject/frontend/html/Home.html";
         } else {
-            console.log('Error updating password');
             return false;
         }
     }).catch(error => {
-        console.log('Error updating password');
         return false;
     })
 }
@@ -322,7 +325,6 @@ async function getEmail() {
     try {
         return await getUserEmail(); // Return the email value
     } catch (error) {
-        console.log('Error:', error);
         throw error;
     }
 }
@@ -348,7 +350,6 @@ async function getUserEmail() {
             throw new Error('Error getting user info');
         }
     } catch (error) {
-        console.log('Error:', error);
         throw error;
     }
 }
@@ -372,7 +373,6 @@ async function verifyPassword(email, old_password) {
 
         return response.ok; // Return true if response.ok is true, otherwise false
     } catch (error) {
-        console.log('Error verifying password');
         return false; // Return false in case of an error
     }
 }

@@ -38,7 +38,6 @@ export function parseEquations(equationsString) {
 
     // Create an object to store the unknowns and their assigned fruit characters
     const unknowns = {};
-    //console.log(equations);
     // Iterate over each equation
     let counter = 0;
     equations.forEach((equation, index) => {

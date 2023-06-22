@@ -110,7 +110,10 @@ class AuthController
             return ErrorHandler::unprocessableEntityResponse();
         }
 
-
+        $email = $input['email'];
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
         //check if username already exists
         $userExists = $this->userDAO->findByUsername($input['username']);
         if ($userExists) {

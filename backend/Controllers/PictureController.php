@@ -5,12 +5,14 @@ class PictureController
     private $request;
     private $requestMethod;
     private $pictureDAO;
+    private $idUserWhoRequested;
 
-    public function __construct($requestMethod, $request)
+    public function __construct($requestMethod, $request, $id)
     {
         $this->requestMethod = $requestMethod;
         $this->pictureDAO = new PictureDAO();
         $this->request = $request;
+        $this->idUserWhoRequested = $id;
     }
 
     public function processRequest(){
@@ -26,21 +28,36 @@ class PictureController
             case 'POST' :
                 //pictures/create
                 if(isset($this->request[0]) && $this->request[0] == 'create'){
-                    $response = $this->addPicture();
+                    if($this->idUserWhoRequested == 34){
+                        $response = $this->addPicture();
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 }
-            break;
+                break;
 
             case 'DELETE' :
                 //pictures/delete
                 if(isset($this->request[0]) && $this->request[0] == 'delete'){
-                    $response = $this->deletePicture();
+                    if($this->idUserWhoRequested == 34){
+                        $response = $this->deletePicture();
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 }
             break;
 
             case 'PUT' :
                 //pictures/update
                 if(isset($this->request[0]) && $this->request[0] == 'update'){
-                    $response = $this->updatePicture();
+                    if($this->idUserWhoRequested == 34){
+                        $response = $this->updatePicture();
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 }
             break;
 
@@ -111,7 +128,6 @@ class PictureController
             return ErrorHandler::notFoundResponse();
         }
 
-        echo $picture->getPathInDropbox();
         $dropboxUploader = new DropboxCommand();
 
         if(!$dropboxUploader->deleteFile($picture->getPathInDropbox())){//the file was not deleted
