@@ -59,6 +59,8 @@ class AuthController
                     $response = $this->changeNewPassword();
                 else if(isset($this->request[1]) && $this->request[1] == 'send-email')
                     $response = $this->sendEmailFromContact();
+                else if(isset($this->request[1]) && $this->request[1] == 'verify-email')
+                    $response = $this->verifyEmail();
                 else
                     $response = ErrorHandler::notFoundResponse();
                 break;
@@ -96,6 +98,14 @@ class AuthController
             return $response;
         }
 
+        // verify if the email is verified
+        if(!$this->userDAO->getVerified($input['email'])) {
+            $response['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
+            $response['content_type_header'] = 'Content-Type: application/json';
+            $response['body'] = json_encode(array("message" => "Email not verified"));
+            return $response;
+        }
+
         return $this->createJWT($input['email'], $user['id']);
     }
 
@@ -127,12 +137,31 @@ class AuthController
         }
 
         $user = new User($input['firstName'], $input['lastName'], $input['username'],
-            $input['password'], $input['gender'], $input['email'], null, null, null, null);
+            $input['password'], $input['gender'], $input['email'], null, null, null, null, null);
 
 
         $this->userDAO->create($user);
+
+        $this->sendValidationEmail($input['email']);
+
         $response['body'] = json_encode(array("Result"=>"User Created"));
         return $response;
+    }
+
+    private function sendValidationEmail($email) {
+        $emailOriginal = $email;
+        $subject = "Inregistration confirmation";
+        // hash the email
+        $email = password_hash($email, PASSWORD_DEFAULT);
+        $message = "Welcome! Before you start playing FruitsOnTheWeb you need to confirm your email adress. Open this link please: http://localhost/TWProject/frontend/html/Verified.html?email=" . urlencode($email);
+
+        $headers = "From: noreply@example.com" . "\r\n" .
+            "Reply-To: noreply@example.com" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion();
+
+
+        // Trimite emailul de validare
+        mail($emailOriginal, $subject, $message, $headers);
     }
 
     private function resetPassword() {
@@ -149,6 +178,13 @@ class AuthController
 
         if (!$user) {
             return ErrorHandler::notFoundResponse();
+        }
+
+        if(!$this->userDAO->getVerified($input['email'])) {
+            $response['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
+            $response['content_type_header'] = 'Content-Type: application/json';
+            $response['body'] = json_encode(array("message" => "Email not verified"));
+            return $response;
         }
 
         // Generate a unique reset code and save it in the database
@@ -210,6 +246,34 @@ class AuthController
                 "code" => $resetCode,
         ));
 
+
+        return $response;
+    }
+
+    private function verifyEmail() {
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['content_type_header'] = 'Content-Type: application/json';
+
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+
+        $email = $input['email'];
+
+        $email = urldecode($email);
+        //verify if hash email is equal to the one in the database
+        if (!isset($input['email'])) {
+            return ErrorHandler::unprocessableEntityResponse();
+        }
+
+        $user = $this->userDAO->findByHashEmail($email);
+        if (!$user) {
+            return ErrorHandler::notFoundResponse();
+        }
+
+        $this->userDAO->updateVerified($user['email']);
+
+        $response['body'] = json_encode(array(
+                "message" => "Email verified",
+        ));
 
         return $response;
     }

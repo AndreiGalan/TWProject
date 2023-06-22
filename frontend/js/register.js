@@ -63,6 +63,8 @@ function register() {
                 console.log('Datele au fost trimise cu succes.');
                 console.log(data);
 
+                alert('An email has been sent to your email address. Please verify your account.');
+
                 window.location.href = "http://localhost/TWProject/frontend/html/login.html";
 
             } else if ( response.status === 409){

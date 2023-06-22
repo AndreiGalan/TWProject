@@ -22,8 +22,10 @@ class User implements JsonSerializable
 
     private $reset_code;
 
+    private $verified;
+
     public function __construct( $firstName, $lastName, $username, $password,
-                                $gender, $email, $points, $ranking , $created_at, $reset_code, $id = null) {
+                                $gender, $email, $points, $ranking , $created_at, $reset_code, $verified, $id = null) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->username = $username;
@@ -36,6 +38,7 @@ class User implements JsonSerializable
         $this->id = $id;
         $this->created_at = $created_at;
         $this->reset_code = $reset_code;
+        $this->verified = $verified;
     }
 
     public function getId()
@@ -209,6 +212,24 @@ class User implements JsonSerializable
         $this->reset_code = $reset_code;
     }
 
+    /**
+     * @return mixed
+     */
+
+    public function getVerified()
+    {
+        return $this->verified;
+    }
+
+    /**
+     * @param mixed $verified
+     */
+
+    public function setVerified($verified): void
+    {
+        $this->verified = $verified;
+    }
+
     public function jsonSerialize(): mixed
     {
         return [
@@ -230,6 +251,6 @@ class User implements JsonSerializable
     {
         return "User: " . $this->id . " " . $this->firstName . " " . $this->lastName .
             " " . $this->username . " " . $this->gender . " " . $this->email . " " .
-            $this->password . " " . $this->points . " " . $this->ranking . " " . $this->created_at . " " . $this->reset_code;
+            $this->password . " " . $this->points . " " . $this->ranking . " " . $this->created_at . " " . $this->reset_code . " " . $this->verified;
     }
 }

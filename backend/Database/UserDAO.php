@@ -29,11 +29,13 @@ class UserDAO {
             //put the today date
             $created_at = date("Y-m-d H:i:s");
 
+            $verified = 0;
+
 
 //            $decryptedPassword = password_verify($password, $cryptPassword);
 
-            $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking, created_at, reset_code)
-                        VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking, :created_at, :reset_code)");
+            $statement = $this->conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, gender, ranking, created_at, reset_code, verified)
+                        VALUES (:firstName, :lastName, :username, :password, :email, :gender, :ranking, :created_at, :reset_code, :verified)");
             $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
             $statement->bindParam(':username', $username, PDO::PARAM_STR);
@@ -43,6 +45,7 @@ class UserDAO {
             $statement->bindParam(':ranking', $ranking, PDO::PARAM_INT);
             $statement->bindParam(':created_at', $created_at, PDO::PARAM_STR);
             $statement->bindParam(':reset_code', $reset_code, PDO::PARAM_STR);
+            $statement->bindParam(':verified', $verified, PDO::PARAM_INT);
 
             $statement->execute();
         } catch (PDOException $e) {
@@ -53,6 +56,18 @@ class UserDAO {
     public function findAll(){
         try {
             $stmt = $this->conn->prepare("SELECT * FROM users");
+            $stmt->execute();
+
+            // set the resulting array to associative
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
+    public function findAllEmails(){
+        try {
+            $stmt = $this->conn->prepare("SELECT email FROM users");
             $stmt->execute();
 
             // set the resulting array to associative
@@ -108,6 +123,21 @@ class UserDAO {
 
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
+    public function findByHashEmail($hashEmail){
+        try{
+            $emails = $this->findAllEmails();
+
+            foreach ($emails as $email){
+                if (password_verify($email['email'], $hashEmail)){
+                    return $this->findByEmail($email['email']);
+                }
+            }
+        }
+        catch (PDOException $e){
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }
     }
@@ -220,6 +250,19 @@ class UserDAO {
         }
     }
 
+    public function updateVerified($email): void
+    {
+        try
+        {
+            $statement = $this->conn->prepare("UPDATE users SET verified = 1 WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+            $statement->execute();
+        } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
 
     public function delete(mixed $id)
     {
@@ -269,6 +312,23 @@ class UserDAO {
         }
     }
 
+    public function getVerified($email): int
+    {
+        try
+        {
+            $statement = $this->conn->prepare("SELECT verified FROM users WHERE email = :email");
+            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+            $statement->execute();
+
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+            return $result['verified'];
+        } catch (PDOException $e){
+            trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
+        }
+    }
+
     public function changePassword($email, $password): bool
     {
         try
@@ -279,7 +339,6 @@ class UserDAO {
             $statement->execute();
 
             if(password_verify($password, $statement->fetch(PDO::FETCH_ASSOC)['password'])){
-                echo "Parola nouă nu poate fi aceeași cu cea veche!";
                 return false;
             }
 

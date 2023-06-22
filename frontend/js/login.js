@@ -38,7 +38,7 @@ function login() {
                         console.log('Eroare la parsarea răspunsului JSON:', error);
                     });
             } else {
-                alert('Email or password invalid!');
+                alert('Email or password invalid! Or your account is not verified!');
                 // Tratați răspunsul în caz de eroare
             }
 
