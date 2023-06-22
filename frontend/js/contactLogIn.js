@@ -42,7 +42,11 @@ function contactLogIn(){
             if (response.ok) {
                 alert('Message sent!');
                 window.location.href = "http://localhost/TWProject/frontend/html/Contact.html";
-            } else {
+            } else
+            if(response.status === 401){
+                window.location.href = "http://localhost/TWProject/frontend/html/Login.html";
+            }
+            else {
                 alert('Message couldn\'t be sent! Please try again!');
             }
         })

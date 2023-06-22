@@ -33,6 +33,9 @@ function getQuestions() {
             } else if (response.status === 444) { // no questions found
                 alert('No questions found.');
             }
+            else if(response.status === 401){
+                window.location.href = "http://localhost/TWProject/frontend/html/Login.html";
+            }
         })
         .then(result => {
             //global variable questions is initialized

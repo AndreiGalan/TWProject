@@ -27,7 +27,11 @@
         .then(function(response) {
             if (response.ok) {
                 return response.json();
-            } else {
+            }
+            else if(response.status === 401){
+                window.location.href = "http://localhost/TWProject/frontend/html/Login.html";
+            }
+            else {
                 throw new Error("Error fetching data.");
             }
         })

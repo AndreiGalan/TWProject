@@ -18,6 +18,9 @@ export function getAnswers(questionId) {
             } else if (response.status === 444){ // no questions found
                 alert('No answers found.');
             }
+            else if(response.status === 401){
+                window.location.href = "http://localhost/TWProject/frontend/html/Login.html";
+            }
         })
         .then(result => {
             return result;
