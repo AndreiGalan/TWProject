@@ -1,3 +1,4 @@
+import {getCookie} from "./cookie.js";
 export function getAnswers(questionId) {
 
     const requestOptions = {
@@ -60,4 +61,28 @@ export function getImage(imageId) {
 export function getDifficulty() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('difficulty');
+}
+
+export function saveScore(points){
+
+    const body = {
+        "points": points
+    }
+
+    const requestOptions = {
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' ,
+        'Authorization': 'Bearer ' + getCookie('token')
+        }
+    }
+
+    fetch("http://localhost/TWProject/backend/users", requestOptions)
+        .then(response => {
+            if(response.status === 401){//unauthorized
+                window.location.href = 'Home.html';
+            }
+        })
+        .catch(error => console.log('error', error));
+
 }

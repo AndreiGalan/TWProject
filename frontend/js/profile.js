@@ -1,8 +1,8 @@
 // when the profile page is loaded, fill in the user's information: first name, last name, username, email, points, and ranking
 import {getCookie} from './cookie.js';
 
-let p1 = 100;
-let p2 = 500;
+let p1 = 1000;
+let p2 = 5000;
 
 document.addEventListener('DOMContentLoaded', function() {
     display_info();

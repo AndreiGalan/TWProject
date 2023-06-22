@@ -51,6 +51,10 @@ body{
     font-size: 80%;
 }
 
+.ct-left-avatar img {
+    border-radius: 50%;
+}
+
 .level {
     color : gray;
 }
