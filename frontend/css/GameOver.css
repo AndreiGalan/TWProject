@@ -68,7 +68,7 @@ strong {
     margin: 0.75em auto;
 }
 
-.yes a , .no a {
+.yes button , .no a {
     text-align: center;
     font-size:  clamp(1rem,2vw,4rem);
     font-weight: bold;
@@ -80,7 +80,7 @@ strong {
     border-radius: 1em;
 }
 
-.yes a {
+.yes button {
     background: #297e29;
     text-shadow: 2px 2px rgba(77, 173, 77, 0.73);
     float: left;
@@ -109,7 +109,7 @@ strong {
 }
 
 
-.yes a:hover {
+.yes button:hover {
     -webkit-animation-name: resize_animation;
     -webkit-animation-duration: 1s;
     -webkit-animation-timing-function:  linear;

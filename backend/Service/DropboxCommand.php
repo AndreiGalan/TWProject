@@ -29,7 +29,7 @@ class DropboxCommand
         $size = filesize($filePath);
 
         $questionDAO = new PictureDAO();
-        $fileNameInDropbox = $questionDAO->getNrPictures() . '.jpg';
+        $fileNameInDropbox = $questionDAO->getMaxIdPicture() . '.jpg';
 
         $headers = array('Authorization: Bearer ' . TokenManager::$tokenAccessDROPBOX,
             'Content-Type: application/octet-stream',

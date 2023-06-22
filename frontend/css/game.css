@@ -4,6 +4,23 @@ body {
     background-size: cover;
 }
 
+.question-counter{
+    position : absolute;
+    top: 10px;
+    left: 15px;
+
+    border: 2px solid #603601;
+    background-color: #eeeeeea9;
+
+    padding: 10px;
+    border-radius: 10px;
+}
+.question-counter-text{
+    font-size: 2em;
+    font-weight: 900;
+    text-align: center;
+    color: #603601;
+}
 
 .hearts {
     position: fixed;
@@ -82,8 +99,8 @@ body {
 
 .image-equation img{
 
-    max-width: 100%;
-    max-height: 100%;
+    width: 50%;
+    height: 50%;
     border-radius: 1em;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }

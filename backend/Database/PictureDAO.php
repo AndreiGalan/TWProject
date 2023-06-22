@@ -10,9 +10,9 @@ class PictureDAO
 
 
 
-    public function getNrPictures(){
+    public function getMaxIdPicture(){
         try{
-            $stmt = $this->conn->prepare("SELECT COUNT('c') FROM pictures");
+            $stmt = $this->conn->prepare("SELECT ISNULL(max(id)+1,1) from pictures");
             $stmt->execute();
 
             return $stmt->fetchColumn();
