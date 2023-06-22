@@ -19,6 +19,26 @@ function register() {
         return;
     }
 
+    if(password.length < 8){
+        alert("Password must have at least 8 characters!");
+        return;
+    }
+
+    if(!password.match(/[a-z]/g)){
+        alert("Password must contain at least one lowercase letter!");
+        return;
+    }
+
+    if(!password.match(/[A-Z]/g)){
+        alert("Password must contain at least one uppercase letter!");
+        return;
+    }
+
+    if(!password.match(/[0-9]/g)){
+        alert("Password must contain at least one digit!");
+        return;
+    }
+
     let gender = male.checked ? "male" : "female";
 
     let data = {
@@ -59,10 +79,8 @@ function register() {
                 });
 
             }
-            else {
-                // Tratați răspunsul în caz de eroare
-                console.log('A apărut o eroare la trimiterea datelor.');
-                console.log(data);
+            else if (response.status === 422){
+                alert('Invalid email.');
             }
         })
         .catch(error => {

@@ -6,8 +6,6 @@ import { deleteCookie } from './cookie.js';
 document.getElementById('logout').addEventListener('click', logOut);
 
 function logOut(){
-    console.log("logout");
-
     deleteCookie('token');
 
     // redirect to home page

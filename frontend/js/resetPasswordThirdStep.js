@@ -41,8 +41,6 @@ function ResetPasswordThirdStep(){
         password: password
     };
 
-    console.log(data);
-
     fetch('http://localhost/TWProject/backend/auth/change-password', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -71,7 +69,6 @@ function ResetPasswordThirdStep(){
 }
 
 function deleteCookie(name) {
-    console.log("delete cookie");
     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 

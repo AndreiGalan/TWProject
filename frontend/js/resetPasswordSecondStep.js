@@ -28,7 +28,6 @@ function resetPasswordSecondStep() {
                     let expirationDate = new Date();
                     expirationDate.setTime(expirationDate.getTime() + (24 * 60 * 60 * 1000)); // 24 hours in milliseconds
 
-                    console.log(json.code);
                     document.cookie = "code=" + json.code + ";expires=" + expirationDate.toUTCString() + "; path=/";
 
                     window.location.href = "http://localhost/TWProject/frontend/html/NewPassword.html";
@@ -39,8 +38,6 @@ function resetPasswordSecondStep() {
             } else {
                 alert('Code is invalid!');
                 // Tratați răspunsul în caz de eroare
-                console.log('Invalid credentials.');
-                console.log(response);
             }
 
 
@@ -84,15 +81,6 @@ function resendCode() {
         .then(response => {
             if (response.ok) {
                 alert('Code has been sent to your email!');
-                response.json().then(json => {
-                    console.log(json);
-                }
-                ).catch(error => {
-                    console.log('Eroare la parsarea răspunsului JSON:', error);
-                })
-            } else {
-                console.log('Invalid credentials.');
-                console.log(response);
             }
         })
         .catch(error => {

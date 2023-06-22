@@ -14,8 +14,6 @@ function contact(){
         message: message
     }
 
-    console.log(data);
-
     fetch('http://localhost/TWProject/backend/auth/send-email', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -28,8 +26,7 @@ function contact(){
                     alert('Message sent!');
                     window.location.href = "http://localhost/TWProject/frontend/html/ContactLogOut.html";
             } else {
-                console.log('Invalid credentials.');
-                console.log(response);
+                alert('Message couldn\'t be sent! Please try again!');
             }
         })
         .catch(error => {

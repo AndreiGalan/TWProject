@@ -33,8 +33,6 @@ function resetPasswordFirstStep() {
                 });
             } else {
                 alert('Invalid email!');
-                console.log('Invalid credentials.');
-                console.log(response);
             }
         })
         .catch(error => {

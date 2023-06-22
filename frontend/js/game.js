@@ -1,6 +1,7 @@
 import { getDifficulty, getImage, getEquation, getAnswers, saveScore } from "./gameHelperAPI.js";
 import { setQuestionTextForPicture, setAnswers, setEquation, setImage, setHearts, setQuestionCounter, setQuestionTextForEquation } from "./gameHelperContent.js";
 import {parseEquations} from "./gameParserEquation.js";
+import {getCookie} from "./cookie.js";
 
 let questions = [];
 let nrQuestion = 0;
@@ -14,9 +15,14 @@ const buttonNext = "<button class=\"next-btn\" type=\"button\">Next</button>";
 function getQuestions() {
 
     difficulty = getDifficulty();
+    const token = getCookie("token");
 
     const requestOptions = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
     };
 
     //get all questions

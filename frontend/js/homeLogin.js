@@ -19,12 +19,8 @@ function getUserInfo() {
                 document.getElementById('last_name').innerHTML = data.last_name;
             } );
         } else if(response.status === 401) {
-            console.log('Error getting user info');
-
             // redirect to login page
             window.location.href = "http://localhost/TWProject/frontend/html/login.html";
-        } else {
-            console.log('Error getting user info');
         }
     }).catch(error => {
         console.log('Error getting user info');

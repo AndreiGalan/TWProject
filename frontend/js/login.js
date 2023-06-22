@@ -40,8 +40,6 @@ function login() {
             } else {
                 alert('Email or password invalid!');
                 // Tratați răspunsul în caz de eroare
-                console.log('Invalid credentials.');
-                console.log(response);
             }
 
 
