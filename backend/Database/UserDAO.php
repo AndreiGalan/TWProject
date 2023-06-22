@@ -80,7 +80,7 @@ class UserDAO {
     public function findFirstTenByRanking(){
         try {
             //select rank, points, username from users order by rank asc limit 10;
-            $stmt = $this->conn->prepare("SELECT TOP 10 ranking, username, points, created_at FROM users ORDER BY ranking ASC ");
+            $stmt = $this->conn->prepare("SELECT TOP 10 ranking, username, points, created_at FROM users ORDER BY ranking ASC, created_at ASC ");
             $stmt->execute();
 
             // set the resulting array to associative
@@ -245,6 +245,8 @@ class UserDAO {
 
                 $ranking++;
             }
+
+            RSS::updateRSS();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }

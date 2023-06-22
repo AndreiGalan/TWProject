@@ -26,6 +26,8 @@ include_once "Models/Equation.php";
 include_once "Models/Question.php";
 include_once "Models/Answer.php";
 
+include_once "RSS/RSS.php";
+
 include_once "Dispatcher/Dispatcher.php";
 
 
@@ -41,7 +43,6 @@ include_once "Dispatcher/Dispatcher.php";
     $requestMethod = $_SERVER['REQUEST_METHOD'];
 
     if ($requestMethod === 'OPTIONS') {
-        // Răspunde la cererea OPTIONS cu un cod de stare HTTP 200 OK
         header('HTTP/1.1 200 OK');
         exit();
     }

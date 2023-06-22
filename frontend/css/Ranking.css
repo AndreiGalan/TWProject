@@ -30,6 +30,25 @@
     font-size: clamp(0.75rem, 2vw, 3rem);
 }
 
+.rss-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.rss-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.rss-btn img {
+    vertical-align: middle;
+    margin-right: 5px;
+    border-radius: 20%;
+}
+
 table {
     width: 100%;
     /* make the table responsive */
