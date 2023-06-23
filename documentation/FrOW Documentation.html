@@ -12,7 +12,7 @@
   <body prefix="schema: http://schema.org">
     <header>
       <div class="banner">
-        <h1><img src="../images/logo.png" width="100" height="100" alt="FrOW LOGO">
+        <h1><img src="/frontend/images/logo.png" width="100" height="100" alt="FrOW LOGO">
         Fruits on The Web</h1>
       </div>
       <h1>Documentation</h1>
@@ -432,6 +432,70 @@
 
         </section>
     </section>
+
+<!--    backend-->
+    <section id="Backend">
+        <h2>Backend Description</h2>
+
+        <section id="backend-introduction">
+            <h2>Introduction</h2>
+
+            <p>
+                The backend of our web project serves as the server-side infrastructure that handles data processing, logic implementation, and integration with external systems.
+            </p>
+            <p>
+                It is developed using PHP and MS SQL(from Microsoft) database for storage. The database is hosted on Microsoft Azure.
+            </p>
+
+        </section>
+
+        <section id="architecture">
+            <h2>Architecture</h2>
+
+            <p>
+                The backend uses some of the concepts of <strong>MVC</strong>(Model-View-Controller) architecture. In this sense, the backend is divided into three main components: <strong>Models</strong>, <strong>Controllers</strong>, and <strong>DAOs</strong>(classes for database operations).
+                This allows for easier maintenance and testing of the code, as well as better scalability and reusability of the code.
+            </p>
+
+            <p>
+                Our backend follows the REST architectural style, which is a widely adopted design pattern for building web services. REST allows for a scalable and stateless communication approach between clients and servers, promoting loose coupling and interoperability.
+
+                Using REST, our backend exposes a set of RESTful APIs that adhere to the principles of resource-oriented design. These APIs enable clients to interact with the backend by performing standard CRUD (Create, Read, Update, Delete) operations on resources.
+
+                Each resource in our system is uniquely identified by a URL (Uniform Resource Locator), and clients can utilize different HTTP methods, such as GET, POST, PUT, and DELETE, to perform operations on these resources. The backend returns responses in a standardized format, JSON (JavaScript Object Notation), which allows for easy consumption by client applications.
+
+                By adopting <strong>REST</strong>, our backend ensures a uniform and predictable interface for clients, facilitating easy integration with various front-end applications and external systems. It also enables <strong>scalability</strong> and <strong>extensibility</strong>, allowing us to add new resources and functionalities to the backend API without impacting existing clients.
+            </p>
+        </section>
+
+        <section id="techno">
+            <h2>Technologies used</h2>
+
+            <p>
+                Languages: PHP, JavaScript, T-SQL, HTML, CSS
+            </p>
+
+            <p>
+                Server: Apache from XAMPP
+            </p>
+
+            <p>
+                Email Service: swiftmailer(downloadable with composer)
+            </p>
+
+            <p>
+                Image Storage: Dropbox
+            </p>
+        </section>
+
+        <section id="endpoints">
+<!--            iframe with the swagger-->
+            <h2>Endpoints</h2>
+            <iframe src="http://localhost/TWProject/documentation-swagger/swagger/" width="100%" height="1000px"></iframe>
+        </section>
+
+    </section>
+
     <section id="biblio-references"><h2><span></span>References</h2>
         Images:
         <ul>
