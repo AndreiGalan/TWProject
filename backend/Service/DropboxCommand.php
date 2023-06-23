@@ -18,6 +18,10 @@ class DropboxCommand
             TokenManager::generateNewToken();
         }
 
+        // ex: $filePath = 'fruits.png';
+        // $filePath = $_SERVER['DOCUMENT_ROOT'] . '/' . 'TWProject'. '/'. 'frontend' . '/' . 'images' . '/' . $filePath;
+        // echo $filePath;
+
         if(!file_exists($filePath)){
             return null;
         }
