@@ -123,11 +123,14 @@ class QuestionController
 
         $this->questionDAO->create($question);
 
+        $lastId = $this->questionDAO->getLastIdInserted();
+
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
         $response['content_type_header'] = 'Content-Type: application/json';
 
         $response['body'] = json_encode(array(
-            'message' => 'Question added successfully'
+            'message' => 'Question added successfully',
+            'id' => $lastId
         ));
         return $response;
     }

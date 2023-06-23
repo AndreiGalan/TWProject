@@ -1,77 +1,93 @@
-// JavaScript code for index.html
+
+//--------------------------------
+// JavaScript code for Upload System Equation
+//--------------------------------
+//function get cookie
 function getCookie(name) {
-    let cookies = document.cookie.split("; ");
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].split("=");
-        if (cookie[0] === name) {
-            return cookie[1];
+    let cookieArr = document.cookie.split(";");
+    for(let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+        if(cookiePair[0] === name) {
+            return cookiePair[1];
         }
     }
     return "";
 }
-document.getElementById("seeAllQuestionsBtn").addEventListener("click", function() {
-    window.location.href = "AdminAllQuestions.html";
+// JavaScript code for AdminAddQuestion.html
+
+const addQuestionBtn = document.getElementById('addQuestionBtn-Menu');
+const addQuestionMenu = document.getElementById('addQuestionMenu');
+const adminPanel = document.getElementById('adminPanel');
+const backBtn = document.getElementById('backBtn');
+const equationForm = document.getElementById('equationForm');
+const questionForm = document.getElementById('questionForm');
+addQuestionBtn.addEventListener('click', function() {
+    adminPanel.style.display = 'none';
+    addQuestionMenu.style.display = 'block';
+});
+
+backBtn.addEventListener('click', function() {
+    adminPanel.style.display = 'block';
+    addQuestionMenu.style.display = 'none';
+    equationForm.style.display = 'none';
 });
 
 document.getElementById("addQuestionBtn").addEventListener("click", function() {
-    window.location.href = "AdminAddQuestion.html";
+    document.getElementById("equationForm").style.display = "none";
+    document.getElementById("questionForm").style.display = "block";
 });
 
-    // const fileInput = document.getElementById('fileInput');
-    //
-    // const form = document.getElementById('uploadForm');
-    // form.addEventListener('submit', function(e) {
-    //     e.preventDefault();
-    //     const file = fileInput.files[0];
-    //     const formData = new FormData(form);
-    //
-    //     console.log(formData);
-    //     const token = getCookie("token");
-    //
-    //     fetch('http://localhost/TWProject/backend/pictures/create', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data',
-    //             'Authorization': 'Bearer ' + token
-    //         },
-    //         body: formData
-    //     }).then(function(response) {
-    //         return response.text();
-    //     }).then(function(text) {
-    //         console.log(text);
-    //     }).catch(function(error) {
-    //         console.error(error);
-    //     })
-    // });
+document.getElementById('uploadEquationBtn').addEventListener('click', function () {
+    equationForm.style.display = 'block';
+    questionForm.style.display = 'none';
+    addQuestionMenu.style.display = 'none';
+});
 
-    const uploadButton = document.getElementById('uploadButton');
-    const fileInput = document.getElementById('fileInput');
-    uploadButton.addEventListener('click', function() {
-    const file = fileInput.files[0];
-    if (!file) {
-    alert('Please select a file.');
-    return;
+document.getElementById("submitEquationsBtn").addEventListener("click", function() {
+    //get the text inserted in the textarea
+    const equationText = document.getElementById("equationInput").value;
+    if(validateEquation(equationText) === false){
+        alert("Invalid equation!");
+    }else{
+        const token = getCookie("token");
+        //insert the equation in the database
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify({equation_text: equationText}),
+            headers: { 'Content-Type': 'application/json' ,
+                'Authorization': 'Bearer ' + token
+            }
+        }
+
+        fetch("http://localhost/TWProject/backend/equations", requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    alert("Equation added successfully!");
+                    window.location.href = "Admin.html";
+                } else {
+                    alert("Equation couldn't be added! Please try again!");
+                }
+            })
+            .catch(error => {
+                    console.log('A network error occurred:', error);
+                }
+            );
+
+    }
+});
+
+function validateEquation(equationText) {
+
+    //check if the equation is not empty
+    if(equationText === ""){
+        return false;
+    }
+    //there are no more than 2 letters next to each other
+    const regex = /[a-zA-Z]{2}/;
+    if(regex.test(equationText)){
+        return false;
+    }
+
+
 }
-    console.log(file);
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const token = getCookie('token'); // Replace with your access token
-
-    fetch('http://localhost/TWProject/backend/pictures/create', {
-    method: 'POST',
-    headers: {
-    'Authorization': 'Bearer ' + token
-},
-    body: formData
-})
-    .then(response => response.json())
-    .then(data => {
-    console.log(data);
-    // Process the response
-})
-    .catch(error => {
-    console.error(error);
-    // Handle the error
-});
-});
+// -----------------------------------
