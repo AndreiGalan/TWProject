@@ -1,0 +1,15 @@
+.picturetd{
+    width: 20%;
+    height: 20%;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 auto;
+    display: block;
+}
+
+@media (max-width: 1000px){
+    .picturetd{
+        width: 50%;
+        height: 50%;
+    }
+}

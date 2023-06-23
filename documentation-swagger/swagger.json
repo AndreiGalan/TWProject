@@ -559,9 +559,20 @@
                 "tags": ["Auth"]
             }
         },
-        "/questions/addPicture": {
+        "/auth/verify-email": {
             "post": {
-                "summary": "Add a picture",
+                "summary": "Verify user email(activate account)",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -569,16 +580,69 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "text": {
-                                        "type": "string"
-                                    },
-                                    "filePath": {
+                                    "email": {
                                         "type": "string"
                                     }
                                 },
                                 "required": [
-                                    "text",
-                                    "filePath"
+                                    "email"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "tags": ["Auth"]
+            }
+        },
+
+        "/equations": {
+            "get" : {
+                "summary": "Get all equations",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Equations"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Equations"]
+            },
+            "post" : {
+                "summary": "Add equation",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "equation_text": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "equation_text"
                                 ]
                             }
                         }
@@ -588,14 +652,857 @@
                     "200": {
                         "description": "OK"
                     },
-                    "400": {
-                        "description": "Bad Request"
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "tags": ["Equations"]
+            }
+        },
+        "/equations/{id}": {
+            "get": {
+                "summary": "Get equation by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Equation"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": [
+                    "Equations"
+                ]
+            },
+            "delete": {
+                "summary": "Delete equation by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": [
+                    "Equations"
+                ]
+            },
+            "put": {
+                "summary": "Update equation by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "equation_text": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "equation_text"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "tags": [
+                    "Equations"
+                ]
+            }
+        },
+
+
+        "/questions": {
+            "get": {
+                "summary": "Get all questions",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Questions"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Questions"]
+            },
+            "post": {
+                "summary": "Add question",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "question_text": {
+                                        "type": "string"
+                                    },
+                                    "difficulty": {
+                                        "type": "integer"
+                                    },
+                                    "points": {
+                                        "type": "integer"
+                                    },
+                                    "id_picture": {
+                                        "type": "string"
+                                    },
+                                    "id_equation": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "question_text",
+                                    "difficulty",
+                                    "points"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
                     }
                 },
                 "tags": ["Questions"]
             }
+        },
+        "/questions/quiz/{difficulty}/{nrQuestions}" : {
+            "get" : {
+                "summary" : "Get quiz questions",
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "parameters" : [
+                    {
+                        "in" : "path",
+                        "name" : "difficulty",
+                        "schema" : {
+                            "type" : "string"
+                        },
+                        "required" : true
+                    },
+                    {
+                        "in" : "path",
+                        "name" : "nrQuestions",
+                        "schema" : {
+                            "type" : "integer"
+                        },
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/Questions"
+                                }
+                            }
+                        }
+                    },
+                    "401" : {
+                        "description" : "Unauthorized"
+                    },
+                    "404" : {
+                        "description" : "Not Found"
+                    },
+                    "422" : {
+                        "description" : "Unprocessable Entity"
+                    }
+                },
+                "tags" : ["Questions"]
+            }
+        },
+        "/questions/{id}" : {
+            "get" : {
+                "summary" : "Get question by id",
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "parameters" : [
+                    {
+                        "in" : "path",
+                        "name" : "id",
+                        "schema" : {
+                            "type" : "integer"
+                        },
+                        "required" : true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Question"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Questions"]
+            },
+            "delete": {
+                "summary": "Delete question by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Questions"]
+            },
+            "put" : {
+                "summary" : "Update question by id",
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "parameters" : [
+                    {
+                        "in" : "path",
+                        "name" : "id",
+                        "schema" : {
+                            "type" : "integer"
+                        },
+                        "required" : true
+                    }
+                ],
+                "requestBody" : {
+                    "required" : true,
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "question_text" : {
+                                        "type" : "string"
+                                    },
+                                    "difficulty" : {
+                                        "type" : "integer"
+                                    },
+                                    "points" : {
+                                        "type" : "integer"
+                                    },
+                                    "id_picture" : {
+                                        "type" : "string"
+                                    },
+                                    "id_equation" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required" : [
+                                    "question_text",
+                                    "difficulty",
+                                    "points"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "OK"
+                    },
+                    "401" : {
+                        "description" : "Unauthorized"
+                    },
+                    "404" : {
+                        "description" : "Not Found"
+                    },
+                    "422" : {
+                        "description" : "Unprocessable Entity"
+                    }
+                },
+                "tags" : ["Questions"]
+            }
+        },
+
+        "/answers" : {
+            "get" : {
+                "summary" : "Get all answers",
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/Answers"
+                                }
+                            }
+                        }
+                    },
+                    "401" : {
+                        "description" : "Unauthorized"
+                    },
+                    "404" : {
+                        "description" : "Not Found"
+                    }
+                },
+                "tags" : ["Answers"]
+            },
+            "post" : {
+                "summary" : "Add an answer",
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "requestBody" : {
+                    "required" : true,
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "answer_text" : {
+                                        "type" : "string"
+                                    },
+                                    "is_correct" : {
+                                        "type" : "integer"
+                                    },
+                                    "question_id" : {
+                                        "type" : "integer"
+                                    }
+                                },
+                                "required" : [
+                                    "answer_text",
+                                    "is_correct",
+                                    "question_id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "OK"
+                    },
+                    "401" : {
+                        "description" : "Unauthorized"
+                    },
+                    "404" : {
+                        "description" : "Not Found"
+                    },
+                    "422" : {
+                        "description" : "Unprocessable Entity"
+                    }
+                },
+                "tags" : ["Answers"]
+            }
+        },
+        "/answers/{id}" : {
+            "get" : {
+                "summary" : "Get answer by id",
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "parameters" : [
+                    {
+                        "in" : "path",
+                        "name" : "id",
+                        "schema" : {
+                            "type" : "integer"
+                        },
+                        "required" : true
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "OK",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/Answer"
+                                }
+                            }
+                        }
+                    },
+                    "401" : {
+                        "description" : "Unauthorized"
+                    },
+                    "404" : {
+                        "description" : "Not Found"
+                    }
+                },
+                "tags" : ["Answers"]
+            },
+            "delete": {
+                "summary": "Delete answer by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Answers"]
+            },
+            "put": {
+                "summary": "Update answer by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "answer_text": {
+                                        "type": "string"
+                                    },
+                                    "is_correct": {
+                                        "type": "integer"
+                                    },
+                                    "question_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "answer_text",
+                                    "is_correct",
+                                    "question_id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "tags": ["Answers"]
+            }
+        },
+        "/answers/question/{id}" : {
+            "get": {
+                "summary": "Get answers by question id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Answers"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Answers"]
+            }
+        },
+
+        "/pictures/{id}": {
+            "get": {
+                "summary": "Get picture by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Picture"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "tags": ["Pictures"]
+            }
+        },
+
+        "/pictures": {
+            "get": {
+                "summary": "Get all pictures",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pictures"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "tags": ["Pictures"]
+            }
+        },
+
+        "/pictures/delete" : {
+            "delete": {
+                "summary": "Delete picture by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "tags": ["Pictures"]
+            }
+        },
+        "/pictures/update" : {
+            "put" : {
+                "summary": "Update picture by id",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "text"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "tags": ["Pictures"]
+            }
+        },
+        "/pictures/create" : {
+            "post": {
+                "summary": "Add a new picture",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "tags": ["Pictures"]
+            }
         }
     },
+
+
     "components": {
         "schemas": {
             "Users": {
@@ -677,6 +1584,162 @@
                     }
 
                 }
+            },
+            "Equation": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "equation_text": {
+                    "type": "string"
+                    }
+                }
+            },
+            "Equations": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "equation_text": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Message": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                    "type": "string"
+                    }
+                }
+            },
+            "Questions": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "question_text": {
+                            "type": "string"
+                        },
+                        "difficulty" : {
+                            "type" : "integer"
+                        },
+                        "points" : {
+                            "type" : "integer"
+                        },
+                        "id_picture": {
+                            "type": "string"
+                        },
+                        "id_equation": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Question" : {
+                "type" : "object",
+                "properties" : {
+                    "id" : {
+                        "type" : "integer"
+                    },
+                    "question_text" : {
+                        "type" : "string"
+                    },
+                    "difficulty" : {
+                        "type" : "integer"
+                    },
+                    "points" : {
+                        "type" : "integer"
+                    },
+                    "id_picture" : {
+                        "type" : "string"
+                    },
+                    "id_equation" : {
+                        "type" : "string"
+                    }
+                }
+            },
+            "Answers": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "answer_text": {
+                            "type": "string"
+                        },
+                        "is_correct": {
+                            "type": "integer"
+                        },
+                        "question_id": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "Answer" : {
+                "type" : "object",
+                "properties" : {
+                    "id" : {
+                        "type" : "integer"
+                    },
+                    "answer_text" : {
+                        "type" : "string"
+                    },
+                    "is_correct" : {
+                        "type" : "integer"
+                    },
+                    "question_id" : {
+                        "type" : "integer"
+                    }
+                }
+            },
+            "Picture": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "text": {
+                        "type": "string"
+                    },
+                    "path_in_dropbox": {
+                        "type": "string"
+                    },
+                    "download_link": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Pictures": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "text": {
+                            "type": "string"
+                        },
+                        "path_in_dropbox": {
+                            "type": "string"
+                        },
+                        "download_link": {
+                            "type": "string"
+                        }
+                    }
+                }
             }
         },
         "securitySchemes": {
@@ -695,6 +1758,22 @@
         {
             "name": "Auth",
             "description": "Endpoints for user authentication"
+        },
+        {
+            "name": "Equations",
+            "description": "Endpoints for managing equations"
+        },
+        {
+            "name": "Questions",
+            "description": "Endpoints for managing questions"
+        },
+        {
+            "name": "Answers",
+            "description": "Endpoints for managing answers"
+        },
+        {
+            "name": "Pictures",
+            "description": "Endpoints for managing pictures"
         }
     ]
 }
