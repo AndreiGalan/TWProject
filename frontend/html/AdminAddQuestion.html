@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Question</title>
+    <link rel="stylesheet" href="../css/admin-add-question.css">
+
+</head>
+<body>
+<div class="container">
+    <h1>Add Picture/Equation Questions</h1>
+    <div class="options">
+        <button id="uploadEquationBtn">Upload System Equation</button>
+        <button id="addQuestionBtn">Add Question</button>
+    </div>
+
+    <div id="equationForm" style="display: none;">
+        <div id="equationInstructions">
+            <h3>Equation Input</h3>
+            <p>Please enter the equations in the following format:</p>
+            <p><strong>[variable] [operator] [variable] = {result} ; </strong></p>
+            <p>Where : </p>
+            <ul id = "instructions-writing">
+                <li><strong>[variable]</strong> is a single letter variable (x,y,z,..etc) or a positive number</li>
+                <li><strong>[operator]</strong> is one of the following : +,-,*,/</li>
+                <li><strong>{result}</strong> is the result of the equation</li>
+            </ul>
+        </div>
+        <label for="equationInput"></label><textarea id="equationInput" rows="5" cols="50" placeholder="Ex : &#10;x + y = 23 ;&#10;y + 10 = 12 ;"></textarea>
+        <button id="submitEquationsBtn">Submit Equations</button>
+    </div>
+
+
+    <div id="questionForm" style="display: none;">
+        <!-- Question form elements go here -->
+    </div>
+</div>
+</body>
+<script type="module" src="../js/adminAddQuestion.js"></script>
+
+</html>
