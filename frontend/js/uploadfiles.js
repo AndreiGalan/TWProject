@@ -1,3 +1,6 @@
+
+let fileContent;
+
 function getCookie(name) {
     let cookies = document.cookie.split("; ");
     for (let i = 0; i < cookies.length; i++) {
@@ -47,11 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
         dragDropText.innerHTML = 'File Dropped Successfully!';
         document.querySelector(".label").innerHTML = `drag & drop or <span class="browse-files"> <input type="file" class="default-file-input" style=""/> <span class="browse-files-text" style="top: 0;"> browse file</span></span>`;
         uploadButton.innerHTML = `Upload`;
-        fileName.innerHTML = fileInput.files[0].name;
-        fileSize.innerHTML = (fileInput.files[0].size/1024).toFixed(1) + " KB";
+        const file = fileInput.files[0];
+        fileName.innerHTML = file.name;
+        fileSize.innerHTML = (file.size/1024).toFixed(1) + " KB";
         uploadedFile.style.cssText = "display: flex;";
         progressBar.style.width = 0;
         fileFlag = 0;
+
     });
 
 
@@ -105,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
     uploadButton.addEventListener("click", () => {
         let isFileUploaded = fileInput.value;
         console.log(isFileUploaded);
-        if (isFileUploaded != '') {
-            if (fileFlag == 0) {
+        if (isFileUploaded !== '') {
+            if (fileFlag === 0) {
                 fileFlag = 1;
                 let width = 0;
                 let id = setInterval(frame, 50);
@@ -116,24 +121,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
                         // Obțineți numele și calea fișierului
                         const file = fileInput.files[0];
-
-                        const fileName = file.name;
-                        const filePath = fileInput.value;
-
-                        const data = {
-                            "text": fileName,
-                            "filePath": filePath
-                        };
-                        console.log(data);
+                        const formData = new FormData();
+                        formData.append("file", file);
 
                         // // Efectuați cererea fetch către adresa specificată
                         fetch("http://localhost/TWProject/backend/pictures/create", {
                             method: "POST",
                             headers: {
-                                "Content-Type": "application/json",
                                 "Authorization": "Bearer " + token
                             },
-                            body: JSON.stringify(data)
+                            body: formData
                         })
                             .then(response => response.json())
                             .then(result => {

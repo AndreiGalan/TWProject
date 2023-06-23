@@ -8,30 +8,25 @@ class DropboxCommand
     }
 
     /**
-     * @param $filePath
+     * @param $fileTempPath
      * @return ?string - the path of the file in dropbox, or null if the upload was unsuccessful
      */
-    public function uploadFile($filePath) : ?string {
+    public function uploadFile($fileTempPath) : ?string {
 
         //if the access token is invalid, we generate a new one
         if(!TokenManager::IsValid()){
             TokenManager::generateNewToken();
         }
 
-        // ex: $filePath = 'fruits.png';
-        // $filePath = $_SERVER['DOCUMENT_ROOT'] . '/' . 'TWProject'. '/'. 'frontend' . '/' . 'images' . '/' . $filePath;
-        // echo $filePath;
-
-        if(!file_exists($filePath)){
+        if(!file_exists($fileTempPath)){
             return null;
         }
 
-        $fp = fopen($filePath, 'rb');
+        $fp = fopen($fileTempPath, 'rb');
         if(!$fp) {//file doesn't exist or couldn't be opened
             return null;
         }
-        $size = filesize($filePath);
-
+        $size = filesize($fileTempPath);
         $questionDAO = new PictureDAO();
         $fileNameInDropbox = $questionDAO->getMaxIdPicture() . '.jpg';
 

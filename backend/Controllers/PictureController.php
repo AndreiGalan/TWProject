@@ -78,25 +78,22 @@ class PictureController
 
     private function addPicture()
     {
-        //the body of the request will have the following format:
-        // {
-        //     "text": "Something informative about the picture",
-        //     "filePath" : "local/path/of/the/file"
-        // }
-
+        //the request will be a multipart/form-data request
+        //and it will have a file
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['content_type_header'] = 'Content-Type: application/json';
 
-        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-
+        //$input = (array) json_decode(file_get_contents('php://input'), TRUE);
+        $file = $_FILES['file'];
         $dropboxUploader = new DropboxCommand();
-        $pathInDropbox = $dropboxUploader->uploadFile($input['filePath']);
+        //$pathInDropbox = $dropboxUploader->uploadFile($input['fileContent']);
 
+        $pathInDropbox = $dropboxUploader->uploadFile($file['tmp_name']);
         if($pathInDropbox == null){
             return ErrorHandler::badRequestResponse("Error uploading file to Dropbox");
         }
 
-        $picture = new Picture($input['text'],
+        $picture = new Picture($file['name'],
             $dropboxUploader->getDownloadLink($pathInDropbox),
             $pathInDropbox
         );
