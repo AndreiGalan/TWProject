@@ -1,103 +1,106 @@
 
-.container {
-    max-width: 600px;
+#questionForm {
+    max-width: 70%;
     margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-    background-color: #fffe94;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    padding: 5%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.options {
-    margin-bottom: 20px;
-}
-
-.options button {
-    padding: 10px 20px;
-    margin-right: 10px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#equationForm {
-    display: none;
-    text-align: left;
-}
-
-#equationInstructions {
-    margin-bottom: 20px;
-}
-
-#equationInstructions h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #4CAF50;
-}
-
-#equationInstructions p {
-    margin-bottom: 10px;
-}
-
-#equationInstructions ul {
-    margin-bottom: 10px;
-}
-
-label {
+#questionForm label {
     display: block;
     margin-bottom: 10px;
-    font-size: 16px;
-    color: #333;
+    font-weight: bold;
+    color: #ff5722;
 }
 
-textarea {
+#questionForm select,
+#questionForm input[type="text"] {
     width: 100%;
-    height: 150px;
     padding: 10px;
-    font-size: 14px;
-    border-radius: 4px;
     border: 1px solid #ccc;
-    resize: none;
+    border-radius: 5px;
+    outline: none;
 }
 
-#submitEquationsBtn {
+#questionForm button {
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#questionForm #add-answer-btn {
+    background-color: #2196f3;
+}
+
+#questionForm #delete-answer-btn {
+    background-color: #f44336;
+}
+
+#questionForm #submit-button {
+    background-color: #ff9800;
+}
+
+#questionForm button:hover {
+    opacity: 0.8;
+}
+
+#questionForm #answersContainer {
+    margin-top: 10px;
+}
+
+#picture-equation-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust the width as needed */
+    height: 80%; /* Adjust the height as needed */
+    overflow: auto;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #ddd;
+    font-weight: bold;
+}
+
+td img {
+    width: 7em;
+    height: 7em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+td button {
+    padding: 5px 10px;
+    background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-h1 {
-    color: #4CAF50;
+td button:hover {
+    background-color: #2980b9;
 }
-
-.options button {
-    background-color: #FF9800;
-}
-
-#equationInstructions h3 {
-    color: #4CAF50;
-}
-
-textarea {
-    border-color: #4CAF50;
-}
-
-#submitEquationsBtn {
-    background-color: #4CAF50;
-}
-
-/* Additional styles and modifications can be added as needed */

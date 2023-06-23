@@ -3,25 +3,68 @@
 <head>
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
     <script src="../js/admin.js" defer></script>
+
 </head>
 <body>
-<div class="container">
+<script type="module" src="../js/logout.js"></script>
+<script src="../js/script.js"></script>
+
+<header>
+        <div class="inner-width">
+            <h1 class="logo"> <img src="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1>
+            <div class="navigation-menu" id="myTopnav">
+                <a href="#"><i class="fas fa-home home"></i> Home</a>
+                <a href="Home.html" class="aj_btn" id="logout"> <i class="fas fa-lock" aria-hidden="true"></i>
+                    LOGOUT</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+            </div>
+        </div>
+</header>
+
+<div class="container" id="adminPanel">
     <h1>Admin Panel</h1>
     <div class="options">
-        <button id="seeAllQuestionsBtn">See All Questions</button>
-        <button id="addQuestionBtn">Add Picture/Equation Questions</button>
-<!--        <form id="uploadForm" method="post" enctype="multipart/form-data">-->
-<!--            <label for="fileInput">File</label>-->
-<!--            <input type="file" id="fileInput" name="file" accept="image/*">-->
-<!--            <button>Upload</button>-->
-<!--        </form>-->
-
-        <input type="file" id="fileInput">
-        <button id="uploadButton">Upload</button>
-
-
+        <button id="seeAllQuestionsBtn" onclick="window.location.href='Questions.html'">See All Questions</button>
+        <button id="addQuestionBtn-Menu">Add Picture/Equation Questions</button>
     </div>
 </div>
+
+<!-- Add Question Menu -->
+<div class="container" id="addQuestionMenu" style="display: none;">
+    <h1>Add Picture/Equation Questions</h1>
+    <div class="options">
+        <button id="uploadEquationBtn">Upload System Equation</button>
+        <button id="addEquationBtn" onclick="window.location.href='UploadFiles.html'">Upload Picture</button>
+        <button id="addQuestionBtn" onclick="window.location.href='AdminAddQuestion.html'">Add Question</button>
+        <button id="backBtn">Back</button>
+    </div>
+</div>
+
+    <div id="equationForm">
+        <!-- Equation form elements go here -->
+            <div id="equationInstructions">
+                <h3>Equation Input</h3>
+                <p>Please enter the equations in the following format:</p>
+                <p><strong>[variable] [operator] [variable] = {result} ; </strong></p>
+                <p>Where : </p>
+                <ul id = "instructions-writing">
+                    <li><strong>[variable]</strong> is a single letter variable (x,y,z,..etc) or a positive number</li>
+                    <li><strong>[operator]</strong> is one of the following : +,-,*,/</li>
+                    <li><strong>{result}</strong> is the result of the equation</li>
+                </ul>
+            </div>
+            <label for="equationInput"></label><textarea id="equationInput" rows="5" cols="50" placeholder="Ex : &#10;x + y = 23 ;&#10;y + 10 = 12 ;"></textarea>
+            <button id="submitEquationsBtn">Submit Equations</button>
+    </div>
+
+
+<footer>
+    <span>&copy; 2023 <span style="color: #36622B; font-weight: bold;">FruitsOnTheWeb</span>. All rights reserved.</span>
+</footer>
+
 </body>
 </html>

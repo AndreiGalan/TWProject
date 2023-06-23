@@ -20,7 +20,69 @@ button {
     font-size: 16px;
 }
 
-#equationForm,
-#questionForm {
-    margin-top: 20px;
+/* CSS styles */
+#backBtn {
+    background-color: #563636;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
+
+#backBtn:hover {
+    background-color: gray;
+}
+
+#equationForm {
+    display: none;
+    text-align: center;
+    margin: 10%;
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+#equationInstructions {
+    margin-bottom: 20px;
+}
+
+#equationInstructions h3 {
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+#equationInstructions p {
+    margin-bottom: 10px;
+}
+
+#equationInstructions ul {
+    text-align: left;
+    margin-left: 20px;
+}
+
+
+
+textarea {
+    height: 150px;
+    font-size: 1.2em;
+    width: 70%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#submitEquationsBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+

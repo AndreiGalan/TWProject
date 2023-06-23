@@ -1,40 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
-    <title>Add Question</title>
+    <meta charset="UTF-8">
+    <title>Upload Picture</title>
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/admin-add-question.css">
+    <script src="../js/admin-add-question.js" defer></script>
 
 </head>
+
 <body>
-<div class="container">
-    <h1>Add Picture/Equation Questions</h1>
-    <div class="options">
-        <button id="uploadEquationBtn">Upload System Equation</button>
-        <button id="addQuestionBtn">Add Question</button>
-    </div>
-
-    <div id="equationForm" style="display: none;">
-        <div id="equationInstructions">
-            <h3>Equation Input</h3>
-            <p>Please enter the equations in the following format:</p>
-            <p><strong>[variable] [operator] [variable] = {result} ; </strong></p>
-            <p>Where : </p>
-            <ul id = "instructions-writing">
-                <li><strong>[variable]</strong> is a single letter variable (x,y,z,..etc) or a positive number</li>
-                <li><strong>[operator]</strong> is one of the following : +,-,*,/</li>
-                <li><strong>{result}</strong> is the result of the equation</li>
-            </ul>
+<script type="module" src="../js/logout.js"></script>
+<script src="../js/script.js"></script>
+<header>
+    <div class="inner-width">
+        <h1 class="logo"> <img src="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1>
+        <div class="navigation-menu" id="myTopnav">
+            <a href="Admin.html"><i class="fas fa-home home"></i> Home</a>
+            <a href="Home.html" class="aj_btn" id="logout"> <i class="fas fa-lock" aria-hidden="true"></i>
+                LOGOUT</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
-        <label for="equationInput"></label><textarea id="equationInput" rows="5" cols="50" placeholder="Ex : &#10;x + y = 23 ;&#10;y + 10 = 12 ;"></textarea>
-        <button id="submitEquationsBtn">Submit Equations</button>
+    </div>
+</header>
+
+<form id="questionForm">
+
+    <label for="questionType">Question Type:</label>
+    <select id="questionType" name="questionType" >
+        <option value="picture" selected>Picture Question</option>
+        <option value="equation">Equation Question</option>
+    </select>
+
+    <label for="questionDifficulty">Question Difficulty:</label>
+    <select id="questionDifficulty" name="QuestionDifficulty" >
+        <option value="easy" selected>Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select>
+    <br>
+
+    <label for="questionId" style="display: none">Picture/Equation ID:</label>
+    <input type="text" id="questionId" name="questionId" style="display: none" required>
+    <br>
+    <button type="button" id="add-picture-equation" >Add Picture/Equation</button>
+
+    <label for="questionText">Question Text:</label>
+    <input id="questionText" type="text" name="questionText" required>
+    <br>
+
+    <label for="answerText">Answer Text:</label>
+    <input type="text" id="answerText" name="answerText">
+    <button id = "add-answer-btn" type="button" onclick="addAnswer()">Add Answer</button>
+    <button id = "delete-answer-btn" type="button" onclick="deleteAnswer()">Delete Answer</button>
+    <br>
+
+    <div id="answersContainer">
+        <!-- Answers will be dynamically added here -->
     </div>
 
+    <button type="submit" id="submit-button">Submit</button>
+</form>
 
-    <div id="questionForm" style="display: none;">
-        <!-- Question form elements go here -->
-    </div>
-</div>
+
+        <div id="picture-equation-container">
+        <table>
+            <thead>
+            <tr>
+                <th id="title-table"></th>
+                <th>Select button</th>
+            </tr>
+            </thead>
+
+            <tbody id="body-table">
+            </tbody>
+        </table>
+
+        </div>
+
+<footer>
+    <span>&copy; 2023 <span style="color: #36622B; font-weight: bold;">FruitsOnTheWeb</span>. All rights reserved.</span>
+</footer>
+
 </body>
-<script type="module" src="../js/adminAddQuestion.js"></script>
 
 </html>
