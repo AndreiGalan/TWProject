@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Picture</title>
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/questions.css">
+    <link rel="stylesheet" href="../css/changepicture.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+</head>
+
+<body>
+<script type="module" src="../js/logout.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/changeequation.js"></script>
+<header>
+    <div class="inner-width">
+        <h1 class="logo"> <img src="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1>
+        <div class="navigation-menu" id="myTopnav">
+            <a href="#"><i class="fas fa-home home"></i> Home</a>
+            <a href="Home.html" class="aj_btn" id="logout"> <i class="fas fa-lock" aria-hidden="true"></i>
+                LOGOUT</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <h1 class="rank-title">All Equations</h1>
+    <div class="ranking">
+        <table>
+            <thead id="table-head">
+            <tr>
+                <td>ID</td>
+                <td>Equation</td>
+                <td>Change Button</td>
+            </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+
+    </div>
+</div>
+<footer>
+    <span>&copy; 2023 <span style="color: #36622B; font-weight: bold;">FruitsOnTheWeb</span>. All rights reserved.</span>
+</footer>
+
+</body>
+
+</html>

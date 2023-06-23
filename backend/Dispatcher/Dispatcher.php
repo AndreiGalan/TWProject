@@ -45,10 +45,11 @@ class Dispatcher{
             case 'questions':
                 $jwt = $authController-> checkJWTExistance();
                 $authController -> validateJWT($jwt);
+                $id = $authController -> validateJWT($jwt);
 
                 array_shift($request);
 
-                $controller = new QuestionController($requestMethod, $request);
+                $controller = new QuestionController($requestMethod, $request, $id);
                 $controller->processRequest();
                 break;
 

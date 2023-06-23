@@ -6,11 +6,12 @@ class QuestionController
     private $requestMethod;
     private $request;
     private $questionDAO;
-    public function __construct($requestMethod, $request)
+    public function __construct($requestMethod, $request, $id)
     {
         $this->requestMethod = $requestMethod;
         $this->request = $request;
         $this->questionDAO = new QuestionDAO();
+        $this->idUserWhoRequested = $id;
     }
 
     public function processRequest(): void
@@ -22,17 +23,31 @@ class QuestionController
                 && isset($this->request[1]) &&
                     ($this->request[1] == '1' || $this->request[1] == '2' || $this->request[1] == '3')
                 && isset($this->request[2]) && is_numeric($this->request[2])){
-
-                    $response = $this->getQuestionsByDifficulty($this->request[1]);
+                    if($this->idUserWhoRequested == 34) {
+                        $response = $this->getQuestionsByDifficulty($this->request[1]);
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
 
                 }
                 //questions/{id}
                 else if(isset($this->request[0]) && !isset($this->request[1]) && is_numeric($this->request[0])){
-                    $response = $this->getQuestionById($this->request[0]);
+                    if($this->idUserWhoRequested == 34) {
+                        $response = $this->getQuestionById($this->request[0]);
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 }
                 //questions
                 else if(!isset($this->request[0])) {
-                    $response = $this->getAllQuestions();
+                    if($this->idUserWhoRequested == 34) {
+                        $response = $this->getAllQuestions();
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 }
                 else {
                     $response = ErrorHandler::notFoundResponse();
@@ -40,12 +55,22 @@ class QuestionController
                 break;
             case 'POST':
                 //questions
-                    $response = $this->addQuestion();
+                    if($this->idUserWhoRequested == 34) {
+                        $response = $this->addQuestion();
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 break;
             case 'PUT':
                 //questions/{id}
                 if(isset($this->request[0]) && is_numeric($this->request[0])) {
-                    $response = $this->updateQuestion($this->request[0]);
+                    if($this->idUserWhoRequested == 34) {
+                        $response = $this->updateQuestion($this->request[0]);
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 } else {
                     $response = ErrorHandler::notFoundResponse();
                 }
@@ -53,7 +78,12 @@ class QuestionController
             case 'DELETE':
                 //questions/{id}
                 if(isset($this->request[0]) && is_numeric($this->request[0])) {
-                    $response = $this->deleteQuestion($this->request[0]);
+                    if($this->idUserWhoRequested == 34) {
+                        $response = $this->deleteQuestion($this->request[0]);
+                    }
+                    else{
+                        $response = ErrorHandler::unauthorizedResponse();
+                    }
                 }
                 else {
                     $response = ErrorHandler::notFoundResponse();
