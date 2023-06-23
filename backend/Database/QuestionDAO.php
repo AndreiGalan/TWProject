@@ -113,7 +113,7 @@ class QuestionDAO {
             $statement = $this->conn->prepare("SELECT max(id) FROM questions");
             $statement->execute();
 
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            return $statement->fetchcolumn();
         } catch (PDOException $e) {
             trigger_error("Error in " . __METHOD__ . ": " . $e->getMessage(), E_USER_ERROR);
         }

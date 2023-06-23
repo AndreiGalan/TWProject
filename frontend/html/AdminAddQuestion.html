@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Picture</title>
+    <link rel="icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <script src="../js/admin-add-question.js" defer></script>
+</head>
+
+<body>
+<script type="module" src="../js/logout.js"></script>
+<script src="../js/script.js"></script>
+<header>
+    <div class="inner-width">
+        <h1 class="logo"> <img src="../images/logo.png" class="img" alt="Logo">FruitsOnTheWeb</h1>
+        <div class="navigation-menu" id="myTopnav">
+            <a href="#"><i class="fas fa-home home"></i> Home</a>
+            <a href="Home.html" class="aj_btn" id="logout"> <i class="fas fa-lock" aria-hidden="true"></i>
+                LOGOUT</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </div>
+</header>
+
+<form id="questionForm">
+
+    <label for="questionType">Question Type:</label>
+    <select id="questionType" name="questionType" >
+        <option value="question" selected>Picture Question</option>
+        <option value="equation">Equation Question</option>
+    </select>
+
+    <label for="questionDifficulty">Question Difficulty:</label>
+    <select id="questionDifficulty" name="QuestionDifficulty" >
+        <option value="easy" selected>Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select>
+    <br>
+
+    <label for="questionId">Picture/Equation ID:</label>
+    <input type="text" id="questionId" name="questionId" required>
+    <br>
+
+    <label for="questionText">Question Text:</label>
+    <input id="questionText" type="text" name="questionText" required>
+    <br>
+
+    <label for="answerText">Answer Text:</label>
+    <input type="text" id="answerText" name="answerText">
+    <button type="button" onclick="addAnswer()">Add Answer</button>
+    <button type="button" onclick="deleteAnswer()">Delete Answer</button>
+    <br>
+
+    <div id="answersContainer">
+        <!-- Answers will be dynamically added here -->
+    </div>
+
+    <button type="submit" id="submit-button">Submit</button>
+</form>
+
+<footer>
+    <span>&copy; 2023 <span style="color: #36622B; font-weight: bold;">FruitsOnTheWeb</span>. All rights reserved.</span>
+</footer>
+
+</body>
+
+</html>
