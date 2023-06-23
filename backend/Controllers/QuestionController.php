@@ -23,31 +23,16 @@ class QuestionController
                 && isset($this->request[1]) &&
                     ($this->request[1] == '1' || $this->request[1] == '2' || $this->request[1] == '3')
                 && isset($this->request[2]) && is_numeric($this->request[2])){
-                    if($this->idUserWhoRequested == 34) {
-                        $response = $this->getQuestionsByDifficulty($this->request[1]);
-                    }
-                    else{
-                        $response = ErrorHandler::unauthorizedResponse();
-                    }
+                    $response = $this->getQuestionsByDifficulty($this->request[1]);
 
                 }
                 //questions/{id}
                 else if(isset($this->request[0]) && !isset($this->request[1]) && is_numeric($this->request[0])){
-                    if($this->idUserWhoRequested == 34) {
-                        $response = $this->getQuestionById($this->request[0]);
-                    }
-                    else{
-                        $response = ErrorHandler::unauthorizedResponse();
-                    }
+                    $response = $this->getQuestionById($this->request[0]);
                 }
                 //questions
                 else if(!isset($this->request[0])) {
-                    if($this->idUserWhoRequested == 34) {
-                        $response = $this->getAllQuestions();
-                    }
-                    else{
-                        $response = ErrorHandler::unauthorizedResponse();
-                    }
+                    $response = $this->getAllQuestions();
                 }
                 else {
                     $response = ErrorHandler::notFoundResponse();

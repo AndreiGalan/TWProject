@@ -85,11 +85,11 @@ createQuestionButton.addEventListener('click', function(e) {
      let difficultyNr = 1;
      let points = 5;
     if(difficulty === 'medium'){
-        difficultyNr = 1;
+        difficultyNr = 2;
         points = 10;
     }
     else if(difficulty === 'hard'){
-        difficultyNr = 2;
+        difficultyNr = 3;
         points = 15;
     }
 
