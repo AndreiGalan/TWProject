@@ -68,7 +68,8 @@ button {
 
 textarea {
     height: 150px;
-    font-size: 1.3em;
+    font-size: 1.2em;
+    width: 70%;
     border-radius: 4px;
     border: 1px solid #ccc;
     padding: 10px;
