@@ -101,6 +101,7 @@ function printQuestion(nrQuestion) {
         }
         localStorage.setItem("points", points);
         localStorage.setItem("difficulty", difficulty);
+        saveScore(points);
         window.location.href = 'GameOver.html';
         return;
     }
