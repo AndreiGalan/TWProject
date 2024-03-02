@@ -4,14 +4,11 @@
 The application is designed to provide an engaging and educational gaming experience for users, especially primary school students, to learn about different fruits and vegetables, or even to practice their math🧮.
 
 ## 🎬 Video Overview
-You can see a short demo of the application[here](https://www.youtube.com/watch?v=7NE-5_XNWe8)
+You can see a short demo of the application [here](https://www.youtube.com/watch?v=7NE-5_XNWe8).
 
 For documentation open the folder "documentation" and click the "FrOW Documentation.html" file.
 
-## Functionalities
-<!-- README.md -->
-
-# My Awesome Project
+## 🧩 Functionalities
 
 <details>
   <summary>Functionalities for an <b>user</b></summary>
